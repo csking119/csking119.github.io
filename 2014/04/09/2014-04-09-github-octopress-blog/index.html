@@ -492,10 +492,17 @@ default_asides: [custom/asides/tag_cloud.html, asides/recent_posts.html,     cus
   <div class="comments" id="comments">
     
       <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
+        <script type="text/javascript">
+    var disqus_shortname = '<%= config.disqus_shortname %>';
+
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/<% if (page.comments){ %>embed.js<% } else { %>count.js<% } %>';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+    </script>
       </div>
     
   </div>
