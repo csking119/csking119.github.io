@@ -1,0 +1,1309 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Ruby," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="第12章（1）的参考答案  
+使用问题中提供的公式直接定义方法。  
+def cels2fahr(cels)
+  return cels * 9.0 / 5.0 + 32.0
+end
+虽然问题中的公式为“华氏 ＝ 摄氏 × 9 ÷ 5 ＋ 32”，但为了用浮点小数表示计算结果，9、5分别转换为9.0、5.0。如果不做这样的转换，当cels为整数时无法得到正确的结果（除以5的结果为Integer）。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ruby基础教程（第4版）练习题参考答案">
+<meta property="og:url" content="http://yoursite.com/2016/05/13/2016-5-13-Ruby_answer/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="第12章（1）的参考答案  
+使用问题中提供的公式直接定义方法。  
+def cels2fahr(cels)
+  return cels * 9.0 / 5.0 + 32.0
+end
+虽然问题中的公式为“华氏 ＝ 摄氏 × 9 ÷ 5 ＋ 32”，但为了用浮点小数表示计算结果，9、5分别转换为9.0、5.0。如果不做这样的转换，当cels为整数时无法得到正确的结果（除以5的结果为Integer）。">
+<meta property="og:updated_time" content="2016-05-15T04:13:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ruby基础教程（第4版）练习题参考答案">
+<meta name="twitter:description" content="第12章（1）的参考答案  
+使用问题中提供的公式直接定义方法。  
+def cels2fahr(cels)
+  return cels * 9.0 / 5.0 + 32.0
+end
+虽然问题中的公式为“华氏 ＝ 摄氏 × 9 ÷ 5 ＋ 32”，但为了用浮点小数表示计算结果，9、5分别转换为9.0、5.0。如果不做这样的转换，当cels为整数时无法得到正确的结果（除以5的结果为Integer）。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+  <title> Ruby基础教程（第4版）练习题参考答案 | Hexo </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-49738005-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+  <script type="text/javascript" src="http://tajs.qq.com/stats?sId=56034606" charset="UTF-8"></script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Hexo</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            Über
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Ruby基础教程（第4版）练习题参考答案
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-05-13T12:10:00+08:00" content="2016-05-13">
+              2016-05-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">in</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Ruby/" itemprop="url" rel="index">
+                    <span itemprop="name">Ruby</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/13/2016-5-13-Ruby_answer/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/05/13/2016-5-13-Ruby_answer/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="第12章"><a href="#第12章" class="headerlink" title="第12章"></a>第12章</h2><p>（1）的参考答案  </p>
+<p>使用问题中提供的公式直接定义方法。  </p>
+<pre><code>def cels2fahr(cels)
+  return cels * 9.0 / 5.0 + 32.0
+end
+</code></pre><p>虽然问题中的公式为“华氏 ＝ 摄氏 × 9 ÷ 5 ＋ 32”，但为了用浮点小数表示计算结果，9、5分别转换为9.0、5.0。如果不做这样的转换，当cels为整数时无法得到正确的结果（除以5的结果为Integer）。<br><a id="more"></a> </p>
+<p>（2）的参考答案  </p>
+<p>定义（1）的逆运算。请读者注意，由于“+”与“*”优先级不一样，因此这里需要加上括号。</p>
+<pre><code>def fahr2cels(fahr)
+  return (fahr.to_f - 32) * 5.0 / 9.0
+end
+</code></pre><p>下一步，使用upto方法逐一将1～100摄氏度转换为华氏温度。  </p>
+<pre><code>1.upto(100) do |i|
+  print i, &quot; &quot;, fahr2cels(i), &quot;\n&quot;
+end
+</code></pre><p>（3）的参考答案  </p>
+<p>使用10.6节中介绍的rand方法。由于执行“rand(6)”时，所得到的返回值只是0到5，因此我们还需要将得到的结果加1。  </p>
+<pre><code>def dice
+  return rand(6) + 1
+end
+</code></pre><p>（4）的参考答案  </p>
+<p>可能有读者想直接使用dice+dice+……这样的写法，但在这里我们应该使用循环来解答问题。  </p>
+<pre><code>def dice10
+  ret = 0
+  10.times do
+    ret += dice
+  end
+  ret
+end
+</code></pre><p>（5）的参考答案</p>
+<p>首先，比2小的数不可能为素数。对于2以上的数，我们将该数与从2开始到该数平方根之间的整数逐个进行除法运算，确认所有运算结果的余数都不为0。  </p>
+<pre><code>def prime?(num)
+  return false if num &lt; 2
+  2.upto(Math.sqrt(num)) do |i|
+    if num % i == 0
+      return false
+    end
+  end
+  return true
+end
+</code></pre><hr>
+<h2 id="第13章"><a href="#第13章" class="headerlink" title="第13章"></a>第13章</h2><p>（1）的参考答案  </p>
+<p>在这里我们列举两种方法。使用像“ary = [1, 2, 3, …]”这样一般用于定义小数组的方法，以及使用字面量直接定义数组的方法。  </p>
+<pre><code># 创建空数组，然后把1到100的值逐个放到数组中
+a = []
+100.times{|i| a[i] = i + 1 }
+
+# 使用范围对象的to_a方法
+a = (1..100).to_a
+</code></pre><p>（2）的参考答案  </p>
+<p>一般使用Array#collect方法时会创建新的数组。在原数组的基础上扩大100倍时，我们使用带“!”的Array#collect!方法。  </p>
+<pre><code># 创建数组
+a = (1..100).to_a
+
+# 利用全部数组元素扩大100倍后的值创建新的数组
+a2 = a.collect{|i| i * 100 }
+p a2
+
+# 全部数组元素扩大100倍
+a.collect!{|i| i * 100 }
+p a
+</code></pre><p>（3）的参考答案  </p>
+<p>使用Array#reject方法去除符合条件的元素。</p>
+<pre><code># 创建数组
+a = (1..100).to_a
+
+# 取出ary中为3的倍数的元素
+a3 = a.reject{|i| i % 3 != 0 }
+p a3
+
+# 另外，还有只返回符合条件的元素，不需要带!的select方法
+a4 = a.select{|i| i % 3 == 0 }
+p a4
+
+# 删除ary中3的倍数以外的元素
+a.reject!{|i| i % 3 != 0 }
+p a
+</code></pre><p>（4）的参考答案  </p>
+<p>在Array#sort以及Array#sort_by方法中，若将块结果乘以-1，则会对结果进行倒排序。  </p>
+<pre><code># 创建数组
+a = (1..100).to_a
+
+# (a) 使用Array#reverse方法
+a2 = a.reverse
+p a2
+
+# (b) 使用Array#sort方法
+a2 = a.sort{|n1, n2| -(n1 &lt;=&gt; n2) }
+p a2
+
+# (c) 使用Array#sort_by方法
+a2 = a.sort_by{|i| -i }
+p a2
+</code></pre><p>（5）的参考答案  </p>
+<p>使用Array#inject方法是本题的另外一种解法。使用Array#each方法时，我们需要定义变量（本例中的result）用于保存累加的值，而使用Array#inject方法则不需要。  </p>
+<pre><code># 创建数组
+a = (1..100).to_a
+
+# (a) 使用Array#each方法求和
+result = 0
+a.each{|i| result += i }
+p result
+
+# (b) 使用Array#inject方法求和
+p a.inject(0){|memo, i| memo += i }
+</code></pre><p>（6）的参考答案  </p>
+<p>指定首个元素索引以及所获取的元素个数。  </p>
+<pre><code># 创建数组
+ary = (1..100).to_a
+result = Array.new
+10.times do |i|
+  result &lt;&lt; ary[i*10, 10]
+end
+p result
+</code></pre><p>（7）的参考答案  </p>
+<p>本题的解答重点在于，使用Array#each遍历ary1各元素的同时，使用相应的索引访问ary2的各元素。另外一种解法是使用Array#zip方法，该方法可以同时方法配对的两个数组中的各元素。  </p>
+<pre><code>def sum_array(ary1, ary2)
+  result = Array.new
+  i = 0
+  ary1.each do |elem1|
+    result &lt;&lt; elem1 + ary2[i]
+    i+=1
+  end
+  return result
+end
+
+# 使用Array#zip方法的另外一种解法
+def sum_array_zip(ary1, ary2)
+  result = Array.new
+  ary1.zip(ary2){|a, b| result &lt;&lt; a + b }
+  return result
+end
+
+p sum_array([1, 2, 3], [4, 6, 8])
+</code></pre><hr>
+<h2 id="第14章"><a href="#第14章" class="headerlink" title="第14章"></a>第14章</h2><p>（1）的参考答案  </p>
+<p>直接使用split方法即可。  </p>
+<pre><code>str = &quot;Ruby is an object oriented programming language&quot;
+ary = str.split
+p ary
+</code></pre><p>（2）的参考答案  </p>
+<p>对只由英文字母字符串，不带参数调用Array.sort即可以进行排序。这里我们顺便复习一下数组的用法。  </p>
+<pre><code>str = &quot;Ruby is an object oriented programming language&quot;
+ary = str.split
+p ary.sort
+</code></pre><p>（3）的参考答案  </p>
+<p>在这里，我们使用Array#sort_by方法对参数进行比较。此时，我们先使用String#downcase方法强制将字符串转换为小写后再进行比较，由此实现不区分大小写进行排序。  </p>
+<pre><code>str = &quot;Ruby is an object oriented programming language&quot;
+ary = str.split
+p ary.sort_by{|s| s.downcase }
+</code></pre><p>（4）的参考答案</p>
+<p>使用String#capitalize方法将字符串的首字母转换为大写。配合Array#collect方法，对数组中各元素进行转换。  </p>
+<pre><code>str = &quot;Ruby is an object oriented programming language&quot;
+ary = str.split
+cap_ary = ary.collect{|word| word.capitalize }
+
+str = &quot;&quot;
+cap_ary.each do |s|
+  str &lt;&lt; s+&quot; &quot;
+end
+p str
+
+## 另一种解法
+p cap_ary.join(&quot; &quot;)
+</code></pre><p>另外，使用另外一种解法时，Array#join方法使字符串连接变得简单。这个方法可以连接数组中的字符串，还可以通过参数指定各元素间的连接符。  </p>
+<pre><code>p [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;].join        #=&gt; &quot;abc&quot;
+p [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;].join(&quot;-&quot;)   #=&gt; &quot;a-b-c&quot;
+</code></pre><p>（5）的参考答案  </p>
+<p>创建散列，将字符作为键，该字符出现的次数作为值进行记录。最后对字符进行排序，将出现次数转换为星号后输出。  </p>
+<pre><code>str = &quot;Ruby is an object oriented programming language&quot;
+count = Hash.new
+str.each_char do |c|
+  count[c] = 0 unless count[c]
+  count[c] += 1
+end
+count.keys.sort.each do |c|
+  printf(&quot;&apos;%s&apos;: %s\n&quot;, c, &quot;*&quot; * count[c])
+end
+</code></pre><p>在初始化散列时，可以像下面那样将0作为散列的默认值返回。  </p>
+<pre><code>str = &quot;Ruby is an object oriented programming language&quot;
+count = Hash.new(0)
+str.each_char do |c|
+  count[c] += 1
+end
+count.keys.sort.each do |c|
+  printf(&quot;&apos;%s&apos;: %s\n&quot;, c, &quot;*&quot; * count[c])
+end
+</code></pre><p>（6）的参考答案  </p>
+<p>本题是一个颇复杂的实际问题。</p>
+<pre><code>def han2num(string)
+  digit4 = digit3 = digit2 = digit1 = &quot;0&quot;
+
+  nstring = string.dup
+  nstring.gsub!(/一/, &quot;1&quot;)
+  nstring.gsub!(/二/, &quot;2&quot;)
+  nstring.gsub!(/三/, &quot;3&quot;)
+  nstring.gsub!(/四/, &quot;4&quot;)
+  nstring.gsub!(/五/, &quot;5&quot;)
+  nstring.gsub!(/六/, &quot;6&quot;)
+  nstring.gsub!(/七/, &quot;7&quot;)
+  nstring.gsub!(/八/, &quot;8&quot;)
+  nstring.gsub!(/九/, &quot;9&quot;)
+
+  if nstring =~ /((\d)?千)?((\d)?百)?((\d)?十)?(\d)?$/
+    if $1
+      digit4 = $2 || &quot;1&quot;
+    end
+    if $3
+      digit3 = $4 || &quot;1&quot;
+    end
+    if $5
+      digit2 = $6 || &quot;1&quot;
+    end
+    digit1 = $7 || &quot;0&quot;
+  end
+
+  return (digit4+digit3+digit2+digit1).to_i
+end
+
+p han2num(&quot;七千八百二十三&quot;)
+p han2num(&quot;千八百二十三&quot;)
+p han2num(&quot;八百二十三&quot;)
+p han2num(&quot;百二十三&quot;)
+p han2num(&quot;百三&quot;)
+p han2num(&quot;二十三&quot;)
+p han2num(&quot;十三&quot;)
+p han2num(&quot;三&quot;)
+</code></pre><hr>
+<h2 id="第15章"><a href="#第15章" class="headerlink" title="第15章"></a>第15章</h2><p>（1）的参考答案  </p>
+<p>虽然可以逐个分别定义，但这次我们试试合在一起定义。  </p>
+<pre><code>wday = {
+  &quot;sunday&quot;    =&gt; &quot;星期天&quot;,
+  &quot;monday&quot;    =&gt; &quot;星期一&quot;,
+  &quot;tuesday&quot;   =&gt; &quot;星期二&quot;,
+  &quot;wedensday&quot; =&gt; &quot;星期三&quot;,
+  &quot;thursday&quot;  =&gt; &quot;星期四&quot;,
+  &quot;friday&quot;    =&gt; &quot;星期五&quot;,
+  &quot;saturday&quot;  =&gt; &quot;星期六&quot;,
+}
+</code></pre><p>（2）的参考答案  </p>
+<p>直接使用Hash#size方法即可。  </p>
+<pre><code>wday = {
+  &quot;sunday&quot;    =&gt; &quot;星期天&quot;,
+  &quot;monday&quot;    =&gt; &quot;星期一&quot;,
+  &quot;tuesday&quot;   =&gt; &quot;星期二&quot;,
+  &quot;wedensday&quot; =&gt; &quot;星期三&quot;,
+  &quot;thursday&quot;  =&gt; &quot;星期四&quot;,
+  &quot;friday&quot;    =&gt; &quot;星期五&quot;,
+  &quot;saturday&quot;  =&gt; &quot;星期六&quot;,
+}
+
+p wday.size  #=&gt; 7
+</code></pre><p>（3）的参考答案  </p>
+<p>一般可用数组作为键，此次为了简化程序使用了%w。  </p>
+<pre><code>wday = {
+  &quot;sunday&quot;    =&gt; &quot;星期天&quot;,
+  &quot;monday&quot;    =&gt; &quot;星期一&quot;,
+  &quot;tuesday&quot;   =&gt; &quot;星期二&quot;,
+  &quot;wedensday&quot; =&gt; &quot;星期三&quot;,
+  &quot;thursday&quot;  =&gt; &quot;星期四&quot;,
+  &quot;friday&quot;    =&gt; &quot;星期五&quot;,
+  &quot;saturday&quot;  =&gt; &quot;星期六&quot;,
+}
+
+%w(sunday monday tuesday wedensday thursday friday saturday).each do |day|
+  puts &quot;“#{day}”是#{wday[day]}。&quot;
+end
+</code></pre><p>（4）的参考答案  </p>
+<p>使用String#split分割字符串后，再使用Array#shift方法将元素逐个取出，创建散列。  </p>
+<pre><code>def str2hash(str)
+  hash = Hash.new()
+  array = str.split(/\s+/)
+  while key = array.shift
+    value = array.shift
+    hash[key] = value
+  end
+  return hash
+end
+
+p str2hash(&quot;bule 蓝 white 白\nred 红&quot;)
+</code></pre><hr>
+<h2 id="第16章"><a href="#第16章" class="headerlink" title="第16章"></a>第16章</h2><p>（1）的参考答案  </p>
+<p>判断电子邮件格式规则颇为复杂，甚至有些正在使用的电子邮件格式本身就不符合规则，因此解析电子邮件不是一件容易的事情，这里我们用简化后的规则进行解析。  </p>
+<pre><code>def get_local_and_domain(str)
+  str =~ /^([^@]+)@(.*)$/
+  localpart = $1
+  domain = $2
+  return [localpart, domain]
+end
+
+p get_local_and_domain(&quot;info@example.com&quot;)
+</code></pre><p>（2）的参考答案<br>很难只置换一次就达到题目要求，因此我们分两次置换。若先用“简单”置换“难”，则“难懂”部分则会变为“简单懂”，因此我们首先用“易懂”置换“难懂”。  </p>
+<pre><code>s = &quot;正则表达式真难啊，怎么这么难懂！&quot;
+puts s.gsub(/难懂/, &quot;易懂&quot;).gsub(/难/, &quot;简单&quot;)
+</code></pre><p>（3）的参考答案  </p>
+<p>思路基本上与第14章的问题（4）一样，在正则表达式中使用“-”时需要经过转义。在下面的参考答案中，我们尝试使用方法链（method chain）将代码都写在一行中。  </p>
+<pre><code>def word_capitalize(str)
+  return str.split(/\-/).collect{|w| w.capitalize}.join(&apos;-&apos;)
+end
+
+p word_capitalize(&quot;in-reply-to&quot;) #=&gt; &quot;In-Reply-To&quot;
+p word_capitalize(&quot;X-MAILER&quot;)    #=&gt; &quot;X-Mailer&quot;
+</code></pre><hr>
+<h2 id="第17章"><a href="#第17章" class="headerlink" title="第17章"></a>第17章</h2><p>（1）的参考答案  </p>
+<p>定义wc方法，用于统计文本行数、单词数和字符数。有一点需要读者注意，本例中使用了String#split方法分割单词，当行首有空白字符时，String#split方法的执行结果中会产生空白字符串，因此我们会删除该空白字符串。  </p>
+<pre><code>def wc(file)
+  nline = nword = nchar = 0
+  File.open(file){|io|
+    io.each{|line|
+      words = line.split(/\s+/).reject{|w| w.empty? }
+      nline += 1
+      nword += words.length
+      nchar += line.length
+    }
+  }
+  puts &quot;lines=#{nline} words=#{nword} chars=#{nchar}&quot;
+end
+
+wc(__FILE__)
+</code></pre><p>（2）的参考答案  </p>
+<p>根据条件分别定义不同的脚本。首先是文件逆序排列。用IO#readlines方法逐行读取文件后，再用IO#rewind方法返回文件开头，用IO#truncate方法清空内容，最后用Array#reverse方法将逆序后的行写入文件。  </p>
+<pre><code>def reverse(input)
+  open(input, &quot;r+&quot;) do |f|
+    lines = f.readlines
+    f.rewind
+    f.truncate(0)
+    f.write lines.reverse.join()
+  end
+end
+
+reverse(ARGV[0])
+</code></pre><p>接下来是输出第1行的内容，实际上只需稍微修改一下上面的程序即可实现。  </p>
+<pre><code>def reverse(input)
+  open(input, &quot;r+&quot;) do |f|
+    lines = f.readlines
+    f.rewind
+    f.truncate(0)
+    f.write lines[0]
+  end
+end
+
+reverse(ARGV[0])
+</code></pre><p>最后是输出最后一行的内容，这里稍微组合了一下（a）（b）的程序。  </p>
+<pre><code>def reverse(input)
+  open(input, &quot;r+&quot;) do |f|
+    lines = f.readlines
+    f.rewind
+    f.truncate(0)
+    f.write lines.reverse[0]
+  end
+end
+
+reverse(ARGV[0])
+</code></pre><p>（3）的参考答案  </p>
+<p>本题的关键在于将读取的行临时保存在变量queue中。  </p>
+<pre><code>def tail(lines, file)
+  queue = Array.new
+  open(file) do |io|
+    while line = io.gets
+      queue.push(line)
+      if queue.size &gt; lines
+        queue.shift
+      end
+    end
+  end
+  queue.each{|line| print line }
+end
+
+puts &quot;===&quot;
+tail(10, __FILE__)
+
+puts &quot;===&quot;
+tail(3, __FILE__)
+</code></pre><hr>
+<h2 id="第18章"><a href="#第18章" class="headerlink" title="第18章"></a>第18章</h2><p>（1）的参考答案  </p>
+<p>使用FileTest.directory?方法排除目录以外的对象后，再使用Dir.open方法检查目录内的文件名。  </p>
+<pre><code>def print_libraries
+  $:.each do |path|
+    next unless FileTest.directory?(path)
+    Dir.open(path) do |dir|
+      dir.each do |name|
+        if name =~ /\.rb$/i
+          puts name
+        end
+      end
+    end
+  end
+end
+
+print_libraries
+</code></pre><p>另外，虽然在正文并没有详细说明，Ruby中引用的库除了用Ruby实现的之外，还有用C等其他语言实现的。扩展库的文件后缀不是“.rb”，而是像“.dll”“.so”等这样平台依赖的文件。<br>利用rbconfig库取得后缀名，支持扩展库的版本如下所示。  </p>
+<pre><code>require &quot;rbconfig&quot;
+
+def print_libraries
+  $:.each do |path|
+    next unless FileTest.directory?(path)
+    dlext = RbConfig::CONFIG[&quot;DLEXT&quot;]
+    Dir.open(path) do |dir|
+      dir.each do |name|
+        if name =~ /\.rb$/i || name =~ /\.#{dlext}$/i
+          puts name
+        end
+      end
+    end
+  end
+end
+
+print_libraries
+</code></pre><p>（2）的参考答案  </p>
+<p>利用了find库。  </p>
+<pre><code>require &quot;find&quot;
+
+def du(path)
+  result = 0
+  Find.find(path){|f|
+    if File.file?(f)
+      result += File.size(f)
+    end
+  }
+  printf(&quot;%d %s\n&quot;, result, path)
+  return result
+end
+
+du(ARGV[0] || &quot;.&quot;)
+</code></pre><hr>
+<h2 id="第19章"><a href="#第19章" class="headerlink" title="第19章"></a>第19章</h2><p>（1）的参考答案  </p>
+<pre><code># encoding: utf-8
+
+def to_utf8(str_gbk, str_gb2312)
+  ## 使用encode方法将字符串分别转换为UTF-8编码后再连接
+  str_gbk.encode(&quot;UTF-8&quot;) + str_gb2312.encode(&quot;UTF-8&quot;)
+end
+
+## 像下面这样执行
+str_gbk  = &quot;你好&quot;.encode(&quot;GBK&quot;)
+str_gb2312 = &quot;再见&quot;.encode(&quot;GB2312&quot;)
+
+puts to_utf8(str_gbk, str_gb2312)
+</code></pre><p>（2）的参考答案  </p>
+<p>按照练习题的处理顺序实现了要求。不过确认创建后的文件编码可能不是一件容易的事。  </p>
+<pre><code># encoding: utf-8
+
+## 用GBK编码创建gbk.txt
+File.open(&quot;gbk.txt&quot;,&quot;w:GBK&quot;) do |f|
+  f.write(&quot;你好&quot;)
+end
+
+## 打开gbk.txt，按UTF-8编码方式输出
+File.open(&quot;gbk.txt&quot;,&quot;r:GBK&quot;) do |f|
+  str = f.read
+  ## str的编码为GBK，因此在使用puts输出时需将其转换为UTF-8编码
+  puts str.encode(&quot;UTF-8&quot;)
+end
+</code></pre><p>（3）的参考答案  </p>
+<p>GB 18030，全称：国家标准GB 18030-2005《信息技术 中文编码字符集》，是中华人民共和国现时最新的内码字集，是GB 18030-2000《信息技术 信息交换用汉字编码字符集 基本集的扩充》的修订版。与GB 2312-1980完全兼容，与GBK基本兼容，支持GB 13000及Unicode的全部汉字，共收录汉字70244个。<br>GB 18030主要有以下特点：</p>
+<ul>
+<li>代码页 54936；</li>
+<li>与 UTF-8 相同，采用多字节编码，每个字可以由1个、2个或4个字节组成；</li>
+<li>编码空间庞大，最多可定义161万个字符；</li>
+<li>支持中国国内少数民族的文字，不需要动用造字区；</li>
+<li>汉字收录范围包含繁体汉字以及日韩汉字。</li>
+</ul>
+<p>GBK即汉字内码扩展规范，K为汉语拼音 Kuo Zhan（扩展）中“扩”字的声母。英文全称Chinese Internal Code Specification。<br>由于GB 2312-80只收录了6763个汉字，部分在GB 2312-80推出以后才简化的汉字（如“啰”），部分人名用字（如中国前总理朱镕基的“镕”字），台湾及香港使用的繁体字，日语及朝鲜语汉字等，并未收录在内。于是微软利用GB 2312-80未使用的编码空间，收录GB 13000.1-93全部字符制定了GBK编码。  </p>
+<p>本參考答案中，将UTF-8字符串“鿋”分别转换为GB1830编码以及GBK编码。由于GBK编码并没有收录该汉字，因此在转换时会产生错误。  </p>
+<pre><code># encoding: utf-8
+
+str = &apos;鿋&apos;
+
+encoding = [Encoding::GB18030, Encoding::GBK]
+encoding.each do |enc|
+  begin
+    print &quot;将str转换为#{enc}。=&gt; &quot;
+    puts &quot;结果: %p&quot; % [str.encode(enc)]
+  rescue =&gt; ex
+    p ex
+  end
+  puts
+end
+</code></pre><p>（4）的参考答案  </p>
+<p>两者都不是UTF-8编码，因此我们首先都转换为UTF-8编码后再比较。  </p>
+<pre><code># encoding: utf-8
+
+Dir.glob(&quot;*.txt&quot;) do |filename|
+  ## 将UTF8-MAC编码的文件名转换为UTF-8编码后，就可以与UTF-8编码的字符串“ルビー.txt”进行比较
+  if filename.encode(&quot;UTF8-MAC&quot;).encode(&quot;UTF-8&quot;) == &quot;ルビー.txt&quot;
+    puts &quot;found.&quot;; exit
+  end
+end
+puts &quot;not found.&quot;
+</code></pre><hr>
+<h2 id="第20章"><a href="#第20章" class="headerlink" title="第20章"></a>第20章</h2><p>（1）的参考答案  </p>
+<p>通过正则表达式把日期与时间转换为中文字符串。当前时间用Time.now方法获取，用以填补传进来的字符串缺少的项目。最后，利用Time.mktime方法生成时间。  </p>
+<pre><code>def cparsedate(str)
+  now = Time.now
+  year = now.year
+  month = now.month
+  day = now.day
+  hour = now.hour
+  min = now.min
+  sec = now.sec 
+  str.scan(/(上午|下午)?(\d+)(年|月|日|点|分|秒)/) do
+    case $3
+    when &quot;年&quot;
+      year = $2.to_i
+    when &quot;月&quot;
+      month = $2.to_i
+    when &quot;日&quot;
+      day = $2.to_i
+    when &quot;点&quot;
+      hour = $2.to_i
+      hour += 12 if $1 == &quot;下午&quot;
+    when &quot;分&quot;
+      min = $2.to_i
+    when &quot;秒&quot;
+      sec = $2.to_i
+    end
+  end
+  return Time.mktime(year, month, day, hour, min, sec)
+end
+
+p cparsedate(&quot;2010年12月23日下午8点17分50秒&quot;)
+p cparsedate(&quot;12月23日下午8点17分50秒&quot;)
+p cparsedate(&quot;上午8时17分50秒&quot;)
+p cparsedate(&quot;8点17分50秒&quot;)
+</code></pre><p>（2）的参考答案  </p>
+<p>先删除以“.”开始的文件，再利用File.mtime方法取得时间后排序。最后输出文件名以及日期。  </p>
+<pre><code>def ls_t(path)
+  entries = Dir.entries(path)                # 获取入口
+  entries.reject!{|name| /^\./ =~ name }     # 删除文件名以&quot;.&quot;开始的文件
+
+  mtimes = Hash.new                          # 边收集mtime边排序
+  entries = entries.sort_by do |name|
+    mtimes[name] = File.mtime(File.join(path, name))
+  end
+
+  entries.each do |name|
+    printf(&quot;%-40s %s\n&quot;, name, mtimes[name]) # 输入文件名以及mtime
+  end
+rescue =&gt; ex
+  puts ex.message
+end
+
+ls_t(ARGV[0] || &quot;.&quot;)
+</code></pre><p>（3）的参考答案  </p>
+<p>下面是利用文具万年历的原理整理的日历。2月30日等不存在的日期，与月末的日期进行比较后就会弹起来（跳到下一个月）。另外，在表格中不存在的日期，为了让它们遇到相同的条件时也能弹起来，我们将它们的初始值设为99。  </p>
+<pre><code>require &quot;date&quot;
+
+module Calendar
+  WEEK_TABLE = [
+    [99, 99, 99, 99, 99, 99,  1,  2,  3,  4,  5,  6,  7],
+    [ 2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14],
+    [ 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21],
+    [16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28],
+    [23, 24, 25, 26, 27, 28, 29, 30, 31, 99, 99, 99, 99],
+    [30, 31, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99],
+  ]
+
+  module_function
+
+  def cal(year, month)
+    first = Date.new(year, month, 1)       # 被指定的月的1号
+    end_of_month = ((first &gt;&gt; 1) - 1).day  # 次月的1号的前1天
+    start = 6 - first.wday                 # 表示在表格的哪个位置
+
+    puts first.strftime(&quot;%B %Y&quot;).center(21)
+    puts &quot; Su Mo Tu We Th Fr St&quot;
+    WEEK_TABLE.each do |week|
+      buf = &quot;&quot;
+      week[start, 7].each do |day|
+        if day &gt; end_of_month
+          buf &lt;&lt; &quot;   &quot;
+        else
+          buf &lt;&lt; sprintf(&quot;%3d&quot;, day)
+        end
+      end
+      puts buf
+    end
+  end
+end
+
+t = Date.today
+Calendar.cal(t.year, t.month)
+</code></pre><hr>
+<h2 id="第21章"><a href="#第21章" class="headerlink" title="第21章"></a>第21章</h2><p>（1）的参考答案  </p>
+<p>通过each方法从obj中逐个获取元素并用块执行，然后再把执行后的结果保存到数组。  </p>
+<pre><code>def my_collect(obj, &amp;block)
+  buf = []
+  obj.each do |elem|
+    buf &lt;&lt; block.call(elem)
+  end
+  buf
+end
+
+ary = my_collect([1,2,3,4,5]) do |i|
+  i * 2
+end
+
+p ary  #=&gt; [2, 4, 6, 8, 10]
+</code></pre><p>（2）的参考答案  </p>
+<p>会得到下面的结果。  </p>
+<pre><code>to_class = :class.to_proc
+p to_class.call(&quot;test&quot;)    #=&gt; String
+p to_class.call(123)       #=&gt; Fixnum
+p to_class.call(2 ** 100)  #=&gt; Bignum
+</code></pre><p>（3）的参考答案  </p>
+<p>累加在方法中定义的局部变量值。  </p>
+<pre><code>def accumlator
+  total = 0
+  Proc.new do |x|
+    total += x
+  end
+end
+
+acc = accumlator
+p acc.call(1)    #=&gt; 1
+p acc.call(2)    #=&gt; 3
+p acc.call(3)    #=&gt; 6
+p acc.call(4)    #=&gt; 10
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Ruby/" rel="tag">#Ruby</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/07/01/2015-07-01-fix-Alcatraz-in-xcode64/" rel="next" title="Fix Alcatraz in Xcode 6.4">
+                <i class="fa fa-chevron-left"></i> Fix Alcatraz in Xcode 6.4
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/15/2016-5-13-Java_next/" rel="prev" title="Java中nextLine()和next()">
+                Java中nextLine()和next() <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/source/images/avatar.jpg"
+               alt="John Doe" />
+          <p class="site-author-name" itemprop="name">John Doe</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">Artikel</span>
+            </a>
+          </div>
+
+          
+            
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">Tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/csking119" target="_blank" title="Github">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/csking119" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/329666363" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/xfwang" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第12章"><span class="nav-number">1.</span> <span class="nav-text">第12章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第13章"><span class="nav-number">2.</span> <span class="nav-text">第13章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第14章"><span class="nav-number">3.</span> <span class="nav-text">第14章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第15章"><span class="nav-number">4.</span> <span class="nav-text">第15章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第16章"><span class="nav-number">5.</span> <span class="nav-text">第16章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第17章"><span class="nav-number">6.</span> <span class="nav-text">第17章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第18章"><span class="nav-number">7.</span> <span class="nav-text">第18章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第19章"><span class="nav-number">8.</span> <span class="nav-text">第19章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第20章"><span class="nav-number">9.</span> <span class="nav-text">第20章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第21章"><span class="nav-number">10.</span> <span class="nav-text">第21章</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<div>本站总访问量 <span id="busuanzi_value_site_pv"></span> &nbsp&nbsp&nbsp
+您是第<span id="busuanzi_value_site_uv"></span>个来到的小伙伴
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'csking119';
+      var disqus_identifier = '2016/05/13/2016-5-13-Ruby_answer/';
+      var disqus_title = 'Ruby基础教程（第4版）练习题参考答案';
+      var disqus_url = 'http://yoursite.com/2016/05/13/2016-5-13-Ruby_answer/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+</body>
+</html>

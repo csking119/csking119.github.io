@@ -1,0 +1,750 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="一、TCP/IP 协议介绍　　在介绍 HTTP 协议之前，先简单说一下TCP/IP协议的相关内容。TCP/IP协议是分层的，从底层至应用层分别为：物理层、链路层、网络层、传输层和应用层，如下图所示：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTP 协议简介">
+<meta property="og:url" content="http://yoursite.com/2014/09/13/2014-09-13-http-protocol/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、TCP/IP 协议介绍　　在介绍 HTTP 协议之前，先简单说一下TCP/IP协议的相关内容。TCP/IP协议是分层的，从底层至应用层分别为：物理层、链路层、网络层、传输层和应用层，如下图所示：">
+<meta property="og:image" content="http://hi.csdn.net/attachment/201103/28/0_13013247647Zjo.gif">
+<meta property="og:image" content="http://hi.csdn.net/attachment/201103/28/0_1301324938r95q.gif">
+<meta property="og:image" content="http://hi.csdn.net/attachment/201103/28/0_13013250142DZ2.gif">
+<meta property="og:image" content="http://hi.csdn.net/attachment/201103/28/0_1301325076B6iY.gif">
+<meta property="og:image" content="http://hi.csdn.net/attachment/201103/28/0_1301325142Ln5d.gif">
+<meta property="og:image" content="http://hi.csdn.net/attachment/201103/28/0_1301325202T3Uf.gif">
+<meta property="og:updated_time" content="2016-10-15T03:17:20.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTTP 协议简介">
+<meta name="twitter:description" content="一、TCP/IP 协议介绍　　在介绍 HTTP 协议之前，先简单说一下TCP/IP协议的相关内容。TCP/IP协议是分层的，从底层至应用层分别为：物理层、链路层、网络层、传输层和应用层，如下图所示：">
+<meta name="twitter:image" content="http://hi.csdn.net/attachment/201103/28/0_13013247647Zjo.gif">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+  <title> HTTP 协议简介 | Hexo </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-49738005-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+  <script type="text/javascript" src="http://tajs.qq.com/stats?sId=56034606" charset="UTF-8"></script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Hexo</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            Über
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                HTTP 协议简介
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2014-09-13T21:50:00+08:00" content="2014-09-13">
+              2014-09-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">in</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/HTTP/" itemprop="url" rel="index">
+                    <span itemprop="name">HTTP</span>
+                  </a>
+                </span>
+
+                
+                
+                  . 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/HTTP/Computer-Network/" itemprop="url" rel="index">
+                    <span itemprop="name">Computer Network</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2014/09/13/2014-09-13-http-protocol/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/09/13/2014-09-13-http-protocol/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="一、TCP-IP-协议介绍"><a href="#一、TCP-IP-协议介绍" class="headerlink" title="一、TCP/IP 协议介绍"></a>一、TCP/IP 协议介绍</h3><p>　　在介绍 HTTP 协议之前，先简单说一下TCP/IP协议的相关内容。TCP/IP协议是分层的，从底层至应用层分别为：物理层、链路层、网络层、传输层和应用层，如下图所示：<br><a id="more"></a><br>　　<img src="http://hi.csdn.net/attachment/201103/28/0_13013247647Zjo.gif" alt=""></p>
+<p>   从应用层至物理层，数据是一层层封装，封装的方式一般都是在原有数据的前面加一个数据控制头，数据封装格式如下：<br>   <img src="http://hi.csdn.net/attachment/201103/28/0_1301324938r95q.gif" alt=""><br>   其中，对于TCP传输协议，客户端在于服务器建立连接前需要经过TCP三层握手，过程如下：<br>   <img src="http://hi.csdn.net/attachment/201103/28/0_13013250142DZ2.gif" alt=""></p>
+<h3 id="二、HTTP协议"><a href="#二、HTTP协议" class="headerlink" title="二、HTTP协议"></a>二、HTTP协议</h3><h4 id="2-1-简介"><a href="#2-1-简介" class="headerlink" title="2.1　简介"></a>2.1　简介</h4><p>　　超文本传输协议（Hypertext Transfer Protocol，简称HTTP）是应用层协议，自 1990 年起，HTTP 就已经被应用于 WWW 全球信息服务系统。<br>　　HTTP 是一种请求/响应式的协议。一个客户机与服务器建立连接后，发送一个请求给服务器；服务器接到请求后，给予相应的响应信息。<br>　　HTTP 的第一版本 HTTP/0.9是一种简单的用于网络间原始数据传输的协议；<br>　　HTTP/1.0由 RFC 1945 定义 ，在原 HTTP/0.9 的基础上，有了进一步的改进，允许消息以类 MIME 信息格式存　在，包括请求/响应范式中的已传输数据和修饰符等方面的信息；<br>　　HTTP/1.1(RFC2616) 的要求更加严格以确保服务的可靠性，增强了在HTTP/1.0 没有充分考虑到分层代理服务器、高速缓冲存储器、持久连接需求或虚拟主机等方面的效能；<br>　　安全增强版的 HTTP （即S-HTTP或HTTPS），则是HTTP协议与安全套接口层(SSL)的结合，使HTTP的协议数据在传输过程中更加安全。</p>
+<h4 id="2-2-协议结构"><a href="#2-2-协议结构" class="headerlink" title="2.2　协议结构"></a>2.2　协议结构</h4><p>　　HTTP协议格式也比较简单，格式如下：<br>　　<img src="http://hi.csdn.net/attachment/201103/28/0_1301325076B6iY.gif" alt="">
+　　</p>
+<h4 id="2-3-HTTP-协议举例"><a href="#2-3-HTTP-协议举例" class="headerlink" title="2.3　HTTP 协议举例"></a>2.3　HTTP 协议举例</h4><p>　　下面是一个HTTP请求及响应的例子：<br>　　<img src="http://hi.csdn.net/attachment/201103/28/0_1301325142Ln5d.gif" alt=""></p>
+<h4 id="2-4-请求头格式"><a href="#2-4-请求头格式" class="headerlink" title="2.4　请求头格式"></a>2.4　请求头格式</h4><p>a) 通用头(general-header)：</p>
+<p>Cache-Control：客户端希望服务端如何缓存自己的请求数据，如”Cache-Control: no-cache”，”Cache-Control: max-age=0”；</p>
+<p>Connection：客户端是否希望与服务端之间保持长连接，如”Connection: close”, “Connection: keep-alive”；</p>
+<p>Date：只有当请求方法为POST或PUT方法时客户端才可能会有些字段；</p>
+<p>Pragma：包含了客户端一些特殊请求信息，如 “Pragma: no-cache” 客户端希望代理或应用服务器不应缓存与该请求相关的结果数据；</p>
+<p>Via：一般用在代理网关向应用服务器发送的请求头中，表明该来自客户端的请求经过了网关代理，<br>     格式为：”Via: 请求协议版本  网关标识   [其它信息] “，<br>     如 ：” Via: 1.1  webcache_250_199.hexun.com:80 (squid)”</p>
+<p>b) 请求头(request-header)：</p>
+<p>Accept： 表明客户同端可接受的请求回应的媒体类型范围列表。星号“*”用于按范围将类型分组，用“*/*”指示可接受全部类型；用“type/*”指示可接受 type类型的所有子类型，如“ Accept: image/gif, image/jpeg, */*”；</p>
+<p>Accept-Charset：客户端所能识别的字符集编码格式，格式：“Accept-Charset: 字符集1[:权重]，字符集2[:权重]”，如：“ Accept-Charset: iso-8859-5, unicode-1-1;q=0.8”；</p>
+<p>Accept-Language：客户端所能识别的语言，格式：“Accept-Language: 语言1[:权重]，语言2[:权重]”，如：” Accept-Language: zh, en;q=0.7”；</p>
+<p>Host：客户请求的主机域名或主机IP，格式：“Host: 域名或IP[:端口号]”，如：“Host: www.hexun.com:80“，请求行中若有HTTP/1.1则必须有该请求头；</p>
+<p>User-Agent：表明用户所使用的浏览器标识，主要用于统计的目的；</p>
+<p>Referer：指明该请求是从哪个关联连接而来；</p>
+<p>Accept-Encoding：客户端所能识别的编码压缩格式，如：“Accept-Encoding: gzip, deflate”；<br>If- Modified-Since：该字段与客户端缓存相关，客户端所访问的URL自该指定日期以来在服务端是否被修改过，如果修改过则服务端返回新的修改后 的信息，如果未修改过则服务器返回304表明此请求所指URL未曾修改过，如：“If-Modified-Since: Fri, 2 Sep 2006 19:37:36 GMT”；</p>
+<p>If-None-Match：该字段与客户端缓存相关，客户端发送URL请求的同时发送该字段及标识，如 果服务端的标识与客户端的标识一致，则返回304表明此URL未修改过，如果不一致则服务端返回完整的数据信息，如：“If-None-Match: 0f0a893aad8c61:253, 0f0a893aad8c61:252, 0f0a893aad8c61:251”；</p>
+<p>Cookie：为扩展字段，存储于客户端，向同一域名的服务端发送属于该域的cookie，如：“Cookie: MailUserName=whouse”；</p>
+<p>c) 实体头(entity-header): (此类头存在时要求有数据体)</p>
+<p>Content-Encoding：客户端所能识别的编码压缩格式，如：“Content-Encoding: gzip, deflate”；</p>
+<p>Content-Length：客户端以POST方法上传数据时数据体部分的内容长度，如：“ Content-Length: 24”；</p>
+<p>Content- Type：客户端发送的数据体的内容类型，如：“Content-Type: application/x-www-form-urlencoded”为以普通的POST方法发送的数据；“Content-Type: multipart/form-data; boundary=—————————5169208281820”，则表明数据体由多部分组成，分隔符为 “—————————–5169208281820”；</p>
+<h4 id="2-5-响应格式"><a href="#2-5-响应格式" class="headerlink" title="2.5 响应格式"></a>2.5 响应格式</h4><p>a) 通用头(general-header)：</p>
+<p>Cache- Control：服务端要求中间代理及客户端如何缓存自己响应的数据，如“Cache-Control: no-cache”，如：“Cache-Control: private” 不希望被缓存，“Cache-Control: public” 可以被缓存；</p>
+<p>Connection：服务端是否希望与客户端之间保持长连接，如“Connection: close”, “Connection: keep-alive”；</p>
+<p>Date：只有当请求方法为POST或PUT方法时客户端才可能会有些字段；</p>
+<p>Pragma：包含了服务端一些特殊响应信息，如 “Pragma: no-cache” 服务端希望代理或客户端不应缓存结果数据；</p>
+<p>Transfer-Encoding：服务端向客户端传输数据所采用的传输模式(仅在HTTP1.1中出现)，如：“Transfer-Encoding: chunked”，注：该字段的优先级要高于“Content-Length”　字段的优先级；</p>
+<p>b）响应头(response-header)：</p>
+<p>Accept-Ranges：表明服务端接收的数据单位，如：“Accept-Ranges: bytes”, ；</p>
+<p>Location：服务端向客户端返回此信息以使客户端进行重定向，如：“Location: <a href="http://www.hexun.com”；" target="_blank" rel="external">http://www.hexun.com”；</a></p>
+<p>Server：服务端返回的用于标识自己的一些信息，如：“ Server: Microsoft-IIS/6.0”；</p>
+<p>ETag：服务端返回的响应数据的标识字段，客户端可根据此字段的值向服务器发送某URL是否更新的信息；</p>
+<p>c）实体头(entity-header): (此类头存在时要求有数据体)<br>Content-Encoding：服务端所响应数据的编码格式，如：“Content-Encoding: gzip”；<br>Content-Length：服务端所返回数据的数据体部分的内容长度，如：“ Content-Length: 24”；<br>Content-Type：服务端所返回的数据体的内容类型，如：“Content-Type: text/html; charset=gb2312” ；<br>Set-Cookie：服务端返回给客户端的cookie数据，如：“ Set-Cookie: ASP.NET_SessionId=icnh2ku2dqlmkciyobgvzl55; path=/”</p>
+<h4 id="2-6-服务器返回状态码"><a href="#2-6-服务器返回状态码" class="headerlink" title="2.6 服务器返回状态码"></a>2.6 服务器返回状态码</h4><p>1xx：表明服务端接收了客户端请求，客户端继续发送请求；<br>2xx：客户端发送的请求被服务端成功接收并成功进行了处理；<br>3xx：服务端给客户端返回用于重定向的信息；<br>4xx：客户端的请求有非法内容；<br>5xx：服务端未能正常处理客户端的请求而出现意外错误。</p>
+<p>举例：</p>
+<p>“100”  ; 服务端希望客户端继续；<br>“200”  ; 服务端成功接收并处理了客户端的请求；<br>“301”  ; 客户端所请求的URL已经移走，需要客户端重定向到其它的URL；<br>“304”  ; 客户端所请求的URL未发生变化；<br>“400”  ; 客户端请求错误；<br>“403”  ; 客户端请求被服务端所禁止；<br>“404”  ; 客户端所请求的URL在服务端不存在；<br>“500”  ; 服务端在处理客户端请求时出现异常；<br>“501”  ; 服务端未实现客户端请求的方法或内容；<br>“502”  ; 此为中间代理返回给客户端的出错信息，表明服务端返回给代理时出错；<br>“503”  ; 服务端由于负载过高或其它错误而无法正常响应客户端请求；<br>“504”  ; 此为中间代理返回给客户端的出错信息，表明代理连接服务端出现超时。</p>
+<h4 id="2-7-chunked-传输"><a href="#2-7-chunked-传输" class="headerlink" title="2.7 chunked 传输"></a>2.7 chunked 传输</h4><p>　 　编码使用若干个Chunk组成，由一个标明长度为0的chunk结束，每个Chunk有两部分组成，第一部分是该Chunk的长度(以十六进制表示)和 长度单位（一般不写），第二部分就是指定长度的内容，每个部分用CRLF隔开。在最后一个长度为0的Chunk中的内容是称为footer的内容，是一些 没有写的头部内容。另外，在HTTP头里必须含有：” Transfer-Encoding: chunked” 通用头字段。格式如下：<br>　 　<img src="http://hi.csdn.net/attachment/201103/28/0_1301325202T3Uf.gif" alt="">
+　</p>
+<h4 id="2-8-HTTP-请求方法"><a href="#2-8-HTTP-请求方法" class="headerlink" title="2.8 HTTP 请求方法"></a>2.8 HTTP 请求方法</h4><p>GET、POST、HEAD、CONNECT、PUT、DELETE、TRACE</p>
+<h4 id="2-9-举例"><a href="#2-9-举例" class="headerlink" title="2.9 举例"></a>2.9 举例</h4><p>a）GET请求</p>
+<p>GET <a href="http://photo.test.com/inc/global.js" target="_blank" rel="external">http://photo.test.com/inc/global.js</a> HTTP/1.1<br>Host: photo.test.com<br>User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.0; zh-CN; rv:1.8.1) Gecko/20061010 Firefox/2.0<br>Accept: text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5<br>Accept-Language: en-us,zh-cn;q=0.7,zh;q=0.3<br>Accept-Encoding: gzip,deflate<br>Accept-Charset: gb2312,utf-8;q=0.7,*;q=0.7<br>Keep-Alive: 300<br>Proxy-Connection: keep-alive<br>Cookie: ASP.NET_SessionId=ey5drq45lsomio55hoydzc45<br>Cache-Control: max-age=0</p>
+<p>b）POST请求</p>
+<p>POST / HTTP/1.1<br>Accept: image/gif, image/x-xbitmap, image/jpeg, application/vnd.ms-powerpoint, application/msword, */*<br>Accept-Language: zh-cn<br>Content-Type: application/x-www-form-urlencoded<br>Accept-Encoding: gzip, deflate<br>User-Agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)<br>Host: www.test.com<br>Content-Length: 24<br>Connection: Keep-Alive<br>Cache-Control: no-cache</p>
+<p>name=value&amp;submit=submit</p>
+<p>c）通过HTTP代理发送GET请求</p>
+<p>GET <a href="http://mail.test.com/" target="_blank" rel="external">http://mail.test.com/</a> HTTP/1.1<br>Host: mail.test.com<br>User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.0; zh-CN; rv:1.8.1) Gecko/20061010 Firefox/2.0<br>Accept: text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,<em>/</em>;q=0.5<br>Accept-Language: en-us,zh-cn;q=0.7,zh;q=0.3<br>Accept-Encoding: gzip,deflate<br>Accept-Charset: gb2312,utf-8;q=0.7,*;q=0.7<br>Keep-Alive: 300<br>Proxy-Connection: keep-alive</p>
+<p>d）POST方式上传文</p>
+<p>POST <a href="http://www.test.comt/upload_attach?uidl=%3C" target="_blank" rel="external">http://www.test.comt/upload_attach?uidl=%3C</a> HTTP/1.1<br>Host: www.test.com<br>User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.0; zh-CN; rv:1.8.1) Gecko/20061010 Firefox/2.0<br>Accept: text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5<br>Accept-Language: en-us,zh-cn;q=0.7,zh;q=0.3<br>Accept-Charset: gb2312,utf-8;q=0.7,*;q=0.7<br>Content-Type: multipart/form-data; boundary=—————————5169208281820<br>Content-Length: 449</p>
+<p>—————————–5169208281820<br>Content-Disposition: form-data; name=”file_1”; filename=””<br>Content-Type: application/octet-stream</p>
+<p>—————————–5169208281820<br>Content-Disposition: form-data; name=”file_0”; filename=”test.txt”<br>Content-Type: text/plain</p>
+<p>hello world!</p>
+<p>—————————–5169208281820<br>Content-Disposition: form-data; name=”oper”</p>
+<p>upload<br>—————————–5169208281820–</p>
+<p>e）CONNECT举例</p>
+<p>CONNECT mail.test.com:80 HTTP/1.1<br>User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.0; zh-CN; rv:1.8.1) Gecko/20061010 Firefox/2.0<br>Proxy-Connection: keep-alive<br>Host: mail.test.com:80</p>
+<h4 id="3-0-在终端以-telnet-方式测试"><a href="#3-0-在终端以-telnet-方式测试" class="headerlink" title="3.0 在终端以 telnet 方式测试"></a>3.0 在终端以 telnet 方式测试</h4><p>a）打开回显功能（针对windows)<br>　 Windows 2000：进入DOS模式-&gt;输入 telnet-&gt;set LOCAL_ECHO-&gt;退出：quit-&gt;telnet ip 80<br>　 Windows xp：进入DOS模式-&gt;输入telnet-&gt;set local echo-&gt;open ip 80<br>b) 按HTTP协议格式输入GET请求、HEAD请求、POST请求。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/09/13/2014-09-13-Python06-function/" rel="next" title="Python基础06 函数">
+                <i class="fa fa-chevron-left"></i> Python基础06 函数
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/10/05/2014-10-05-Python07-Slice/" rel="prev" title="Python基础07 切片">
+                Python基础07 切片 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/source/images/avatar.jpg"
+               alt="John Doe" />
+          <p class="site-author-name" itemprop="name">John Doe</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">Artikel</span>
+            </a>
+          </div>
+
+          
+            
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">Tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/csking119" target="_blank" title="Github">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/csking119" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/329666363" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/xfwang" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、TCP-IP-协议介绍"><span class="nav-number">1.</span> <span class="nav-text">一、TCP/IP 协议介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、HTTP协议"><span class="nav-number">2.</span> <span class="nav-text">二、HTTP协议</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-简介"><span class="nav-number">2.1.</span> <span class="nav-text">2.1　简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-协议结构"><span class="nav-number">2.2.</span> <span class="nav-text">2.2　协议结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-HTTP-协议举例"><span class="nav-number">2.3.</span> <span class="nav-text">2.3　HTTP 协议举例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-请求头格式"><span class="nav-number">2.4.</span> <span class="nav-text">2.4　请求头格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-响应格式"><span class="nav-number">2.5.</span> <span class="nav-text">2.5 响应格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-6-服务器返回状态码"><span class="nav-number">2.6.</span> <span class="nav-text">2.6 服务器返回状态码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-7-chunked-传输"><span class="nav-number">2.7.</span> <span class="nav-text">2.7 chunked 传输</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-8-HTTP-请求方法"><span class="nav-number">2.8.</span> <span class="nav-text">2.8 HTTP 请求方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-9-举例"><span class="nav-number">2.9.</span> <span class="nav-text">2.9 举例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-0-在终端以-telnet-方式测试"><span class="nav-number">2.10.</span> <span class="nav-text">3.0 在终端以 telnet 方式测试</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<div>本站总访问量 <span id="busuanzi_value_site_pv"></span> &nbsp&nbsp&nbsp
+您是第<span id="busuanzi_value_site_uv"></span>个来到的小伙伴
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'csking119';
+      var disqus_identifier = '2014/09/13/2014-09-13-http-protocol/';
+      var disqus_title = 'HTTP 协议简介';
+      var disqus_url = 'http://yoursite.com/2014/09/13/2014-09-13-http-protocol/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+</body>
+</html>

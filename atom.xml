@@ -1,0 +1,1933 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>静风港</title>
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://xfwang.xyz/"/>
+  <updated>2016-05-15T10:53:59.000Z</updated>
+  <id>http://xfwang.xyz/</id>
+  
+  <author>
+    <name>Xiaofeng Wang</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java中nextLine()和next()</title>
+    <link href="http://xfwang.xyz/2016/05/15/2016-5-13-Java_next/"/>
+    <id>http://xfwang.xyz/2016/05/15/2016-5-13-Java_next/</id>
+    <published>2016-05-15T10:10:00.000Z</published>
+    <updated>2016-05-15T10:53:59.000Z</updated>
+    
+    <content type="html">&lt;p&gt;Java实现字符窗口的输入时，可以选择使用扫描器Scanner，它操作起来比较简单。用Scanner实现字符串的输入有两种方法，一种是next（），一种nextLine(),但是这两种方法究竟有什么区别呢？&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;先看个例子：&lt;br&gt;今天在做清华大学的学堂在线的练习题，输入的字符串排序输出的时候，遇到的情况。&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; java.util.Scanner;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; java.util.Arrays;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;StringSort&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(String[] args)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		Scanner scan = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Scanner(System.in);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;comment&quot;&gt;// a 是输入字符串个数&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; a = scan.nextInt();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		String[] stringArray = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; String[a];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;comment&quot;&gt;// 输入字符串赋值给数组&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; i=&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;; i&amp;lt;a; i++)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			stringArray[i] = scan.nextLine();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		scan.close();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		Arrays.sort(stringArray);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;comment&quot;&gt;// 输出排序后的数组&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; i=&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;; i&amp;lt;a; i++)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			System.out.println(stringArray[i]);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; 	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;运行输入输出结果：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;3      // 输入字符串数&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;acv    // 输入第一个字符串&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;abc    // 输入第二个字符串&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;abc    // 输出&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;acv&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;发现想要输入3个字符串，当第二个输入结束后就输入了以上结果。为何？&lt;/p&gt;
+&lt;p&gt;来看看改为&lt;strong&gt;next()&lt;/strong&gt;后的结果。&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; java.util.Scanner;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; java.util.Arrays;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;StringSort&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(String[] args)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		Scanner scan = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Scanner(System.in);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;comment&quot;&gt;// a 是输入字符串个数&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; a = scan.nextInt();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		String[] stringArray = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; String[a];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;comment&quot;&gt;// 输入字符串赋值给数组&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; i=&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;; i&amp;lt;a; i++)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			stringArray[i] = scan.next();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		scan.close();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		Arrays.sort(stringArray);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;comment&quot;&gt;// 输出排序后的数组&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; i=&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;; i&amp;lt;a; i++)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			System.out.println(stringArray[i]);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; 	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;运行输入输出结果：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;3     // 输入字符串数&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;acb   // 输入第一个字符串&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;abd   // 输入第二个字符串&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;aaa   // 输入第三个字符串&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;aaa   // 输出&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;abd&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;acb&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;首先，next（）一定要读取到有效字符后才可以结束输入，对输入有效字符之前遇到的空格键、Tab键或Enter键等结束符，next（）方法会自动将其去掉，只有在输入有效字符之后，next（）方法才将其后输入的空格键、Tab键或Enter键等视为分隔符或结束符。简单地说，next（）查找并返回来自此扫描器的下一个完整标记。完整标记的前后是与分隔模式匹配的输入信息，所以next方法不能得到带空格的字符串而nextLine（）方法的结束符只是Enter键，即nextLine（）方法返回的是Enter键之前的所有字符，它是可以得到带空格的字符串的。&lt;/p&gt;
+&lt;p&gt;Scanner 中的 next 和 nextLine 方法最好不要联合使用，因为它们如果联合使用的话，它们就是一个整体了，你不要想当然的以为这两个方法一前一后调用时是各自孤立的。也就是说，next 方法和 nextLine 方法（next 在前，nextLine 在后）扫描接收的是同一行上的字符串，只不过接收的是不同部分罢了。不知道聪明的你是不是明白了我以上所说的内容。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Java实现字符窗口的输入时，可以选择使用扫描器Scanner，它操作起来比较简单。用Scanner实现字符串的输入有两种方法，一种是next（），一种nextLine(),但是这两种方法究竟有什么区别呢？&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Java" scheme="http://xfwang.xyz/categories/Java/"/>
+    
+    
+      <category term="Java" scheme="http://xfwang.xyz/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ruby基础教程（第4版）练习题参考答案</title>
+    <link href="http://xfwang.xyz/2016/05/13/2016-5-13-Ruby_answer/"/>
+    <id>http://xfwang.xyz/2016/05/13/2016-5-13-Ruby_answer/</id>
+    <published>2016-05-13T04:10:00.000Z</published>
+    <updated>2016-05-15T04:13:16.000Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;第12章&quot;&gt;&lt;a href=&quot;#第12章&quot; class=&quot;headerlink&quot; title=&quot;第12章&quot;&gt;&lt;/a&gt;第12章&lt;/h2&gt;&lt;p&gt;（1）的参考答案  &lt;/p&gt;
+&lt;p&gt;使用问题中提供的公式直接定义方法。  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;def cels2fahr(cels)
+  return cels * 9.0 / 5.0 + 32.0
+end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;虽然问题中的公式为“华氏 ＝ 摄氏 × 9 ÷ 5 ＋ 32”，但为了用浮点小数表示计算结果，9、5分别转换为9.0、5.0。如果不做这样的转换，当cels为整数时无法得到正确的结果（除以5的结果为Integer）。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt; &lt;/p&gt;
+&lt;p&gt;（2）的参考答案  &lt;/p&gt;
+&lt;p&gt;定义（1）的逆运算。请读者注意，由于“+”与“*”优先级不一样，因此这里需要加上括号。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;def fahr2cels(fahr)
+  return (fahr.to_f - 32) * 5.0 / 9.0
+end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;下一步，使用upto方法逐一将1～100摄氏度转换为华氏温度。  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;1.upto(100) do |i|
+  print i, &amp;quot; &amp;quot;, fahr2cels(i), &amp;quot;\n&amp;quot;
+end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;（3）的参考答案  &lt;/p&gt;
+&lt;p&gt;使用10.6节中介绍的rand方法。由于执行“rand(6)”时，所得到的返回值只是0到5，因此我们还需要将得到的结果加1。  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;def dice
+  return rand(6) + 1
+end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;（4）的参考答案  &lt;/p&gt;
+&lt;p&gt;可能有读者想直接使用dice+dice+……这样的写法，但在这里我们应该使用循环来解答问题。  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;def dice10
+  ret = 0
+  10.times do
+    ret += dice
+  end
+  ret
+end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;（5）的参考答案&lt;/p&gt;
+&lt;p&gt;首先，比2小的数不可能为素数。对于2以上的数，我们将该数与从2开始到该数平方根之间的整数逐个进行除法运算，确认所有运算结果的余数都不为0。  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;def prime?(num)
+  return false if num &amp;lt; 2
+  2.upto(Math.sqrt(num)) do |i|
+    if num % i == 0
+      return false
+    end
+  end
+  return true
+end
+&lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
+&lt;h2 id=&quot;第13章&quot;&gt;&lt;a href=&quot;#第13章&quot; class=&quot;headerlink&quot; title=&quot;第13章&quot;&gt;&lt;/a&gt;第13章&lt;/h2&gt;&lt;p&gt;（1）的参考答案  &lt;/p&gt;
+&lt;p&gt;在这里我们列举两种方法。使用像“ary = [1, 2, 3, …]”这样一般用于定义小数组的方法，以及使用字面量直接定义数组的方法。  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# 创建空数组，然后把1到100的值逐个放到数组中
+a = []
+100.times{|i| a[i] = i + 1 }
+
+# 使用范围对象的to_a方法
+a = (1..100).to_a
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;（2）的参考答案  &lt;/p&gt;
+&lt;p&gt;一般使用Array#collect方法时会创建新的数组。在原数组的基础上扩大100倍时，我们使用带“!”的Array#collect!方法。  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# 创建数组
+a = (1..100).to_a
+
+# 利用全部数组元素扩大100倍后的值创建新的数组
+a2 = a.collect{|i| i * 100 }
+p a2
+
+# 全部数组元素扩大100倍
+a.collect!{|i| i * 100 }
+p a
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;（3）的参考答案  &lt;/p&gt;
+&lt;p&gt;使用Array#reject方法去除符合条件的元素。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# 创建数组
+a = (1..100).to_a
+
+# 取出ary中为3的倍数的元素
+a3 = a.reject{|i| i % 3 != 0 }
+p a3
+
+# 另外，还有只返回符合条件的元素，不需要带!的select方法
+a4 = a.select{|i| i % 3 == 0 }
+p a4
+
+# 删除ary中3的倍数以外的元素
+a.reject!{|i| i % 3 != 0 }
+p a
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;（4）的参考答案  &lt;/p&gt;
+&lt;p&gt;在Array#sort以及Array#sort_by方法中，若将块结果乘以-1，则会对结果进行倒排序。  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# 创建数组
+a = (1..100).to_a
+
+# (a) 使用Array#reverse方法
+a2 = a.reverse
+p a2
+
+# (b) 使用Array#sort方法
+a2 = a.sort{|n1, n2| -(n1 &amp;lt;=&amp;gt; n2) }
+p a2
+
+# (c) 使用Array#sort_by方法
+a2 = a.sort_by{|i| -i }
+p a2
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;（5）的参考答案  &lt;/p&gt;
+&lt;p&gt;使用Array#inject方法是本题的另外一种解法。使用Array#each方法时，我们需要定义变量（本例中的result）用于保存累加的值，而使用Array#inject方法则不需要。  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# 创建数组
+a = (1..100).to_a
+
+# (a) 使用Array#each方法求和
+result = 0
+a.each{|i| result += i }
+p result
+
+# (b) 使用Array#inject方法求和
+p a.inject(0){|memo, i| memo += i }
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;（6）的参考答案  &lt;/p&gt;
+&lt;p&gt;指定首个元素索引以及所获取的元素个数。  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# 创建数组
+ary = (1..100).to_a
+result = Array.new
+10.times do |i|
+  result &amp;lt;&amp;lt; ary[i*10, 10]
+end
+p result
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;（7）的参考答案  &lt;/p&gt;
+&lt;p&gt;本题的解答重点在于，使用Array#each遍历ary1各元素的同时，使用相应的索引访问ary2的各元素。另外一种解法是使用Array#zip方法，该方法可以同时方法配对的两个数组中的各元素。  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;def sum_array(ary1, ary2)
+  result = Array.new
+  i = 0
+  ary1.each do |elem1|
+    result &amp;lt;&amp;lt; elem1 + ary2[i]
+    i+=1
+  end
+  return result
+end
+
+# 使用Array#zip方法的另外一种解法
+def sum_array_zip(ary1, ary2)
+  result = Array.new
+  ary1.zip(ary2){|a, b| result &amp;lt;&amp;lt; a + b }
+  return result
+end
+
+p sum_array([1, 2, 3], [4, 6, 8])
+&lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
+&lt;h2 id=&quot;第14章&quot;&gt;&lt;a href=&quot;#第14章&quot; class=&quot;headerlink&quot; title=&quot;第14章&quot;&gt;&lt;/a&gt;第14章&lt;/h2&gt;&lt;p&gt;（1）的参考答案  &lt;/p&gt;
+&lt;p&gt;直接使用split方法即可。  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;str = &amp;quot;Ruby is an object oriented programming language&amp;quot;
+ary = str.split
+p ary
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;（2）的参考答案  &lt;/p&gt;
+&lt;p&gt;对只由英文字母字符串，不带参数调用Array.sort即可以进行排序。这里我们顺便复习一下数组的用法。  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;str = &amp;quot;Ruby is an object oriented programming language&amp;quot;
+ary = str.split
+p ary.sort
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;（3）的参考答案  &lt;/p&gt;
+&lt;p&gt;在这里，我们使用Array#sort_by方法对参数进行比较。此时，我们先使用String#downcase方法强制将字符串转换为小写后再进行比较，由此实现不区分大小写进行排序。  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;str = &amp;quot;Ruby is an object oriented programming language&amp;quot;
+ary = str.split
+p ary.sort_by{|s| s.downcase }
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;（4）的参考答案&lt;/p&gt;
+&lt;p&gt;使用String#capitalize方法将字符串的首字母转换为大写。配合Array#collect方法，对数组中各元素进行转换。  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;str = &amp;quot;Ruby is an object oriented programming language&amp;quot;
+ary = str.split
+cap_ary = ary.collect{|word| word.capitalize }
+
+str = &amp;quot;&amp;quot;
+cap_ary.each do |s|
+  str &amp;lt;&amp;lt; s+&amp;quot; &amp;quot;
+end
+p str
+
+## 另一种解法
+p cap_ary.join(&amp;quot; &amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;另外，使用另外一种解法时，Array#join方法使字符串连接变得简单。这个方法可以连接数组中的字符串，还可以通过参数指定各元素间的连接符。  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;p [&amp;quot;a&amp;quot;, &amp;quot;b&amp;quot;, &amp;quot;c&amp;quot;].join        #=&amp;gt; &amp;quot;abc&amp;quot;
+p [&amp;quot;a&amp;quot;, &amp;quot;b&amp;quot;, &amp;quot;c&amp;quot;].join(&amp;quot;-&amp;quot;)   #=&amp;gt; &amp;quot;a-b-c&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;（5）的参考答案  &lt;/p&gt;
+&lt;p&gt;创建散列，将字符作为键，该字符出现的次数作为值进行记录。最后对字符进行排序，将出现次数转换为星号后输出。  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;str = &amp;quot;Ruby is an object oriented programming language&amp;quot;
+count = Hash.new
+str.each_char do |c|
+  count[c] = 0 unless count[c]
+  count[c] += 1
+end
+count.keys.sort.each do |c|
+  printf(&amp;quot;&amp;apos;%s&amp;apos;: %s\n&amp;quot;, c, &amp;quot;*&amp;quot; * count[c])
+end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;在初始化散列时，可以像下面那样将0作为散列的默认值返回。  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;str = &amp;quot;Ruby is an object oriented programming language&amp;quot;
+count = Hash.new(0)
+str.each_char do |c|
+  count[c] += 1
+end
+count.keys.sort.each do |c|
+  printf(&amp;quot;&amp;apos;%s&amp;apos;: %s\n&amp;quot;, c, &amp;quot;*&amp;quot; * count[c])
+end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;（6）的参考答案  &lt;/p&gt;
+&lt;p&gt;本题是一个颇复杂的实际问题。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;def han2num(string)
+  digit4 = digit3 = digit2 = digit1 = &amp;quot;0&amp;quot;
+
+  nstring = string.dup
+  nstring.gsub!(/一/, &amp;quot;1&amp;quot;)
+  nstring.gsub!(/二/, &amp;quot;2&amp;quot;)
+  nstring.gsub!(/三/, &amp;quot;3&amp;quot;)
+  nstring.gsub!(/四/, &amp;quot;4&amp;quot;)
+  nstring.gsub!(/五/, &amp;quot;5&amp;quot;)
+  nstring.gsub!(/六/, &amp;quot;6&amp;quot;)
+  nstring.gsub!(/七/, &amp;quot;7&amp;quot;)
+  nstring.gsub!(/八/, &amp;quot;8&amp;quot;)
+  nstring.gsub!(/九/, &amp;quot;9&amp;quot;)
+
+  if nstring =~ /((\d)?千)?((\d)?百)?((\d)?十)?(\d)?$/
+    if $1
+      digit4 = $2 || &amp;quot;1&amp;quot;
+    end
+    if $3
+      digit3 = $4 || &amp;quot;1&amp;quot;
+    end
+    if $5
+      digit2 = $6 || &amp;quot;1&amp;quot;
+    end
+    digit1 = $7 || &amp;quot;0&amp;quot;
+  end
+
+  return (digit4+digit3+digit2+digit1).to_i
+end
+
+p han2num(&amp;quot;七千八百二十三&amp;quot;)
+p han2num(&amp;quot;千八百二十三&amp;quot;)
+p han2num(&amp;quot;八百二十三&amp;quot;)
+p han2num(&amp;quot;百二十三&amp;quot;)
+p han2num(&amp;quot;百三&amp;quot;)
+p han2num(&amp;quot;二十三&amp;quot;)
+p han2num(&amp;quot;十三&amp;quot;)
+p han2num(&amp;quot;三&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
+&lt;h2 id=&quot;第15章&quot;&gt;&lt;a href=&quot;#第15章&quot; class=&quot;headerlink&quot; title=&quot;第15章&quot;&gt;&lt;/a&gt;第15章&lt;/h2&gt;&lt;p&gt;（1）的参考答案  &lt;/p&gt;
+&lt;p&gt;虽然可以逐个分别定义，但这次我们试试合在一起定义。  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;wday = {
+  &amp;quot;sunday&amp;quot;    =&amp;gt; &amp;quot;星期天&amp;quot;,
+  &amp;quot;monday&amp;quot;    =&amp;gt; &amp;quot;星期一&amp;quot;,
+  &amp;quot;tuesday&amp;quot;   =&amp;gt; &amp;quot;星期二&amp;quot;,
+  &amp;quot;wedensday&amp;quot; =&amp;gt; &amp;quot;星期三&amp;quot;,
+  &amp;quot;thursday&amp;quot;  =&amp;gt; &amp;quot;星期四&amp;quot;,
+  &amp;quot;friday&amp;quot;    =&amp;gt; &amp;quot;星期五&amp;quot;,
+  &amp;quot;saturday&amp;quot;  =&amp;gt; &amp;quot;星期六&amp;quot;,
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;（2）的参考答案  &lt;/p&gt;
+&lt;p&gt;直接使用Hash#size方法即可。  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;wday = {
+  &amp;quot;sunday&amp;quot;    =&amp;gt; &amp;quot;星期天&amp;quot;,
+  &amp;quot;monday&amp;quot;    =&amp;gt; &amp;quot;星期一&amp;quot;,
+  &amp;quot;tuesday&amp;quot;   =&amp;gt; &amp;quot;星期二&amp;quot;,
+  &amp;quot;wedensday&amp;quot; =&amp;gt; &amp;quot;星期三&amp;quot;,
+  &amp;quot;thursday&amp;quot;  =&amp;gt; &amp;quot;星期四&amp;quot;,
+  &amp;quot;friday&amp;quot;    =&amp;gt; &amp;quot;星期五&amp;quot;,
+  &amp;quot;saturday&amp;quot;  =&amp;gt; &amp;quot;星期六&amp;quot;,
+}
+
+p wday.size  #=&amp;gt; 7
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;（3）的参考答案  &lt;/p&gt;
+&lt;p&gt;一般可用数组作为键，此次为了简化程序使用了%w。  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;wday = {
+  &amp;quot;sunday&amp;quot;    =&amp;gt; &amp;quot;星期天&amp;quot;,
+  &amp;quot;monday&amp;quot;    =&amp;gt; &amp;quot;星期一&amp;quot;,
+  &amp;quot;tuesday&amp;quot;   =&amp;gt; &amp;quot;星期二&amp;quot;,
+  &amp;quot;wedensday&amp;quot; =&amp;gt; &amp;quot;星期三&amp;quot;,
+  &amp;quot;thursday&amp;quot;  =&amp;gt; &amp;quot;星期四&amp;quot;,
+  &amp;quot;friday&amp;quot;    =&amp;gt; &amp;quot;星期五&amp;quot;,
+  &amp;quot;saturday&amp;quot;  =&amp;gt; &amp;quot;星期六&amp;quot;,
+}
+
+%w(sunday monday tuesday wedensday thursday friday saturday).each do |day|
+  puts &amp;quot;“#{day}”是#{wday[day]}。&amp;quot;
+end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;（4）的参考答案  &lt;/p&gt;
+&lt;p&gt;使用String#split分割字符串后，再使用Array#shift方法将元素逐个取出，创建散列。  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;def str2hash(str)
+  hash = Hash.new()
+  array = str.split(/\s+/)
+  while key = array.shift
+    value = array.shift
+    hash[key] = value
+  end
+  return hash
+end
+
+p str2hash(&amp;quot;bule 蓝 white 白\nred 红&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
+&lt;h2 id=&quot;第16章&quot;&gt;&lt;a href=&quot;#第16章&quot; class=&quot;headerlink&quot; title=&quot;第16章&quot;&gt;&lt;/a&gt;第16章&lt;/h2&gt;&lt;p&gt;（1）的参考答案  &lt;/p&gt;
+&lt;p&gt;判断电子邮件格式规则颇为复杂，甚至有些正在使用的电子邮件格式本身就不符合规则，因此解析电子邮件不是一件容易的事情，这里我们用简化后的规则进行解析。  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;def get_local_and_domain(str)
+  str =~ /^([^@]+)@(.*)$/
+  localpart = $1
+  domain = $2
+  return [localpart, domain]
+end
+
+p get_local_and_domain(&amp;quot;info@example.com&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;（2）的参考答案&lt;br&gt;很难只置换一次就达到题目要求，因此我们分两次置换。若先用“简单”置换“难”，则“难懂”部分则会变为“简单懂”，因此我们首先用“易懂”置换“难懂”。  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;s = &amp;quot;正则表达式真难啊，怎么这么难懂！&amp;quot;
+puts s.gsub(/难懂/, &amp;quot;易懂&amp;quot;).gsub(/难/, &amp;quot;简单&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;（3）的参考答案  &lt;/p&gt;
+&lt;p&gt;思路基本上与第14章的问题（4）一样，在正则表达式中使用“-”时需要经过转义。在下面的参考答案中，我们尝试使用方法链（method chain）将代码都写在一行中。  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;def word_capitalize(str)
+  return str.split(/\-/).collect{|w| w.capitalize}.join(&amp;apos;-&amp;apos;)
+end
+
+p word_capitalize(&amp;quot;in-reply-to&amp;quot;) #=&amp;gt; &amp;quot;In-Reply-To&amp;quot;
+p word_capitalize(&amp;quot;X-MAILER&amp;quot;)    #=&amp;gt; &amp;quot;X-Mailer&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
+&lt;h2 id=&quot;第17章&quot;&gt;&lt;a href=&quot;#第17章&quot; class=&quot;headerlink&quot; title=&quot;第17章&quot;&gt;&lt;/a&gt;第17章&lt;/h2&gt;&lt;p&gt;（1）的参考答案  &lt;/p&gt;
+&lt;p&gt;定义wc方法，用于统计文本行数、单词数和字符数。有一点需要读者注意，本例中使用了String#split方法分割单词，当行首有空白字符时，String#split方法的执行结果中会产生空白字符串，因此我们会删除该空白字符串。  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;def wc(file)
+  nline = nword = nchar = 0
+  File.open(file){|io|
+    io.each{|line|
+      words = line.split(/\s+/).reject{|w| w.empty? }
+      nline += 1
+      nword += words.length
+      nchar += line.length
+    }
+  }
+  puts &amp;quot;lines=#{nline} words=#{nword} chars=#{nchar}&amp;quot;
+end
+
+wc(__FILE__)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;（2）的参考答案  &lt;/p&gt;
+&lt;p&gt;根据条件分别定义不同的脚本。首先是文件逆序排列。用IO#readlines方法逐行读取文件后，再用IO#rewind方法返回文件开头，用IO#truncate方法清空内容，最后用Array#reverse方法将逆序后的行写入文件。  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;def reverse(input)
+  open(input, &amp;quot;r+&amp;quot;) do |f|
+    lines = f.readlines
+    f.rewind
+    f.truncate(0)
+    f.write lines.reverse.join()
+  end
+end
+
+reverse(ARGV[0])
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;接下来是输出第1行的内容，实际上只需稍微修改一下上面的程序即可实现。  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;def reverse(input)
+  open(input, &amp;quot;r+&amp;quot;) do |f|
+    lines = f.readlines
+    f.rewind
+    f.truncate(0)
+    f.write lines[0]
+  end
+end
+
+reverse(ARGV[0])
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;最后是输出最后一行的内容，这里稍微组合了一下（a）（b）的程序。  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;def reverse(input)
+  open(input, &amp;quot;r+&amp;quot;) do |f|
+    lines = f.readlines
+    f.rewind
+    f.truncate(0)
+    f.write lines.reverse[0]
+  end
+end
+
+reverse(ARGV[0])
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;（3）的参考答案  &lt;/p&gt;
+&lt;p&gt;本题的关键在于将读取的行临时保存在变量queue中。  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;def tail(lines, file)
+  queue = Array.new
+  open(file) do |io|
+    while line = io.gets
+      queue.push(line)
+      if queue.size &amp;gt; lines
+        queue.shift
+      end
+    end
+  end
+  queue.each{|line| print line }
+end
+
+puts &amp;quot;===&amp;quot;
+tail(10, __FILE__)
+
+puts &amp;quot;===&amp;quot;
+tail(3, __FILE__)
+&lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
+&lt;h2 id=&quot;第18章&quot;&gt;&lt;a href=&quot;#第18章&quot; class=&quot;headerlink&quot; title=&quot;第18章&quot;&gt;&lt;/a&gt;第18章&lt;/h2&gt;&lt;p&gt;（1）的参考答案  &lt;/p&gt;
+&lt;p&gt;使用FileTest.directory?方法排除目录以外的对象后，再使用Dir.open方法检查目录内的文件名。  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;def print_libraries
+  $:.each do |path|
+    next unless FileTest.directory?(path)
+    Dir.open(path) do |dir|
+      dir.each do |name|
+        if name =~ /\.rb$/i
+          puts name
+        end
+      end
+    end
+  end
+end
+
+print_libraries
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;另外，虽然在正文并没有详细说明，Ruby中引用的库除了用Ruby实现的之外，还有用C等其他语言实现的。扩展库的文件后缀不是“.rb”，而是像“.dll”“.so”等这样平台依赖的文件。&lt;br&gt;利用rbconfig库取得后缀名，支持扩展库的版本如下所示。  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;require &amp;quot;rbconfig&amp;quot;
+
+def print_libraries
+  $:.each do |path|
+    next unless FileTest.directory?(path)
+    dlext = RbConfig::CONFIG[&amp;quot;DLEXT&amp;quot;]
+    Dir.open(path) do |dir|
+      dir.each do |name|
+        if name =~ /\.rb$/i || name =~ /\.#{dlext}$/i
+          puts name
+        end
+      end
+    end
+  end
+end
+
+print_libraries
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;（2）的参考答案  &lt;/p&gt;
+&lt;p&gt;利用了find库。  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;require &amp;quot;find&amp;quot;
+
+def du(path)
+  result = 0
+  Find.find(path){|f|
+    if File.file?(f)
+      result += File.size(f)
+    end
+  }
+  printf(&amp;quot;%d %s\n&amp;quot;, result, path)
+  return result
+end
+
+du(ARGV[0] || &amp;quot;.&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
+&lt;h2 id=&quot;第19章&quot;&gt;&lt;a href=&quot;#第19章&quot; class=&quot;headerlink&quot; title=&quot;第19章&quot;&gt;&lt;/a&gt;第19章&lt;/h2&gt;&lt;p&gt;（1）的参考答案  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# encoding: utf-8
+
+def to_utf8(str_gbk, str_gb2312)
+  ## 使用encode方法将字符串分别转换为UTF-8编码后再连接
+  str_gbk.encode(&amp;quot;UTF-8&amp;quot;) + str_gb2312.encode(&amp;quot;UTF-8&amp;quot;)
+end
+
+## 像下面这样执行
+str_gbk  = &amp;quot;你好&amp;quot;.encode(&amp;quot;GBK&amp;quot;)
+str_gb2312 = &amp;quot;再见&amp;quot;.encode(&amp;quot;GB2312&amp;quot;)
+
+puts to_utf8(str_gbk, str_gb2312)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;（2）的参考答案  &lt;/p&gt;
+&lt;p&gt;按照练习题的处理顺序实现了要求。不过确认创建后的文件编码可能不是一件容易的事。  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# encoding: utf-8
+
+## 用GBK编码创建gbk.txt
+File.open(&amp;quot;gbk.txt&amp;quot;,&amp;quot;w:GBK&amp;quot;) do |f|
+  f.write(&amp;quot;你好&amp;quot;)
+end
+
+## 打开gbk.txt，按UTF-8编码方式输出
+File.open(&amp;quot;gbk.txt&amp;quot;,&amp;quot;r:GBK&amp;quot;) do |f|
+  str = f.read
+  ## str的编码为GBK，因此在使用puts输出时需将其转换为UTF-8编码
+  puts str.encode(&amp;quot;UTF-8&amp;quot;)
+end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;（3）的参考答案  &lt;/p&gt;
+&lt;p&gt;GB 18030，全称：国家标准GB 18030-2005《信息技术 中文编码字符集》，是中华人民共和国现时最新的内码字集，是GB 18030-2000《信息技术 信息交换用汉字编码字符集 基本集的扩充》的修订版。与GB 2312-1980完全兼容，与GBK基本兼容，支持GB 13000及Unicode的全部汉字，共收录汉字70244个。&lt;br&gt;GB 18030主要有以下特点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;代码页 54936；&lt;/li&gt;
+&lt;li&gt;与 UTF-8 相同，采用多字节编码，每个字可以由1个、2个或4个字节组成；&lt;/li&gt;
+&lt;li&gt;编码空间庞大，最多可定义161万个字符；&lt;/li&gt;
+&lt;li&gt;支持中国国内少数民族的文字，不需要动用造字区；&lt;/li&gt;
+&lt;li&gt;汉字收录范围包含繁体汉字以及日韩汉字。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;GBK即汉字内码扩展规范，K为汉语拼音 Kuo Zhan（扩展）中“扩”字的声母。英文全称Chinese Internal Code Specification。&lt;br&gt;由于GB 2312-80只收录了6763个汉字，部分在GB 2312-80推出以后才简化的汉字（如“啰”），部分人名用字（如中国前总理朱镕基的“镕”字），台湾及香港使用的繁体字，日语及朝鲜语汉字等，并未收录在内。于是微软利用GB 2312-80未使用的编码空间，收录GB 13000.1-93全部字符制定了GBK编码。  &lt;/p&gt;
+&lt;p&gt;本參考答案中，将UTF-8字符串“鿋”分别转换为GB1830编码以及GBK编码。由于GBK编码并没有收录该汉字，因此在转换时会产生错误。  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# encoding: utf-8
+
+str = &amp;apos;鿋&amp;apos;
+
+encoding = [Encoding::GB18030, Encoding::GBK]
+encoding.each do |enc|
+  begin
+    print &amp;quot;将str转换为#{enc}。=&amp;gt; &amp;quot;
+    puts &amp;quot;结果: %p&amp;quot; % [str.encode(enc)]
+  rescue =&amp;gt; ex
+    p ex
+  end
+  puts
+end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;（4）的参考答案  &lt;/p&gt;
+&lt;p&gt;两者都不是UTF-8编码，因此我们首先都转换为UTF-8编码后再比较。  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# encoding: utf-8
+
+Dir.glob(&amp;quot;*.txt&amp;quot;) do |filename|
+  ## 将UTF8-MAC编码的文件名转换为UTF-8编码后，就可以与UTF-8编码的字符串“ルビー.txt”进行比较
+  if filename.encode(&amp;quot;UTF8-MAC&amp;quot;).encode(&amp;quot;UTF-8&amp;quot;) == &amp;quot;ルビー.txt&amp;quot;
+    puts &amp;quot;found.&amp;quot;; exit
+  end
+end
+puts &amp;quot;not found.&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
+&lt;h2 id=&quot;第20章&quot;&gt;&lt;a href=&quot;#第20章&quot; class=&quot;headerlink&quot; title=&quot;第20章&quot;&gt;&lt;/a&gt;第20章&lt;/h2&gt;&lt;p&gt;（1）的参考答案  &lt;/p&gt;
+&lt;p&gt;通过正则表达式把日期与时间转换为中文字符串。当前时间用Time.now方法获取，用以填补传进来的字符串缺少的项目。最后，利用Time.mktime方法生成时间。  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;def cparsedate(str)
+  now = Time.now
+  year = now.year
+  month = now.month
+  day = now.day
+  hour = now.hour
+  min = now.min
+  sec = now.sec 
+  str.scan(/(上午|下午)?(\d+)(年|月|日|点|分|秒)/) do
+    case $3
+    when &amp;quot;年&amp;quot;
+      year = $2.to_i
+    when &amp;quot;月&amp;quot;
+      month = $2.to_i
+    when &amp;quot;日&amp;quot;
+      day = $2.to_i
+    when &amp;quot;点&amp;quot;
+      hour = $2.to_i
+      hour += 12 if $1 == &amp;quot;下午&amp;quot;
+    when &amp;quot;分&amp;quot;
+      min = $2.to_i
+    when &amp;quot;秒&amp;quot;
+      sec = $2.to_i
+    end
+  end
+  return Time.mktime(year, month, day, hour, min, sec)
+end
+
+p cparsedate(&amp;quot;2010年12月23日下午8点17分50秒&amp;quot;)
+p cparsedate(&amp;quot;12月23日下午8点17分50秒&amp;quot;)
+p cparsedate(&amp;quot;上午8时17分50秒&amp;quot;)
+p cparsedate(&amp;quot;8点17分50秒&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;（2）的参考答案  &lt;/p&gt;
+&lt;p&gt;先删除以“.”开始的文件，再利用File.mtime方法取得时间后排序。最后输出文件名以及日期。  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;def ls_t(path)
+  entries = Dir.entries(path)                # 获取入口
+  entries.reject!{|name| /^\./ =~ name }     # 删除文件名以&amp;quot;.&amp;quot;开始的文件
+
+  mtimes = Hash.new                          # 边收集mtime边排序
+  entries = entries.sort_by do |name|
+    mtimes[name] = File.mtime(File.join(path, name))
+  end
+
+  entries.each do |name|
+    printf(&amp;quot;%-40s %s\n&amp;quot;, name, mtimes[name]) # 输入文件名以及mtime
+  end
+rescue =&amp;gt; ex
+  puts ex.message
+end
+
+ls_t(ARGV[0] || &amp;quot;.&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;（3）的参考答案  &lt;/p&gt;
+&lt;p&gt;下面是利用文具万年历的原理整理的日历。2月30日等不存在的日期，与月末的日期进行比较后就会弹起来（跳到下一个月）。另外，在表格中不存在的日期，为了让它们遇到相同的条件时也能弹起来，我们将它们的初始值设为99。  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;require &amp;quot;date&amp;quot;
+
+module Calendar
+  WEEK_TABLE = [
+    [99, 99, 99, 99, 99, 99,  1,  2,  3,  4,  5,  6,  7],
+    [ 2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14],
+    [ 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21],
+    [16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28],
+    [23, 24, 25, 26, 27, 28, 29, 30, 31, 99, 99, 99, 99],
+    [30, 31, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99],
+  ]
+
+  module_function
+
+  def cal(year, month)
+    first = Date.new(year, month, 1)       # 被指定的月的1号
+    end_of_month = ((first &amp;gt;&amp;gt; 1) - 1).day  # 次月的1号的前1天
+    start = 6 - first.wday                 # 表示在表格的哪个位置
+
+    puts first.strftime(&amp;quot;%B %Y&amp;quot;).center(21)
+    puts &amp;quot; Su Mo Tu We Th Fr St&amp;quot;
+    WEEK_TABLE.each do |week|
+      buf = &amp;quot;&amp;quot;
+      week[start, 7].each do |day|
+        if day &amp;gt; end_of_month
+          buf &amp;lt;&amp;lt; &amp;quot;   &amp;quot;
+        else
+          buf &amp;lt;&amp;lt; sprintf(&amp;quot;%3d&amp;quot;, day)
+        end
+      end
+      puts buf
+    end
+  end
+end
+
+t = Date.today
+Calendar.cal(t.year, t.month)
+&lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
+&lt;h2 id=&quot;第21章&quot;&gt;&lt;a href=&quot;#第21章&quot; class=&quot;headerlink&quot; title=&quot;第21章&quot;&gt;&lt;/a&gt;第21章&lt;/h2&gt;&lt;p&gt;（1）的参考答案  &lt;/p&gt;
+&lt;p&gt;通过each方法从obj中逐个获取元素并用块执行，然后再把执行后的结果保存到数组。  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;def my_collect(obj, &amp;amp;block)
+  buf = []
+  obj.each do |elem|
+    buf &amp;lt;&amp;lt; block.call(elem)
+  end
+  buf
+end
+
+ary = my_collect([1,2,3,4,5]) do |i|
+  i * 2
+end
+
+p ary  #=&amp;gt; [2, 4, 6, 8, 10]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;（2）的参考答案  &lt;/p&gt;
+&lt;p&gt;会得到下面的结果。  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;to_class = :class.to_proc
+p to_class.call(&amp;quot;test&amp;quot;)    #=&amp;gt; String
+p to_class.call(123)       #=&amp;gt; Fixnum
+p to_class.call(2 ** 100)  #=&amp;gt; Bignum
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;（3）的参考答案  &lt;/p&gt;
+&lt;p&gt;累加在方法中定义的局部变量值。  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;def accumlator
+  total = 0
+  Proc.new do |x|
+    total += x
+  end
+end
+
+acc = accumlator
+p acc.call(1)    #=&amp;gt; 1
+p acc.call(2)    #=&amp;gt; 3
+p acc.call(3)    #=&amp;gt; 6
+p acc.call(4)    #=&amp;gt; 10
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;第12章&quot;&gt;&lt;a href=&quot;#第12章&quot; class=&quot;headerlink&quot; title=&quot;第12章&quot;&gt;&lt;/a&gt;第12章&lt;/h2&gt;&lt;p&gt;（1）的参考答案  &lt;/p&gt;
+&lt;p&gt;使用问题中提供的公式直接定义方法。  &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;def cels2fahr(cels)
+  return cels * 9.0 / 5.0 + 32.0
+end
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;虽然问题中的公式为“华氏 ＝ 摄氏 × 9 ÷ 5 ＋ 32”，但为了用浮点小数表示计算结果，9、5分别转换为9.0、5.0。如果不做这样的转换，当cels为整数时无法得到正确的结果（除以5的结果为Integer）。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Ruby" scheme="http://xfwang.xyz/categories/Ruby/"/>
+    
+    
+      <category term="Ruby" scheme="http://xfwang.xyz/tags/Ruby/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Fix Alcatraz in Xcode 6.4</title>
+    <link href="http://xfwang.xyz/2015/07/01/2015-07-01-fix-Alcatraz-in-xcode64/"/>
+    <id>http://xfwang.xyz/2015/07/01/2015-07-01-fix-Alcatraz-in-xcode64/</id>
+    <published>2015-07-01T11:10:00.000Z</published>
+    <updated>2015-10-08T14:49:36.000Z</updated>
+    
+    <content type="html">&lt;p&gt;Got Xcode 6.4 updated and found Alcatraz package manager disabled. It is missing from &lt;strong&gt;Window&lt;/strong&gt; and I found the solution from Github：&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;fixed for me with a long command:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;find ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins -name Info.plist -maxdepth 3 | xargs -I{} defaults write {} DVTPlugInCompatibilityUUIDs -array-add `defaults read /Applications/Xcode.app/Contents/Info DVTPlugInCompatibilityUUID`
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;and then:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo xcode-select --reset
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;after input your password and restart your Xcode, you will see your Alcatraz in &lt;strong&gt;Window&lt;/strong&gt; of Navigation Bar.&lt;br&gt;…&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Got Xcode 6.4 updated and found Alcatraz package manager disabled. It is missing from &lt;strong&gt;Window&lt;/strong&gt; and I found the solution from Github：&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Xcode" scheme="http://xfwang.xyz/categories/Xcode/"/>
+    
+      <category term="Alcatraz" scheme="http://xfwang.xyz/categories/Xcode/Alcatraz/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>火爆的反转二叉树invert Binary Tree</title>
+    <link href="http://xfwang.xyz/2015/06/13/2015-06-13-invertBinaryTree/"/>
+    <id>http://xfwang.xyz/2015/06/13/2015-06-13-invertBinaryTree/</id>
+    <published>2015-06-13T11:10:00.000Z</published>
+    <updated>2015-10-28T12:19:04.000Z</updated>
+    
+    <content type="html">&lt;p&gt;最近，关于Homebrew 的作者Max Howell面试被 Google 拒了的消息风靡一时，据传是因为没有写出反转二叉树的算法。&lt;br&gt;这里写一下Java实现反转二叉树的简单方法：&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;/**&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; * Definition for a binary tree node.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; * public class TreeNode &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; *     int val;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; *     TreeNode left;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; *     TreeNode right;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; *     TreeNode(int x) &amp;#123; val = x; &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; * &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Solution&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; TreeNode &lt;span class=&quot;title&quot;&gt;invertTree&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(TreeNode root)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (root == &lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt;)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;null&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        TreeNode tem = root.left;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        root.left = root.right;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        root.right = tem;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        invertTree(root.left);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        invertTree(root.right);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; root;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近，关于Homebrew 的作者Max Howell面试被 Google 拒了的消息风靡一时，据传是因为没有写出反转二叉树的算法。&lt;br&gt;这里写一下Java实现反转二叉树的简单方法：&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Java" scheme="http://xfwang.xyz/categories/Java/"/>
+    
+      <category term="algorithms" scheme="http://xfwang.xyz/categories/Java/algorithms/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>MIT Java练习-Marathon</title>
+    <link href="http://xfwang.xyz/2015/06/06/2015-06-06-Java_homework_Marathon/"/>
+    <id>http://xfwang.xyz/2015/06/06/2015-06-06-Java_homework_Marathon/</id>
+    <published>2015-06-06T02:10:00.000Z</published>
+    <updated>2015-06-06T10:07:10.000Z</updated>
+    
+    <content type="html">&lt;p&gt;A group of MIT friends decide to run the Boston Marathon. Their names and times (in minutes) are below:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Name&lt;/th&gt;
+&lt;th style=&quot;text-align:right&quot;&gt;Time (minutes)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Elena&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;341&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Thomas&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;273&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Hamilton&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;278&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Suzie&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;329&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Phil&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;445&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Matt&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;402&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Alex&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;388&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Emma&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;275&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;John&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;243&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;James&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;334 &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Jane&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;412 &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Emily&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;393&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Daniel&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;299&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Neda&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;343  &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Aaron&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;317&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Kate&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;265&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Find the fastest runner. Print the name and his/her time (in minutes).&lt;br&gt;Optional: Find the second fastest runner. Print the name and his/her time (in minutes).&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;##代码1&lt;/p&gt;
+&lt;p&gt;自己初步的想法，还是有些冗余：&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;41&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;42&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;43&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;44&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;45&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;46&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;47&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;48&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;49&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;50&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;51&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;52&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;53&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;54&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;55&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;56&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;57&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Marathon&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;mintime&lt;/span&gt; &lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;[] time)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; min = time[&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; i = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;; i &amp;lt; time.length; i++)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (min &amp;gt; time[i])&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;				min = time[i];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;				&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; min;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;secondmin&lt;/span&gt; &lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;[] time)&lt;/span&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; min = time[&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; second = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; i = &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;; i &amp;lt; time.length; i++)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (time[i] &amp;lt; min)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;				second = min;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;				min = time[i];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;				&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (time[i] &amp;lt; second)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;					second = time[i];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; second;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;main&lt;/span&gt; &lt;span class=&quot;params&quot;&gt;(String[] arguments)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		String[] names = &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&lt;span class=&quot;string&quot;&gt;&quot;Elena&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;Thomas&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;Hamilton&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;Suzie&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;Phil&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;Matt&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;Alex&quot;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&lt;span class=&quot;string&quot;&gt;&quot;Emma&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;John&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;James&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;Jane&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;Emily&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;Daniel&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;Neda&quot;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&lt;span class=&quot;string&quot;&gt;&quot;Aaron&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;Kate&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;[] times = &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&lt;span class=&quot;number&quot;&gt;341&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;273&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;278&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;329&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;445&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;402&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;388&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;275&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;243&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;334&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;412&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;393&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;299&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&lt;span class=&quot;number&quot;&gt;343&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;317&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;265&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; i = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;; i &amp;lt; names.length; i++) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			System.out.println(names[i] + &lt;span class=&quot;string&quot;&gt;&quot;: &quot;&lt;/span&gt; + times[i]);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; winner_time = mintime(times);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; j = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;; j &amp;lt; names.length; j++)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (times[j] == winner_time)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;				System.out.println(&lt;span class=&quot;string&quot;&gt;&quot;best runner is &quot;&lt;/span&gt;+ names[j] + &lt;span class=&quot;string&quot;&gt;&quot; and the time is &quot;&lt;/span&gt;+ times[j]);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; secondtime = secondmin(times);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; k = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;; k &amp;lt; names.length; k++)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (times[k] == secondtime) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;				System.out.println(&lt;span class=&quot;string&quot;&gt;&quot;second runner is &quot;&lt;/span&gt;+ names[k]+&lt;span class=&quot;string&quot;&gt;&quot; and the time is &quot;&lt;/span&gt;+ times[k]);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;##代码2&lt;br&gt;其实我们不需要找到最小时间和第二小时间，只需要找到他们对应的Index就可以了，这样最后的两个for循环就可以省了：&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;41&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;42&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;43&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;44&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;45&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;46&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;47&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;48&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Marathon&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;getMinIndex&lt;/span&gt; &lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;[] values)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; minValues = Integer.MAX_VALUE;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; minIndex = -&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; i = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;; i &amp;lt; values.length; i++)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (minValues &amp;gt; values[i])&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;				minValues = values[i];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;				minIndex = i;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;				&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; minIndex;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;getSecondMinIndex&lt;/span&gt; &lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;[] values)&lt;/span&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; secondIdx = -&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; minIdx = getMinIndex(values);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; i = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;; i &amp;lt; values.length; i++)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (i == minIdx)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;				&lt;span class=&quot;keyword&quot;&gt;continue&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (secondIdx == -&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt; || values[i] &amp;lt; values[secondIdx])&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;				secondIdx = i;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; secondIdx;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;main&lt;/span&gt; &lt;span class=&quot;params&quot;&gt;(String[] arguments)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		String[] names = &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&lt;span class=&quot;string&quot;&gt;&quot;Elena&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;Thomas&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;Hamilton&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;Suzie&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;Phil&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;Matt&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;Alex&quot;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&lt;span class=&quot;string&quot;&gt;&quot;Emma&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;John&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;James&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;Jane&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;Emily&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;Daniel&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;Neda&quot;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&lt;span class=&quot;string&quot;&gt;&quot;Aaron&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;Kate&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt;[] times = &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&lt;span class=&quot;number&quot;&gt;341&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;273&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;278&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;329&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;445&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;402&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;388&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;275&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;243&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;334&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;412&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;393&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;299&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&lt;span class=&quot;number&quot;&gt;343&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;317&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;265&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; j = getMinIndex(times);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; k = getSecondMinIndex(times);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		System.out.println(&lt;span class=&quot;string&quot;&gt;&quot;best runner is &quot;&lt;/span&gt;+ names[j] + &lt;span class=&quot;string&quot;&gt;&quot; and the time is &quot;&lt;/span&gt;+ times[j]);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		System.out.println(&lt;span class=&quot;string&quot;&gt;&quot;second runner is &quot;&lt;/span&gt;+ names[k]+&lt;span class=&quot;string&quot;&gt;&quot; and the time is &quot;&lt;/span&gt;+ times[k]);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;A group of MIT friends decide to run the Boston Marathon. Their names and times (in minutes) are below:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Name&lt;/th&gt;
+&lt;th style=&quot;text-align:right&quot;&gt;Time (minutes)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Elena&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;341&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Thomas&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;273&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Hamilton&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;278&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Suzie&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;329&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Phil&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;445&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Matt&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;402&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Alex&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;388&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Emma&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;275&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;John&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;243&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;James&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;334 &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Jane&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;412 &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Emily&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;393&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Daniel&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;299&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Neda&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;343  &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Aaron&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;317&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Kate&lt;/td&gt;
+&lt;td style=&quot;text-align:right&quot;&gt;265&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Find the fastest runner. Print the name and his/her time (in minutes).&lt;br&gt;Optional: Find the second fastest runner. Print the name and his/her time (in minutes).&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Java" scheme="http://xfwang.xyz/categories/Java/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Objective-C基础01_Hello World!</title>
+    <link href="http://xfwang.xyz/2015/05/31/2015-05-31-Objective-C01_Hello_World/"/>
+    <id>http://xfwang.xyz/2015/05/31/2015-05-31-Objective-C01_Hello_World/</id>
+    <published>2015-05-31T02:10:00.000Z</published>
+    <updated>2016-10-15T03:15:44.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;开始记录一些iOS学习的点滴&quot;&gt;&lt;a href=&quot;#开始记录一些iOS学习的点滴&quot; class=&quot;headerlink&quot; title=&quot;开始记录一些iOS学习的点滴&quot;&gt;&lt;/a&gt;开始记录一些iOS学习的点滴&lt;/h3&gt;&lt;hr&gt;
+&lt;p&gt;OS X和iOS程序绝大部分都是用Objective-C语言编写的，它所使用的技术科技追溯到上世纪80年代，如今这些技术已经演化成一个功能强大的工具集。&lt;/p&gt;
+&lt;p&gt;Objective-C是以C语言为基础的一个扩展集，它添加了一些微妙但意义重大的新特性。So，可以说学习OC最好能有C语言的基础，市面的书很少会以OC为编程入门教材，当然，很多书也会在开篇快速介绍一些C的一些语法，然后开始OC的教学。&lt;/p&gt;
+&lt;p&gt;开发Mac或者iOS都在Mac OS X下进行，所以大家先要准备一台Mac，当然，单纯学习Objective-C语言的话，可以在windows下进行编译，但是还是比较耗时间去搭建一套环境，建议还是按照标准的Mac下Xcode环境来学习。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Hello-World！&quot;&gt;&lt;a href=&quot;#Hello-World！&quot; class=&quot;headerlink&quot; title=&quot;Hello World！&quot;&gt;&lt;/a&gt;Hello World！&lt;/h2&gt;&lt;p&gt;学习编程语言的第一个程序我们都很熟悉，Hello World！&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;#import &amp;lt;Foundation/Foundation.h&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;int main(int argc, const char * argv[]) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    @autoreleasepool &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        // insert code here...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        NSLog(@&amp;quot;Hello, World!&amp;quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    return 0;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;import语句&quot;&gt;&lt;a href=&quot;#import语句&quot; class=&quot;headerlink&quot; title=&quot;import语句&quot;&gt;&lt;/a&gt;import语句&lt;/h3&gt;&lt;p&gt;与C语言一样，Objective-C使用&lt;strong&gt;头文件&lt;/strong&gt;来包含结构体、符号常量和函数原型等元素的声明。在C语言里我们用#include语句来通知编译器查询头文件中相应的定义代码。在Objective-C中我们也可以使用#include来达到同样的目的（因为OC是C语言的超集），不过你可能永远也不会这么做，而是向下面这样使用#import语句：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;#import &amp;lt;Foundation/Foundation.h&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;#import是由Xcode使用的编译器提供的，Xcode在你编译OC、C和C++程序时都会使用它。#import可以保证头文件只被包含一次，无论此命令在文件中出现了多少次。&lt;/p&gt;
+&lt;p&gt;这里的#import \&lt;foundation foundation.h=&quot;&quot;&gt;语句告诉编译器查找Foundation框架中的Foundation.h头文件。&lt;/foundation&gt;&lt;/p&gt;
+&lt;h3 id=&quot;框架&quot;&gt;&lt;a href=&quot;#框架&quot; class=&quot;headerlink&quot; title=&quot;框架&quot;&gt;&lt;/a&gt;框架&lt;/h3&gt;&lt;p&gt;框架是一种把头文件、库、图片、声音等内容聚集在一个独立单元中的集合体。苹果公司将Cocoa、Carbon、QuickTime和OpenGL等技术作为框架集来提供。Cocoa的组成部分有Foundation和Application Kit（AppKit）框架。此外还有一套支持型框架，包含了Core Animation和Core Image，它们为Cocoa天津了许多精彩的功能。&lt;/p&gt;
+&lt;p&gt;Foundation框架处理的是用户界面之下的那些层（layer）的特性，比如数据结构和通信机制。学习Objective-C基本都是以Foundation框架为基础。有了OC基础之后，为了开发自己的iOS App还要学习Cocoa的Appkit框架，它包含了Cocoa的许多高级特性：用户界面元素、打印、颜色和声音管理、AppleScript支持等。&lt;/p&gt;
+&lt;h3 id=&quot;NSLog-和-”字符串”&quot;&gt;&lt;a href=&quot;#NSLog-和-”字符串”&quot; class=&quot;headerlink&quot; title=&quot;NSLog()和@”字符串”&quot;&gt;&lt;/a&gt;NSLog()和@”字符串”&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;NSLog(@&amp;quot;Hello, World!&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;此代码可以向控制台输出Hello, World!。如果了解C语言，那么一的那个遇到过printf()，NSLog()这个函数的作用和printf()很相似。&lt;/p&gt;
+&lt;p&gt;与printf()一样，NSLog()接受一个字符串作为其第一个参数，该字符串可以包含格式说明符（如%d），此函数会接受与格式说明符相匹配的其他参数。printf()在输出前会把这些参数插入到第一个字符串参数中。&lt;/p&gt;
+&lt;p&gt;在OC中，你也可使用printf()函数来代替NSLog()，但是还是推荐使用NSLog()，因为它添加了一些新特性，比如时间戳、日期戳和自动附加换行符（’\n’）等。&lt;/p&gt;
+&lt;p&gt;你是否注意到了NSLog(@”Hello, World!”)中的@符号？@符号是Objective-C在标准C语言的基础上添加的特性之一。@符号意味着引号内的字符串应作为Cocoa的NSString元素来处理。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;开始记录一些iOS学习的点滴&quot;&gt;&lt;a href=&quot;#开始记录一些iOS学习的点滴&quot; class=&quot;headerlink&quot; title=&quot;开始记录一些iOS学习的点滴&quot;&gt;&lt;/a&gt;开始记录一些iOS学习的点滴&lt;/h3&gt;&lt;hr&gt;
+&lt;p&gt;OS X和iOS程序绝大部分都是用Objective-C语言编写的，它所使用的技术科技追溯到上世纪80年代，如今这些技术已经演化成一个功能强大的工具集。&lt;/p&gt;
+&lt;p&gt;Objective-C是以C语言为基础的一个扩展集，它添加了一些微妙但意义重大的新特性。So，可以说学习OC最好能有C语言的基础，市面的书很少会以OC为编程入门教材，当然，很多书也会在开篇快速介绍一些C的一些语法，然后开始OC的教学。&lt;/p&gt;
+&lt;p&gt;开发Mac或者iOS都在Mac OS X下进行，所以大家先要准备一台Mac，当然，单纯学习Objective-C语言的话，可以在windows下进行编译，但是还是比较耗时间去搭建一套环境，建议还是按照标准的Mac下Xcode环境来学习。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Objective-C" scheme="http://xfwang.xyz/categories/Objective-C/"/>
+    
+      <category term="iOS" scheme="http://xfwang.xyz/categories/Objective-C/iOS/"/>
+    
+      <category term="Xcode" scheme="http://xfwang.xyz/categories/Objective-C/iOS/Xcode/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>出差深圳小记</title>
+    <link href="http://xfwang.xyz/2015/02/05/2015-02-01-life_in_shenzhen/"/>
+    <id>http://xfwang.xyz/2015/02/05/2015-02-01-life_in_shenzhen/</id>
+    <published>2015-02-05T02:10:00.000Z</published>
+    <updated>2016-10-15T03:16:22.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;工作后第一次出差，有小小感慨，有时间慢慢写下来吧…&quot;&gt;&lt;a href=&quot;#工作后第一次出差，有小小感慨，有时间慢慢写下来吧…&quot; class=&quot;headerlink&quot; title=&quot;工作后第一次出差，有小小感慨，有时间慢慢写下来吧…&quot;&gt;&lt;/a&gt;工作后第一次出差，有小小感慨，有时间慢慢写下来吧…&lt;/h3&gt;&lt;hr&gt;
+&lt;h5 id=&quot;4月25日晚-更新&quot;&gt;&lt;a href=&quot;#4月25日晚-更新&quot; class=&quot;headerlink&quot; title=&quot;4月25日晚 更新&quot;&gt;&lt;/a&gt;4月25日晚 更新&lt;/h5&gt;&lt;p&gt;说了等有时间，一拖就是两个多月，今天拖着感冒的身体，说什么也要码几行字，再不写，那几条简单的Git命令都快忘了。&lt;/p&gt;
+&lt;p&gt;14年11月，带着担心和大飞去了深圳，这次出差，见识了一下公司的EMC实验室的高端设备，现在印象最深的就算是RE（radiated emission）测试的暗室，样子如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://www.emctest.org/uploads/allimg/100625/1_100625101344_1_lit.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;当然，我们测试的设备不是坦克。&lt;/p&gt;
+&lt;p&gt;其他的事情，已经模糊了，也不愿再去回忆，值得一提的是出差期间去了两次香港，但是还没有什么深入的接触，只是去了九龙塘-又一城，旺角，第二次去了香港理工大学。&lt;/p&gt;
+&lt;p&gt;回到南京后是2月，感觉是家里无比的冷，深圳的气候真好，空气也好。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;工作后第一次出差，有小小感慨，有时间慢慢写下来吧…&quot;&gt;&lt;a href=&quot;#工作后第一次出差，有小小感慨，有时间慢慢写下来吧…&quot; class=&quot;headerlink&quot; title=&quot;工作后第一次出差，有小小感慨，有时间慢慢写下来吧…&quot;&gt;&lt;/a&gt;工作后第一次出差，有小
+    
+    </summary>
+    
+      <category term="Shenzhen" scheme="http://xfwang.xyz/categories/Shenzhen/"/>
+    
+      <category term="Job" scheme="http://xfwang.xyz/categories/Shenzhen/Job/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Python基础07 切片</title>
+    <link href="http://xfwang.xyz/2014/10/05/2014-10-05-Python07-Slice/"/>
+    <id>http://xfwang.xyz/2014/10/05/2014-10-05-Python07-Slice/</id>
+    <published>2014-10-05T02:10:00.000Z</published>
+    <updated>2014-10-12T15:01:04.000Z</updated>
+    
+    <content type="html">&lt;p&gt;取一个list或tuple的部分元素是非常常见的操作。比如，一个list如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; L = [&amp;apos;Michael&amp;apos;, &amp;apos;Sarah&amp;apos;, &amp;apos;Tracy&amp;apos;, &amp;apos;Bob&amp;apos;, &amp;apos;Jack&amp;apos;]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;取前3个元素，应该怎么做？&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;笨办法：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; [L[0], L[1], L[2]]
+[&amp;apos;Michael&amp;apos;, &amp;apos;Sarah&amp;apos;, &amp;apos;Tracy&amp;apos;]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;之所以是笨办法是因为扩展一下，取前N个元素就没辙了。&lt;/p&gt;
+&lt;p&gt;取前N个元素，也就是索引为0-(N-1)的元素，可以用循环：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; r = []
+&amp;gt;&amp;gt;&amp;gt; n = 3
+&amp;gt;&amp;gt;&amp;gt; for i in range(n):
+...     r.append(L[i])
+... 
+&amp;gt;&amp;gt;&amp;gt; r
+[&amp;apos;Michael&amp;apos;, &amp;apos;Sarah&amp;apos;, &amp;apos;Tracy&amp;apos;]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;对这种经常取指定索引范围的操作，用循环十分繁琐，因此，Python提供了切片（Slice）操作符，能大大简化这种操作。&lt;/p&gt;
+&lt;p&gt;对应上面的问题，取前3个元素，用一行代码就可以完成切片：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; L[0:3]
+[&amp;apos;Michael&amp;apos;, &amp;apos;Sarah&amp;apos;, &amp;apos;Tracy&amp;apos;]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;L[0:3]表示，从索引0开始取，直到索引3为止，但不包括索引3。即索引0，1，2，正好是3个元素。&lt;/p&gt;
+&lt;p&gt;如果第一个索引是0，还可以省略：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; L[:3]
+[&amp;apos;Michael&amp;apos;, &amp;apos;Sarah&amp;apos;, &amp;apos;Tracy&amp;apos;]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;也可以从索引1开始，取出2个元素出来：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; L[1:3]
+[&amp;apos;Sarah&amp;apos;, &amp;apos;Tracy&amp;apos;]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;类似的，既然Python支持L[-1]取倒数第一个元素，那么它同样支持倒数切片，试试：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; L[-2:]
+[&amp;apos;Bob&amp;apos;, &amp;apos;Jack&amp;apos;]
+&amp;gt;&amp;gt;&amp;gt; L[-2:-1]
+[&amp;apos;Bob&amp;apos;]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;记住倒数第一个元素的索引是-1。&lt;/p&gt;
+&lt;p&gt;切片操作十分有用。我们先创建一个0-99的数列：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; L = range(100)
+&amp;gt;&amp;gt;&amp;gt; L
+[0, 1, 2, 3, ..., 99]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;可以通过切片轻松取出某一段数列。比如前10个数：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; L[:10]
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;后10个数：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; L[-10:]
+[90, 91, 92, 93, 94, 95, 96, 97, 98, 99]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;前11-20个数：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; L[10:20]
+[10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;前10个数，每两个取一个：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; L[:10:2]
+[0, 2, 4, 6, 8]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;所有数，每5个取一个：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; L[::5]
+[0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;甚至什么都不写，只写[:]就可以原样复制一个list：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; L[:]
+[0, 1, 2, 3, ..., 99]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;tuple也是一种list，唯一区别是tuple不可变。因此，tuple也可以用切片操作，只是操作的结果仍是tuple：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; (0, 1, 2, 3, 4, 5)[:3]
+(0, 1, 2)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;字符串’xxx’或Unicode字符串u’xxx’也可以看成是一种list，每个元素就是一个字符。因此，字符串也可以用切片操作，只是操作结果仍是字符串：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; &amp;apos;ABCDEFG&amp;apos;[:3]
+&amp;apos;ABC&amp;apos;
+&amp;gt;&amp;gt;&amp;gt; &amp;apos;ABCDEFG&amp;apos;[::2]
+&amp;apos;ACEG&amp;apos;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;在很多编程语言中，针对字符串提供了很多各种截取函数，其实目的就是对字符串切片。Python没有针对字符串的截取函数，只需要切片一个操作就可以完成，非常简单。&lt;/p&gt;
+&lt;p&gt;####小结&lt;br&gt;有了切片操作，很多地方循环就不再需要了。Python的切片非常灵活，一行代码就可以实现很多行循环才能完成的操作。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;取一个list或tuple的部分元素是非常常见的操作。比如，一个list如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; L = [&amp;apos;Michael&amp;apos;, &amp;apos;Sarah&amp;apos;, &amp;apos;Tracy&amp;apos;, &amp;apos;Bob&amp;apos;, &amp;apos;Jack&amp;apos;]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;取前3个元素，应该怎么做？&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Python" scheme="http://xfwang.xyz/categories/Python/"/>
+    
+      <category term="programming" scheme="http://xfwang.xyz/categories/Python/programming/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>HTTP 协议简介</title>
+    <link href="http://xfwang.xyz/2014/09/13/2014-09-13-http-protocol/"/>
+    <id>http://xfwang.xyz/2014/09/13/2014-09-13-http-protocol/</id>
+    <published>2014-09-13T13:50:00.000Z</published>
+    <updated>2016-10-15T03:17:20.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;一、TCP-IP-协议介绍&quot;&gt;&lt;a href=&quot;#一、TCP-IP-协议介绍&quot; class=&quot;headerlink&quot; title=&quot;一、TCP/IP 协议介绍&quot;&gt;&lt;/a&gt;一、TCP/IP 协议介绍&lt;/h3&gt;&lt;p&gt;　　在介绍 HTTP 协议之前，先简单说一下TCP/IP协议的相关内容。TCP/IP协议是分层的，从底层至应用层分别为：物理层、链路层、网络层、传输层和应用层，如下图所示：&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;　　&lt;img src=&quot;http://hi.csdn.net/attachment/201103/28/0_13013247647Zjo.gif&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;   从应用层至物理层，数据是一层层封装，封装的方式一般都是在原有数据的前面加一个数据控制头，数据封装格式如下：&lt;br&gt;   &lt;img src=&quot;http://hi.csdn.net/attachment/201103/28/0_1301324938r95q.gif&quot; alt=&quot;&quot;&gt;&lt;br&gt;   其中，对于TCP传输协议，客户端在于服务器建立连接前需要经过TCP三层握手，过程如下：&lt;br&gt;   &lt;img src=&quot;http://hi.csdn.net/attachment/201103/28/0_13013250142DZ2.gif&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;二、HTTP协议&quot;&gt;&lt;a href=&quot;#二、HTTP协议&quot; class=&quot;headerlink&quot; title=&quot;二、HTTP协议&quot;&gt;&lt;/a&gt;二、HTTP协议&lt;/h3&gt;&lt;h4 id=&quot;2-1-简介&quot;&gt;&lt;a href=&quot;#2-1-简介&quot; class=&quot;headerlink&quot; title=&quot;2.1　简介&quot;&gt;&lt;/a&gt;2.1　简介&lt;/h4&gt;&lt;p&gt;　　超文本传输协议（Hypertext Transfer Protocol，简称HTTP）是应用层协议，自 1990 年起，HTTP 就已经被应用于 WWW 全球信息服务系统。&lt;br&gt;　　HTTP 是一种请求/响应式的协议。一个客户机与服务器建立连接后，发送一个请求给服务器；服务器接到请求后，给予相应的响应信息。&lt;br&gt;　　HTTP 的第一版本 HTTP/0.9是一种简单的用于网络间原始数据传输的协议；&lt;br&gt;　　HTTP/1.0由 RFC 1945 定义 ，在原 HTTP/0.9 的基础上，有了进一步的改进，允许消息以类 MIME 信息格式存　在，包括请求/响应范式中的已传输数据和修饰符等方面的信息；&lt;br&gt;　　HTTP/1.1(RFC2616) 的要求更加严格以确保服务的可靠性，增强了在HTTP/1.0 没有充分考虑到分层代理服务器、高速缓冲存储器、持久连接需求或虚拟主机等方面的效能；&lt;br&gt;　　安全增强版的 HTTP （即S-HTTP或HTTPS），则是HTTP协议与安全套接口层(SSL)的结合，使HTTP的协议数据在传输过程中更加安全。&lt;/p&gt;
+&lt;h4 id=&quot;2-2-协议结构&quot;&gt;&lt;a href=&quot;#2-2-协议结构&quot; class=&quot;headerlink&quot; title=&quot;2.2　协议结构&quot;&gt;&lt;/a&gt;2.2　协议结构&lt;/h4&gt;&lt;p&gt;　　HTTP协议格式也比较简单，格式如下：&lt;br&gt;　　&lt;img src=&quot;http://hi.csdn.net/attachment/201103/28/0_1301325076B6iY.gif&quot; alt=&quot;&quot;&gt;
+　　&lt;/p&gt;
+&lt;h4 id=&quot;2-3-HTTP-协议举例&quot;&gt;&lt;a href=&quot;#2-3-HTTP-协议举例&quot; class=&quot;headerlink&quot; title=&quot;2.3　HTTP 协议举例&quot;&gt;&lt;/a&gt;2.3　HTTP 协议举例&lt;/h4&gt;&lt;p&gt;　　下面是一个HTTP请求及响应的例子：&lt;br&gt;　　&lt;img src=&quot;http://hi.csdn.net/attachment/201103/28/0_1301325142Ln5d.gif&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;2-4-请求头格式&quot;&gt;&lt;a href=&quot;#2-4-请求头格式&quot; class=&quot;headerlink&quot; title=&quot;2.4　请求头格式&quot;&gt;&lt;/a&gt;2.4　请求头格式&lt;/h4&gt;&lt;p&gt;a) 通用头(general-header)：&lt;/p&gt;
+&lt;p&gt;Cache-Control：客户端希望服务端如何缓存自己的请求数据，如”Cache-Control: no-cache”，”Cache-Control: max-age=0”；&lt;/p&gt;
+&lt;p&gt;Connection：客户端是否希望与服务端之间保持长连接，如”Connection: close”, “Connection: keep-alive”；&lt;/p&gt;
+&lt;p&gt;Date：只有当请求方法为POST或PUT方法时客户端才可能会有些字段；&lt;/p&gt;
+&lt;p&gt;Pragma：包含了客户端一些特殊请求信息，如 “Pragma: no-cache” 客户端希望代理或应用服务器不应缓存与该请求相关的结果数据；&lt;/p&gt;
+&lt;p&gt;Via：一般用在代理网关向应用服务器发送的请求头中，表明该来自客户端的请求经过了网关代理，&lt;br&gt;     格式为：”Via: 请求协议版本  网关标识   [其它信息] “，&lt;br&gt;     如 ：” Via: 1.1  webcache_250_199.hexun.com:80 (squid)”&lt;/p&gt;
+&lt;p&gt;b) 请求头(request-header)：&lt;/p&gt;
+&lt;p&gt;Accept： 表明客户同端可接受的请求回应的媒体类型范围列表。星号“*”用于按范围将类型分组，用“*/*”指示可接受全部类型；用“type/*”指示可接受 type类型的所有子类型，如“ Accept: image/gif, image/jpeg, */*”；&lt;/p&gt;
+&lt;p&gt;Accept-Charset：客户端所能识别的字符集编码格式，格式：“Accept-Charset: 字符集1[:权重]，字符集2[:权重]”，如：“ Accept-Charset: iso-8859-5, unicode-1-1;q=0.8”；&lt;/p&gt;
+&lt;p&gt;Accept-Language：客户端所能识别的语言，格式：“Accept-Language: 语言1[:权重]，语言2[:权重]”，如：” Accept-Language: zh, en;q=0.7”；&lt;/p&gt;
+&lt;p&gt;Host：客户请求的主机域名或主机IP，格式：“Host: 域名或IP[:端口号]”，如：“Host: www.hexun.com:80“，请求行中若有HTTP/1.1则必须有该请求头；&lt;/p&gt;
+&lt;p&gt;User-Agent：表明用户所使用的浏览器标识，主要用于统计的目的；&lt;/p&gt;
+&lt;p&gt;Referer：指明该请求是从哪个关联连接而来；&lt;/p&gt;
+&lt;p&gt;Accept-Encoding：客户端所能识别的编码压缩格式，如：“Accept-Encoding: gzip, deflate”；&lt;br&gt;If- Modified-Since：该字段与客户端缓存相关，客户端所访问的URL自该指定日期以来在服务端是否被修改过，如果修改过则服务端返回新的修改后 的信息，如果未修改过则服务器返回304表明此请求所指URL未曾修改过，如：“If-Modified-Since: Fri, 2 Sep 2006 19:37:36 GMT”；&lt;/p&gt;
+&lt;p&gt;If-None-Match：该字段与客户端缓存相关，客户端发送URL请求的同时发送该字段及标识，如 果服务端的标识与客户端的标识一致，则返回304表明此URL未修改过，如果不一致则服务端返回完整的数据信息，如：“If-None-Match: 0f0a893aad8c61:253, 0f0a893aad8c61:252, 0f0a893aad8c61:251”；&lt;/p&gt;
+&lt;p&gt;Cookie：为扩展字段，存储于客户端，向同一域名的服务端发送属于该域的cookie，如：“Cookie: MailUserName=whouse”；&lt;/p&gt;
+&lt;p&gt;c) 实体头(entity-header): (此类头存在时要求有数据体)&lt;/p&gt;
+&lt;p&gt;Content-Encoding：客户端所能识别的编码压缩格式，如：“Content-Encoding: gzip, deflate”；&lt;/p&gt;
+&lt;p&gt;Content-Length：客户端以POST方法上传数据时数据体部分的内容长度，如：“ Content-Length: 24”；&lt;/p&gt;
+&lt;p&gt;Content- Type：客户端发送的数据体的内容类型，如：“Content-Type: application/x-www-form-urlencoded”为以普通的POST方法发送的数据；“Content-Type: multipart/form-data; boundary=—————————5169208281820”，则表明数据体由多部分组成，分隔符为 “—————————–5169208281820”；&lt;/p&gt;
+&lt;h4 id=&quot;2-5-响应格式&quot;&gt;&lt;a href=&quot;#2-5-响应格式&quot; class=&quot;headerlink&quot; title=&quot;2.5 响应格式&quot;&gt;&lt;/a&gt;2.5 响应格式&lt;/h4&gt;&lt;p&gt;a) 通用头(general-header)：&lt;/p&gt;
+&lt;p&gt;Cache- Control：服务端要求中间代理及客户端如何缓存自己响应的数据，如“Cache-Control: no-cache”，如：“Cache-Control: private” 不希望被缓存，“Cache-Control: public” 可以被缓存；&lt;/p&gt;
+&lt;p&gt;Connection：服务端是否希望与客户端之间保持长连接，如“Connection: close”, “Connection: keep-alive”；&lt;/p&gt;
+&lt;p&gt;Date：只有当请求方法为POST或PUT方法时客户端才可能会有些字段；&lt;/p&gt;
+&lt;p&gt;Pragma：包含了服务端一些特殊响应信息，如 “Pragma: no-cache” 服务端希望代理或客户端不应缓存结果数据；&lt;/p&gt;
+&lt;p&gt;Transfer-Encoding：服务端向客户端传输数据所采用的传输模式(仅在HTTP1.1中出现)，如：“Transfer-Encoding: chunked”，注：该字段的优先级要高于“Content-Length”　字段的优先级；&lt;/p&gt;
+&lt;p&gt;b）响应头(response-header)：&lt;/p&gt;
+&lt;p&gt;Accept-Ranges：表明服务端接收的数据单位，如：“Accept-Ranges: bytes”, ；&lt;/p&gt;
+&lt;p&gt;Location：服务端向客户端返回此信息以使客户端进行重定向，如：“Location: &lt;a href=&quot;http://www.hexun.com”；&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.hexun.com”；&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Server：服务端返回的用于标识自己的一些信息，如：“ Server: Microsoft-IIS/6.0”；&lt;/p&gt;
+&lt;p&gt;ETag：服务端返回的响应数据的标识字段，客户端可根据此字段的值向服务器发送某URL是否更新的信息；&lt;/p&gt;
+&lt;p&gt;c）实体头(entity-header): (此类头存在时要求有数据体)&lt;br&gt;Content-Encoding：服务端所响应数据的编码格式，如：“Content-Encoding: gzip”；&lt;br&gt;Content-Length：服务端所返回数据的数据体部分的内容长度，如：“ Content-Length: 24”；&lt;br&gt;Content-Type：服务端所返回的数据体的内容类型，如：“Content-Type: text/html; charset=gb2312” ；&lt;br&gt;Set-Cookie：服务端返回给客户端的cookie数据，如：“ Set-Cookie: ASP.NET_SessionId=icnh2ku2dqlmkciyobgvzl55; path=/”&lt;/p&gt;
+&lt;h4 id=&quot;2-6-服务器返回状态码&quot;&gt;&lt;a href=&quot;#2-6-服务器返回状态码&quot; class=&quot;headerlink&quot; title=&quot;2.6 服务器返回状态码&quot;&gt;&lt;/a&gt;2.6 服务器返回状态码&lt;/h4&gt;&lt;p&gt;1xx：表明服务端接收了客户端请求，客户端继续发送请求；&lt;br&gt;2xx：客户端发送的请求被服务端成功接收并成功进行了处理；&lt;br&gt;3xx：服务端给客户端返回用于重定向的信息；&lt;br&gt;4xx：客户端的请求有非法内容；&lt;br&gt;5xx：服务端未能正常处理客户端的请求而出现意外错误。&lt;/p&gt;
+&lt;p&gt;举例：&lt;/p&gt;
+&lt;p&gt;“100”  ; 服务端希望客户端继续；&lt;br&gt;“200”  ; 服务端成功接收并处理了客户端的请求；&lt;br&gt;“301”  ; 客户端所请求的URL已经移走，需要客户端重定向到其它的URL；&lt;br&gt;“304”  ; 客户端所请求的URL未发生变化；&lt;br&gt;“400”  ; 客户端请求错误；&lt;br&gt;“403”  ; 客户端请求被服务端所禁止；&lt;br&gt;“404”  ; 客户端所请求的URL在服务端不存在；&lt;br&gt;“500”  ; 服务端在处理客户端请求时出现异常；&lt;br&gt;“501”  ; 服务端未实现客户端请求的方法或内容；&lt;br&gt;“502”  ; 此为中间代理返回给客户端的出错信息，表明服务端返回给代理时出错；&lt;br&gt;“503”  ; 服务端由于负载过高或其它错误而无法正常响应客户端请求；&lt;br&gt;“504”  ; 此为中间代理返回给客户端的出错信息，表明代理连接服务端出现超时。&lt;/p&gt;
+&lt;h4 id=&quot;2-7-chunked-传输&quot;&gt;&lt;a href=&quot;#2-7-chunked-传输&quot; class=&quot;headerlink&quot; title=&quot;2.7 chunked 传输&quot;&gt;&lt;/a&gt;2.7 chunked 传输&lt;/h4&gt;&lt;p&gt;　 　编码使用若干个Chunk组成，由一个标明长度为0的chunk结束，每个Chunk有两部分组成，第一部分是该Chunk的长度(以十六进制表示)和 长度单位（一般不写），第二部分就是指定长度的内容，每个部分用CRLF隔开。在最后一个长度为0的Chunk中的内容是称为footer的内容，是一些 没有写的头部内容。另外，在HTTP头里必须含有：” Transfer-Encoding: chunked” 通用头字段。格式如下：&lt;br&gt;　 　&lt;img src=&quot;http://hi.csdn.net/attachment/201103/28/0_1301325202T3Uf.gif&quot; alt=&quot;&quot;&gt;
+　&lt;/p&gt;
+&lt;h4 id=&quot;2-8-HTTP-请求方法&quot;&gt;&lt;a href=&quot;#2-8-HTTP-请求方法&quot; class=&quot;headerlink&quot; title=&quot;2.8 HTTP 请求方法&quot;&gt;&lt;/a&gt;2.8 HTTP 请求方法&lt;/h4&gt;&lt;p&gt;GET、POST、HEAD、CONNECT、PUT、DELETE、TRACE&lt;/p&gt;
+&lt;h4 id=&quot;2-9-举例&quot;&gt;&lt;a href=&quot;#2-9-举例&quot; class=&quot;headerlink&quot; title=&quot;2.9 举例&quot;&gt;&lt;/a&gt;2.9 举例&lt;/h4&gt;&lt;p&gt;a）GET请求&lt;/p&gt;
+&lt;p&gt;GET &lt;a href=&quot;http://photo.test.com/inc/global.js&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://photo.test.com/inc/global.js&lt;/a&gt; HTTP/1.1&lt;br&gt;Host: photo.test.com&lt;br&gt;User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.0; zh-CN; rv:1.8.1) Gecko/20061010 Firefox/2.0&lt;br&gt;Accept: text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5&lt;br&gt;Accept-Language: en-us,zh-cn;q=0.7,zh;q=0.3&lt;br&gt;Accept-Encoding: gzip,deflate&lt;br&gt;Accept-Charset: gb2312,utf-8;q=0.7,*;q=0.7&lt;br&gt;Keep-Alive: 300&lt;br&gt;Proxy-Connection: keep-alive&lt;br&gt;Cookie: ASP.NET_SessionId=ey5drq45lsomio55hoydzc45&lt;br&gt;Cache-Control: max-age=0&lt;/p&gt;
+&lt;p&gt;b）POST请求&lt;/p&gt;
+&lt;p&gt;POST / HTTP/1.1&lt;br&gt;Accept: image/gif, image/x-xbitmap, image/jpeg, application/vnd.ms-powerpoint, application/msword, */*&lt;br&gt;Accept-Language: zh-cn&lt;br&gt;Content-Type: application/x-www-form-urlencoded&lt;br&gt;Accept-Encoding: gzip, deflate&lt;br&gt;User-Agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)&lt;br&gt;Host: www.test.com&lt;br&gt;Content-Length: 24&lt;br&gt;Connection: Keep-Alive&lt;br&gt;Cache-Control: no-cache&lt;/p&gt;
+&lt;p&gt;name=value&amp;amp;submit=submit&lt;/p&gt;
+&lt;p&gt;c）通过HTTP代理发送GET请求&lt;/p&gt;
+&lt;p&gt;GET &lt;a href=&quot;http://mail.test.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://mail.test.com/&lt;/a&gt; HTTP/1.1&lt;br&gt;Host: mail.test.com&lt;br&gt;User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.0; zh-CN; rv:1.8.1) Gecko/20061010 Firefox/2.0&lt;br&gt;Accept: text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,&lt;em&gt;/&lt;/em&gt;;q=0.5&lt;br&gt;Accept-Language: en-us,zh-cn;q=0.7,zh;q=0.3&lt;br&gt;Accept-Encoding: gzip,deflate&lt;br&gt;Accept-Charset: gb2312,utf-8;q=0.7,*;q=0.7&lt;br&gt;Keep-Alive: 300&lt;br&gt;Proxy-Connection: keep-alive&lt;/p&gt;
+&lt;p&gt;d）POST方式上传文&lt;/p&gt;
+&lt;p&gt;POST &lt;a href=&quot;http://www.test.comt/upload_attach?uidl=%3C&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.test.comt/upload_attach?uidl=%3C&lt;/a&gt; HTTP/1.1&lt;br&gt;Host: www.test.com&lt;br&gt;User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.0; zh-CN; rv:1.8.1) Gecko/20061010 Firefox/2.0&lt;br&gt;Accept: text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5&lt;br&gt;Accept-Language: en-us,zh-cn;q=0.7,zh;q=0.3&lt;br&gt;Accept-Charset: gb2312,utf-8;q=0.7,*;q=0.7&lt;br&gt;Content-Type: multipart/form-data; boundary=—————————5169208281820&lt;br&gt;Content-Length: 449&lt;/p&gt;
+&lt;p&gt;—————————–5169208281820&lt;br&gt;Content-Disposition: form-data; name=”file_1”; filename=””&lt;br&gt;Content-Type: application/octet-stream&lt;/p&gt;
+&lt;p&gt;—————————–5169208281820&lt;br&gt;Content-Disposition: form-data; name=”file_0”; filename=”test.txt”&lt;br&gt;Content-Type: text/plain&lt;/p&gt;
+&lt;p&gt;hello world!&lt;/p&gt;
+&lt;p&gt;—————————–5169208281820&lt;br&gt;Content-Disposition: form-data; name=”oper”&lt;/p&gt;
+&lt;p&gt;upload&lt;br&gt;—————————–5169208281820–&lt;/p&gt;
+&lt;p&gt;e）CONNECT举例&lt;/p&gt;
+&lt;p&gt;CONNECT mail.test.com:80 HTTP/1.1&lt;br&gt;User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.0; zh-CN; rv:1.8.1) Gecko/20061010 Firefox/2.0&lt;br&gt;Proxy-Connection: keep-alive&lt;br&gt;Host: mail.test.com:80&lt;/p&gt;
+&lt;h4 id=&quot;3-0-在终端以-telnet-方式测试&quot;&gt;&lt;a href=&quot;#3-0-在终端以-telnet-方式测试&quot; class=&quot;headerlink&quot; title=&quot;3.0 在终端以 telnet 方式测试&quot;&gt;&lt;/a&gt;3.0 在终端以 telnet 方式测试&lt;/h4&gt;&lt;p&gt;a）打开回显功能（针对windows)&lt;br&gt;　 Windows 2000：进入DOS模式-&amp;gt;输入 telnet-&amp;gt;set LOCAL_ECHO-&amp;gt;退出：quit-&amp;gt;telnet ip 80&lt;br&gt;　 Windows xp：进入DOS模式-&amp;gt;输入telnet-&amp;gt;set local echo-&amp;gt;open ip 80&lt;br&gt;b) 按HTTP协议格式输入GET请求、HEAD请求、POST请求。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;一、TCP-IP-协议介绍&quot;&gt;&lt;a href=&quot;#一、TCP-IP-协议介绍&quot; class=&quot;headerlink&quot; title=&quot;一、TCP/IP 协议介绍&quot;&gt;&lt;/a&gt;一、TCP/IP 协议介绍&lt;/h3&gt;&lt;p&gt;　　在介绍 HTTP 协议之前，先简单说一下TCP/IP协议的相关内容。TCP/IP协议是分层的，从底层至应用层分别为：物理层、链路层、网络层、传输层和应用层，如下图所示：&lt;br&gt;
+    
+    </summary>
+    
+      <category term="HTTP" scheme="http://xfwang.xyz/categories/HTTP/"/>
+    
+      <category term="Computer Network" scheme="http://xfwang.xyz/categories/HTTP/Computer-Network/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Python基础06 函数</title>
+    <link href="http://xfwang.xyz/2014/09/13/2014-09-13-Python06-function/"/>
+    <id>http://xfwang.xyz/2014/09/13/2014-09-13-Python06-function/</id>
+    <published>2014-09-13T04:10:00.000Z</published>
+    <updated>2016-05-05T15:09:40.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;调用内置函数&quot;&gt;&lt;a href=&quot;#调用内置函数&quot; class=&quot;headerlink&quot; title=&quot;调用内置函数&quot;&gt;&lt;/a&gt;调用内置函数&lt;/h3&gt;&lt;p&gt;Python内置了很多有用的函数，我们可以直接调用。&lt;/p&gt;
+&lt;p&gt;要调用一个函数，需要知道函数的名称和参数，比如求绝对值的函数&lt;strong&gt;abs&lt;/strong&gt;，只有一个参数。可以直接从Python的官方网站查看文档：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://docs.python.org/2/library/functions.html#abs&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://docs.python.org/2/library/functions.html#abs&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;也可以在交互式命令行通过&lt;strong&gt;help(abs)&lt;/strong&gt;查看&lt;strong&gt;abs&lt;/strong&gt;函数的帮助信息。&lt;/p&gt;
+&lt;p&gt;调用&lt;strong&gt;abs&lt;/strong&gt;函数：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; abs(100)
+100
+&amp;gt;&amp;gt;&amp;gt; abs(-20)
+20
+&amp;gt;&amp;gt;&amp;gt; abs(12.34)
+12.34
+&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;比较函数&lt;strong&gt;cmp(x, y)&lt;/strong&gt;就需要两个参数，如果&lt;strong&gt;x&amp;lt;y&lt;/strong&gt;，返回&lt;strong&gt;-1&lt;/strong&gt;，如果&lt;strong&gt;x==y&lt;/strong&gt;，返回&lt;strong&gt;0&lt;/strong&gt;，如果&lt;strong&gt;x&amp;gt;y&lt;/strong&gt;，返回&lt;strong&gt;1&lt;/strong&gt;：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; cmp(1, 2)
+-1
+&amp;gt;&amp;gt;&amp;gt; cmp(2, 1)
+1
+&amp;gt;&amp;gt;&amp;gt; cmp(3, 3)
+0
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;函数名其实就是指向一个函数对象的引用，完全可以把函数名赋给一个变量，相当于给这个函数起了一个“别名”：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; a = abs # 变量a指向abs函数
+&amp;gt;&amp;gt;&amp;gt; a(-1) # 所以也可以通过a调用abs函数
+1
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;函数的定义&quot;&gt;&lt;a href=&quot;#函数的定义&quot; class=&quot;headerlink&quot; title=&quot;函数的定义&quot;&gt;&lt;/a&gt;函数的定义&lt;/h3&gt;&lt;p&gt;在Python中，定义一个函数要使用&lt;strong&gt;def&lt;/strong&gt;语句，依次写出函数名、括号、括号中的参数和冒号:，然后，在缩进块中编写函数体，函数的返回值用&lt;strong&gt;return&lt;/strong&gt;语句返回。&lt;br&gt;例如，定义一个求两个数的平方和的函数：&lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;square_sum&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(a,b)&lt;/span&gt;:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    c = a**&lt;span class=&quot;number&quot;&gt;2&lt;/span&gt; + b**&lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; c&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;首先，&lt;strong&gt;def&lt;/strong&gt;，这个关键字通知python：我在定义一个函数。&lt;strong&gt;square_sum&lt;/strong&gt;是函数名。&lt;/p&gt;
+&lt;p&gt;括号中的a, b是函数的&lt;strong&gt;参数&lt;/strong&gt;，是对函数的&lt;strong&gt;输入&lt;/strong&gt;。参数可以有多个，也可以完全没有（但括号要保留）。&lt;/p&gt;
+&lt;p&gt;我们已经在循环和选择中见过&lt;strong&gt;冒号&lt;/strong&gt;和&lt;strong&gt;缩进&lt;/strong&gt;来表示的隶属关系。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;c = a**2 + b**2        # 这一句是函数内部进行的运算
+
+return c               # 返回c的值，也就是输出的功能。Python的函数允许不返回值，也就是不用return。
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;return可以&lt;strong&gt;返回多个值&lt;/strong&gt;，以逗号分隔。相当于返回一个tuple(定值表)。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;return a,b,c          # 相当于 return (a,b,c)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;在Python中，当程序执行到return的时候，程序将&lt;strong&gt;停止执行函数内余下的语句&lt;/strong&gt;。return并不是必须的，当没有return, 或者return后面没有返回值时，函数将自动返回&lt;strong&gt;None&lt;/strong&gt;。None是Python中的一个特别的数据类型，用来表示什么都没有，相当于C中的NULL。None多用于关键字参数传递的默认值。&lt;/p&gt;
+&lt;h3 id=&quot;函数调用和参数传递&quot;&gt;&lt;a href=&quot;#函数调用和参数传递&quot; class=&quot;headerlink&quot; title=&quot;函数调用和参数传递&quot;&gt;&lt;/a&gt;函数调用和参数传递&lt;/h3&gt;&lt;p&gt;定义过函数后，就可以在后面程序中使用这一函数&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;print square_sum(3,4)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Python通过位置，知道3对应的是函数定义中的第一个参数a， 4对应第二个参数b，然后把参数传递给函数square_sum。&lt;/p&gt;
+&lt;p&gt;（Python有丰富的参数传递方式，还有关键字传递、表传递、字典传递等，基础教程将只涉及位置传递）&lt;/p&gt;
+&lt;p&gt;函数经过运算，返回值25, 这个25被print打印出来。&lt;/p&gt;
+&lt;p&gt;我们再看下面两个例子&lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;a = &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;change_integer&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(a)&lt;/span&gt;:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    a = a + &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; a&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;print&lt;/span&gt; change_integer(a)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;print&lt;/span&gt; a&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;b = [&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;change_list&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(b)&lt;/span&gt;:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    b[&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;] = b[&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;] + &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; b&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;print&lt;/span&gt; change_list(b)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;print&lt;/span&gt; b&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;第一个例子，我们将一个整数变量传递给函数，函数对它进行操作，但原整数变量a不发生变化。&lt;/p&gt;
+&lt;p&gt;第二个例子，我们将一个表传递给函数，函数进行操作，原来的表b发生变化。&lt;/p&gt;
+&lt;p&gt;对于基本数据类型的变量，变量传递给函数后，函数会在内存中复制一个新的变量，从而不影响原来的变量。（我们称此为值传递）&lt;/p&gt;
+&lt;p&gt;但是对于表来说，表传递给函数的是一个指针，指针指向序列在内存中的位置，在函数中对表的操作将在原有内存中进行，从而影响原有变量。 （我们称此为指针传递）&lt;/p&gt;
+&lt;h3 id=&quot;递归函数&quot;&gt;&lt;a href=&quot;#递归函数&quot; class=&quot;headerlink&quot; title=&quot;递归函数&quot;&gt;&lt;/a&gt;递归函数&lt;/h3&gt;&lt;p&gt;在函数内部，可以调用其他函数。如果一个函数在内部调用自身本身，这个函数就是递归函数。&lt;/p&gt;
+&lt;p&gt;举个例子，我们来计算阶乘&lt;strong&gt;n! = 1 x 2 x 3 x … x n&lt;/strong&gt;，用函数&lt;strong&gt;fact(n)&lt;/strong&gt;表示，可以看出：&lt;/p&gt;
+&lt;p&gt;fact(n) = n! = 1 x 2 x 3 x … x (n-1) x n = (n-1)! x n = fact(n-1) x n&lt;/p&gt;
+&lt;p&gt;所以，&lt;strong&gt;fact(n)&lt;/strong&gt;可以表示为n x &lt;strong&gt;fact(n-1)&lt;/strong&gt;，只有n=1时需要特殊处理。&lt;/p&gt;
+&lt;p&gt;于是，&lt;strong&gt;fact(n)&lt;/strong&gt;用递归的方式写出来就是：&lt;br&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;fact&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(n)&lt;/span&gt;:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; n==&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; n * fact(n - &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;上面就是一个递归函数。可以试试：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; fact(1)
+1
+&amp;gt;&amp;gt;&amp;gt; fact(5)
+120
+&amp;gt;&amp;gt;&amp;gt; fact(100)
+93326215443944152681699238856266700490715968264381621468592963895217599993229915608941463976156518286253697920827223758251185210916864000000000000000000000000L
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果我们计算&lt;strong&gt;fact(5)&lt;/strong&gt;，可以根据函数定义看到计算过程如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;===&amp;gt; fact(5)
+===&amp;gt; 5 * fact(4)
+===&amp;gt; 5 * (4 * fact(3))
+===&amp;gt; 5 * (4 * (3 * fact(2)))
+===&amp;gt; 5 * (4 * (3 * (2 * fact(1))))
+===&amp;gt; 5 * (4 * (3 * (2 * 1)))
+===&amp;gt; 5 * (4 * (3 * 2))
+===&amp;gt; 5 * (4 * 6)
+===&amp;gt; 5 * 24
+===&amp;gt; 120
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;递归函数的优点是定义简单，逻辑清晰。理论上，所有的递归函数都可以写成循环的方式，但循环的逻辑不如递归清晰。&lt;/p&gt;
+&lt;p&gt;使用递归函数需要注意防止栈溢出。在计算机中，函数调用是通过栈（stack）这种数据结构实现的，每当进入一个函数调用，栈就会加一层栈帧，每当函数返回，栈就会减一层栈帧。由于栈的大小不是无限的，所以，递归调用的次数过多，会导致栈溢出。可以试试fact(1000)：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; fact(1000)
+Traceback (most recent call last):
+File &amp;quot;&amp;lt;stdin&amp;gt;&amp;quot;, line 1, in &amp;lt;module&amp;gt;
+File &amp;quot;&amp;lt;stdin&amp;gt;&amp;quot;, line 4, in fact
+...
+File &amp;quot;&amp;lt;stdin&amp;gt;&amp;quot;, line 4, in fact
+RuntimeError: maximum recursion depth exceeded
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;解决递归调用栈溢出的方法是通过尾递归优化，事实上尾递归和循环的效果是一样的，所以，把循环看成是一种特殊的尾递归函数也是可以的。&lt;/p&gt;
+&lt;p&gt;尾递归是指，在函数返回的时候，调用自身本身，并且，return语句不能包含表达式。这样，编译器或者解释器就可以把尾递归做优化，使递归本身无论调用多少次，都只占用一个栈帧，不会出现栈溢出的情况。&lt;/p&gt;
+&lt;p&gt;上面的&lt;strong&gt;fact(n)&lt;/strong&gt;函数由于&lt;strong&gt;return n * fact(n - 1)&lt;/strong&gt;引入了乘法表达式，所以就不是尾递归了。要改成尾递归方式，需要多一点代码，主要是要把每一步的乘积传入到递归函数中：&lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;fact&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(n)&lt;/span&gt;:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; fact_iter(&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;, n)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;fact_iter&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(product, count, max)&lt;/span&gt;:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; count &amp;gt; max:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; product&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; fact_iter(product * count, count + &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;, max)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;可以看到，&lt;strong&gt;return fact_iter(product * count, count + 1, max)&lt;/strong&gt;仅返回递归函数本身，&lt;strong&gt;product * count&lt;/strong&gt;和&lt;strong&gt;count + 1&lt;/strong&gt;在函数调用前就会被计算，不影响函数调用。&lt;/p&gt;
+&lt;p&gt;fact(5)对应的fact_iter(1, 1, 5)的调用如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;===&amp;gt; fact_iter(1, 1, 5)
+===&amp;gt; fact_iter(1, 2, 5)
+===&amp;gt; fact_iter(2, 3, 5)
+===&amp;gt; fact_iter(6, 4, 5)
+===&amp;gt; fact_iter(24, 5, 5)
+===&amp;gt; fact_iter(120, 6, 5)
+===&amp;gt; 120
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;尾递归调用时，如果做了优化，栈不会增长，因此，无论多少次调用也不会导致栈溢出。&lt;/p&gt;
+&lt;p&gt;遗憾的是，大多数编程语言没有针对尾递归做优化，Python解释器也没有做优化，所以，即使把上面的&lt;strong&gt;fact(n)&lt;/strong&gt;函数改成尾递归方式，也会导致栈溢出。&lt;/p&gt;
+&lt;p&gt;有一个针对尾递归优化的decorator，可以参考源码：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://code.activestate.com/recipes/474088-tail-call-optimization-decorator/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://code.activestate.com/recipes/474088-tail-call-optimization-decorator/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;我们后面会讲到如何编写decorator。现在，只需要使用这个&lt;strong&gt;@tail_call_optimized&lt;/strong&gt;，就可以顺利计算出fact(1000)：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; fact(1000)
+402387260077093773543702433923003985719374864210714632543799910429938512398629020592044208486969404800479988610197196058631666872994808558901323829669944590997424504087073759918823627727188732519779505950995276120874975462497043601418278094646496291056393887437886487337119181045825783647849977012476632889835955735432513185323958463075557409114262417474349347553428646576611667797396668820291207379143853719588249808126867838374559731746136085379534524221586593201928090878297308431392844403281231558611036976801357304216168747609675871348312025478589320767169132448426236131412508780208000261683151027341827977704784635868170164365024153691398281264810213092761244896359928705114964975419909342221566832572080821333186116811553615836546984046708975602900950537616475847728421889679646244945160765353408198901385442487984959953319101723355556602139450399736280750137837615307127761926849034352625200015888535147331611702103968175921510907788019393178114194545257223865541461062892187960223838971476088506276862967146674697562911234082439208160153780889893964518263243671616762179168909779911903754031274622289988005195444414282012187361745992642956581746628302955570299024324153181617210465832036786906117260158783520751516284225540265170483304226143974286933061690897968482590125458327168226458066526769958652682272807075781391858178889652208164348344825993266043367660176999612831860788386150279465955131156552036093988180612138558600301435694527224206344631797460594682573103790084024432438465657245014402821885252470935190620929023136493273497565513958720559654228749774011413346962715422845862377387538230483865688976461927383814900140767310446640259899490222221765904339901886018566526485061799702356193897017860040811889729918311021171229845901641921068884387121855646124960798722908519296819372388642614839657382291123125024186649353143970137428531926649875337218940694281434118520158014123344828015051399694290153483077644569099073152433278288269864602789864321139083506217095002597389863554277196742822248757586765752344220207573630569498825087968928162753848863396909959826280956121450994871701244516461260379029309120889086942028510640182154399457156805941872748998094254742173582401063677404595741785160829230135358081840096996372524230560855903700624271243416909004153690105933983835777939410970027753472000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;总结&quot;&gt;&lt;a href=&quot;#总结&quot; class=&quot;headerlink&quot; title=&quot;总结&quot;&gt;&lt;/a&gt;总结&lt;/h3&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;function_name&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(a,b,c)&lt;/span&gt;:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    statement&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; something  &lt;span class=&quot;comment&quot;&gt;# return不是必须的&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;函数的目的： 提高程序的重复可用性。&lt;/p&gt;
+&lt;p&gt;return     None&lt;/p&gt;
+&lt;p&gt;通过位置，传递参数。&lt;/p&gt;
+&lt;p&gt;基本数据类型的参数：值传递&lt;/p&gt;
+&lt;p&gt;表作为参数：指针传递&lt;/p&gt;
+&lt;p&gt;使用递归函数的优点是逻辑简单清晰，缺点是过深的调用会导致栈溢出。&lt;/p&gt;
+&lt;p&gt;针对尾递归优化的语言可以通过尾递归防止栈溢出。尾递归事实上和循环是等价的，没有循环语句的编程语言只能通过尾递归实现循环。&lt;/p&gt;
+&lt;p&gt;Python标准的解释器没有针对尾递归做优化，任何递归函数都存在栈溢出的问题。&lt;/p&gt;
+&lt;p&gt;练习:&lt;/p&gt;
+&lt;p&gt;写一个判断闰年的函数，参数为年。若是是闰年，返回True&lt;/p&gt;
+&lt;p&gt;参考代码：&lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;a=int(raw_input(&lt;span class=&quot;string&quot;&gt;&#39;Please input a year:&#39;&lt;/span&gt;))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;leap&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(year)&lt;/span&gt;:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; year%&lt;span class=&quot;number&quot;&gt;400&lt;/span&gt;==&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;or&lt;/span&gt; (year%&lt;span class=&quot;number&quot;&gt;4&lt;/span&gt;==&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;and&lt;/span&gt; year%&lt;span class=&quot;number&quot;&gt;100&lt;/span&gt;!= &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;):&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    result=&lt;span class=&quot;keyword&quot;&gt;True&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    result=&lt;span class=&quot;keyword&quot;&gt;False&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; result&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;调用内置函数&quot;&gt;&lt;a href=&quot;#调用内置函数&quot; class=&quot;headerlink&quot; title=&quot;调用内置函数&quot;&gt;&lt;/a&gt;调用内置函数&lt;/h3&gt;&lt;p&gt;Python内置了很多有用的函数，我们可以直接调用。&lt;/p&gt;
+&lt;p&gt;要调用一个函数，需要知道函数的名称和参数，比如求绝对值的函数&lt;strong&gt;abs&lt;/strong&gt;，只有一个参数。可以直接从Python的官方网站查看文档：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://docs.python.org/2/library/functions.html#abs&quot;&gt;http://docs.python.org/2/library/functions.html#abs&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;也可以在交互式命令行通过&lt;strong&gt;help(abs)&lt;/strong&gt;查看&lt;strong&gt;abs&lt;/strong&gt;函数的帮助信息。&lt;/p&gt;
+&lt;p&gt;调用&lt;strong&gt;abs&lt;/strong&gt;函数：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; abs(100)
+100
+&amp;gt;&amp;gt;&amp;gt; abs(-20)
+20
+&amp;gt;&amp;gt;&amp;gt; abs(12.34)
+12.34
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+      <category term="Python" scheme="http://xfwang.xyz/categories/Python/"/>
+    
+      <category term="programming" scheme="http://xfwang.xyz/categories/Python/programming/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Python基础05 条件判断和循环</title>
+    <link href="http://xfwang.xyz/2014/08/23/2014-08-23-Python05-judge-loop/"/>
+    <id>http://xfwang.xyz/2014/08/23/2014-08-23-Python05-judge-loop/</id>
+    <published>2014-08-23T13:10:00.000Z</published>
+    <updated>2014-10-12T15:01:04.000Z</updated>
+    
+    <content type="html">&lt;p&gt;###if语句&lt;/p&gt;
+&lt;p&gt;到目前为止的程序都是一条一条语句顺序执行的。在这部分中会介绍让程序选择是否执行语句块的方法。&lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;x = &lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; x &amp;gt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;:	&lt;span class=&quot;keyword&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;+&quot;&lt;/span&gt;&lt;span class=&quot;keyword&quot;&gt;elif&lt;/span&gt; x &amp;lt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;:	&lt;span class=&quot;keyword&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;-&quot;&lt;/span&gt;&lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt;:	&lt;span class=&quot;keyword&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;0&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;Python检测条件，如果发现if的条件为假，那么跳过后面紧跟的块，检测下一个elif的条件； 如果还是假，那么执行else块。&lt;/p&gt;
+&lt;p&gt;通过上面的结构将程序分出三个分支。程序根据条件，只执行三个分支中的一个。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;if&lt;/code&gt;语句执行有个特点，它是从上往下判断，如果在某个判断上是&lt;code&gt;True&lt;/code&gt;，把该判断对应的语句执行后，就忽略掉剩下的&lt;code&gt;elif&lt;/code&gt;和&lt;code&gt;else&lt;/code&gt;，所以，请测试并解释为什么下面的程序打印的是&lt;code&gt;teenager&lt;/code&gt;：&lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;age = &lt;span class=&quot;number&quot;&gt;20&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; age &amp;gt;= &lt;span class=&quot;number&quot;&gt;6&lt;/span&gt;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;teenager&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;elif&lt;/span&gt; age &amp;gt;= &lt;span class=&quot;number&quot;&gt;18&lt;/span&gt;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;adult&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;kid&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;if判断条件还可以简写，比如写：&lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; x:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;True&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;只要&lt;code&gt;x&lt;/code&gt;是非零数值、非空字符串、非空list等，就判断为&lt;code&gt;True&lt;/code&gt;，否则为&lt;code&gt;False&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;###循环&lt;/p&gt;
+&lt;p&gt;####while 循环&lt;br&gt;只要条件满足，就不断循环，条件不满足时退出循环:&lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;x = &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;while&lt;/span&gt; x &amp;lt;= &lt;span class=&quot;number&quot;&gt;100&lt;/span&gt;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;print&lt;/span&gt; x&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	x +=&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;在循环内部变量&lt;code&gt;x&lt;/code&gt;不断自减，直到变为&lt;code&gt;101&lt;/code&gt;时，不再满足while条件，循环退出。&lt;/p&gt;
+&lt;p&gt;####for 循环&lt;br&gt;要为一个集合的每个元素都执行一个代码块，这个时候可以使用&lt;code&gt;for&lt;/code&gt;语句：&lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;words = [&lt;span class=&quot;string&quot;&gt;&#39;this&#39;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&#39;is&#39;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&#39;an&#39;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&#39;ex&#39;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&#39;parrot&#39;&lt;/span&gt;]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; word &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; words:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;print&lt;/span&gt; word&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;执行这段代码，会依次打印&lt;code&gt;words&lt;/code&gt;的每一个元素。&lt;/p&gt;
+&lt;p&gt;所以&lt;code&gt;for x in ...&lt;/code&gt;循环就是把每个元素代入变量&lt;code&gt;x&lt;/code&gt;，然后执行缩进块的语句。&lt;/p&gt;
+&lt;p&gt;介绍一个新的Python函数&lt;code&gt;range()&lt;/code&gt;:&lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;x = range(&lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;print&lt;/span&gt; x&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;可以看到结果x是[0,1,2]&lt;/p&gt;
+&lt;p&gt;这个函数的功能是新建一个表。这个表的元素都是整数，从0开始，下一个元素比前一个大1， 直到函数中所写的上限 （不包括该上限本身）&lt;/p&gt;
+&lt;p&gt;####中断循环&lt;br&gt;continue   # 在循环的某一次执行中，如果遇到continue, 那么跳过这一次执行，进行下一次的操作&lt;br&gt;break      # 停止执行整个循环&lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; i &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; range(&lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;):&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; i == &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;: &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;continue&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;print&lt;/span&gt; i&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;当循环执行到i = 2的时候，if条件成立，触发continue, 跳过本次执行(不执行print)，继续进行下一次执行(i = 3)。&lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; math &lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; sqrt&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; i &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; range(&lt;span class=&quot;number&quot;&gt;99&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;-1&lt;/span&gt;):&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	root = sqrt(n)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; root == int(root):&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    	&lt;span class=&quot;keyword&quot;&gt;print&lt;/span&gt; n&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    	&lt;span class=&quot;keyword&quot;&gt;break&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;当循环执行到n = 81的时候，if条件成立，触发break, 整个循环停止。&lt;/p&gt;
+&lt;p&gt;###总结&lt;/p&gt;
+&lt;p&gt;以四个空格的缩进来表示隶属关系, Python中不能随意缩进:&lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;  &amp;lt;条件&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;&amp;gt;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	statement&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;elif&lt;/span&gt; &amp;lt;条件&lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;&amp;gt;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    statement&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;elif&lt;/span&gt; &amp;lt;条件&lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;&amp;gt;：&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    statement&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    statement&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;range()&lt;/p&gt;
+&lt;p&gt;for 元素 in 序列:&lt;/p&gt;
+&lt;p&gt;while 条件:&lt;/p&gt;
+&lt;p&gt;continue&lt;/p&gt;
+&lt;p&gt;break&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;###if语句&lt;/p&gt;
+&lt;p&gt;到目前为止的程序都是一条一条语句顺序执行的。在这部分中会介绍让程序选择是否执行语句块的方法。&lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;x = &lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; x &amp;gt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;:	&lt;span class=&quot;keyword&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;+&quot;&lt;/span&gt;&lt;span class=&quot;keyword&quot;&gt;elif&lt;/span&gt; x &amp;lt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;:	&lt;span class=&quot;keyword&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;-&quot;&lt;/span&gt;&lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt;:	&lt;span class=&quot;keyword&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;0&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+      <category term="Python" scheme="http://xfwang.xyz/categories/Python/"/>
+    
+      <category term="programming" scheme="http://xfwang.xyz/categories/Python/programming/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Python基础04 运算</title>
+    <link href="http://xfwang.xyz/2014/08/23/2014-08-23-Python04-Operation/"/>
+    <id>http://xfwang.xyz/2014/08/23/2014-08-23-Python04-Operation/</id>
+    <published>2014-08-23T01:10:00.000Z</published>
+    <updated>2014-10-12T15:01:04.000Z</updated>
+    
+    <content type="html">&lt;p&gt;Python的运算符和其他语言类似&lt;/p&gt;
+&lt;p&gt;（我们暂时只了解这些运算符的基本用法，方便我们展开后面的内容，高级应用暂时不介绍）&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;###数学运算&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt;print 1+9        # 加法
+
+&amp;gt;&amp;gt;&amp;gt;print 1.3-4      # 减法
+
+&amp;gt;&amp;gt;&amp;gt;print 3*5        # 乘法
+
+&amp;gt;&amp;gt;&amp;gt;print 4.5/1.5    # 除法
+
+&amp;gt;&amp;gt;&amp;gt;print 3**2       # 乘方     
+
+&amp;gt;&amp;gt;&amp;gt;print 10%3       # 求余数
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;###判断&lt;/p&gt;
+&lt;p&gt;判断是真还是假，返回True/False&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt;print 5==6               # =， 相等
+
+&amp;gt;&amp;gt;&amp;gt;print 8.0!=8.0           # !=, 不等
+
+&amp;gt;&amp;gt;&amp;gt;print 3&amp;lt;3, 3&amp;lt;=3          # &amp;lt;, 小于; &amp;lt;=, 小于等于
+
+&amp;gt;&amp;gt;&amp;gt;print 4&amp;gt;5, 4&amp;gt;=0          # &amp;gt;, 大于; &amp;gt;=, 大于等于
+
+&amp;gt;&amp;gt;&amp;gt;print 5 in [1,3,5]       # 5是list [1,3,5]的一个元素
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;（还有is, is not等, 暂时不深入）&lt;/p&gt;
+&lt;p&gt;###逻辑运算&lt;/p&gt;
+&lt;p&gt;True/False之间的运算&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt;print True and True, True and False      # and, “与”运算， 两者都为真才是真
+
+&amp;gt;&amp;gt;&amp;gt;print True or False                      # or, &amp;quot;或&amp;quot;运算， 其中之一为真即为真
+
+&amp;gt;&amp;gt;&amp;gt;print not True                           # not, “非”运算， 取反
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;可以和上一部分结合做一些练习，比如：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt;print 5==6 or 3&amp;gt;=3
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;###总结&lt;/p&gt;
+&lt;p&gt;&lt;font color=&quot;red&quot;&gt;数学&lt;/font&gt; +, -, &lt;em&gt;, /, *&lt;/em&gt;, %&lt;/p&gt;
+&lt;p&gt;&lt;font color=&quot;red&quot;&gt;判断&lt;/font&gt; ==, !=, &amp;gt;, &amp;gt;=, &amp;lt;, &amp;lt;=, in&lt;/p&gt;
+&lt;p&gt;&lt;font color=&quot;red&quot;&gt;逻辑&lt;/font&gt; and, or, not&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Python的运算符和其他语言类似&lt;/p&gt;
+&lt;p&gt;（我们暂时只了解这些运算符的基本用法，方便我们展开后面的内容，高级应用暂时不介绍）&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Python" scheme="http://xfwang.xyz/categories/Python/"/>
+    
+      <category term="programming" scheme="http://xfwang.xyz/categories/Python/programming/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Python基础03 序列</title>
+    <link href="http://xfwang.xyz/2014/08/18/2014-08-18-Python03-sequence/"/>
+    <id>http://xfwang.xyz/2014/08/18/2014-08-18-Python03-sequence/</id>
+    <published>2014-08-18T12:10:00.000Z</published>
+    <updated>2014-10-12T15:01:04.000Z</updated>
+    
+    <content type="html">&lt;p&gt;###sequence 序列&lt;/p&gt;
+&lt;p&gt;sequence(序列)是一组&lt;font color=&quot;red&quot;&gt;有顺序&lt;/font&gt;的&lt;font color=&quot;red&quot;&gt;元素&lt;/font&gt;的的&lt;font color=&quot;red&quot;&gt;集合&lt;/font&gt;&lt;/p&gt;
+&lt;p&gt;(严格的说，是对象的集合，但鉴于我们还没有引入“对象”概念，暂时说元素)&lt;/p&gt;
+&lt;p&gt;序列可以包含一个或多个&lt;font color=&quot;red&quot;&gt;元素&lt;/font&gt;，也可以没有任何元素。&lt;/p&gt;
+&lt;p&gt;我们之前所说的基本数据类型，都可以作为序列的元素。元素还可以是另一个序列，以及我们以后要介绍的其他对象。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;序列有两种：tuple（&lt;font color=&quot;red&quot;&gt;定值表&lt;/font&gt;； 也有翻译为&lt;font color=&quot;red&quot;&gt;元组&lt;/font&gt;） 和 list (&lt;font color=&quot;red&quot;&gt;表&lt;/font&gt;)&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt;s1 = (2, 1.3, &amp;apos;love&amp;apos;, 5.6, 9, 12, False)         # s1是一个tuple
+
+&amp;gt;&amp;gt;&amp;gt;s2 = [True, 5, &amp;apos;smile&amp;apos;]                          # s2是一个list
+
+&amp;gt;&amp;gt;&amp;gt;print s1,type(s1)
+
+&amp;gt;&amp;gt;&amp;gt;print s2,type(s2)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;tuple和list的主要区别在于，一旦建立，&lt;font color=&quot;red&quot;&gt;tuple的各个元素不可再变更，而list的各个元素可以再变更&lt;/font&gt;。&lt;/p&gt;
+&lt;p&gt;一个序列作为另一个序列的元素&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt;s3 = [1,[3,4,5]]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;空序列&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt;s4 = []
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;###元素的引用&lt;/p&gt;
+&lt;p&gt;序列元素的&lt;font color=&quot;red&quot;&gt;下标&lt;/font&gt;从0开始：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt;print s1[0]
+
+&amp;gt;&amp;gt;&amp;gt;print s2[2]
+
+&amp;gt;&amp;gt;&amp;gt;print s3[1][2]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;由于list的元素可变更，你可以对list的某个元素赋值：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt;s2[1] = 3.0
+
+&amp;gt;&amp;gt;&amp;gt;print s2
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果你对tuple做这样的操作，会得到错误提示。&lt;/p&gt;
+&lt;p&gt;所以，可以看到，序列的引用通过&lt;font color=&quot;red&quot;&gt;s[int]&lt;/font&gt;实现， int为下标&lt;/p&gt;
+&lt;p&gt;###其他引用方式&lt;/p&gt;
+&lt;p&gt;范围引用： 基本样式&lt;font color=&quot;red&quot;&gt;[下限:上限:步长]&lt;/font&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt;print s1[:5]             # 从开始到下标4 （下标5的元素 不包括在内）
+
+&amp;gt;&amp;gt;&amp;gt;print s1[2:]             # 从下标2到最后
+
+&amp;gt;&amp;gt;&amp;gt;print s1[0:5:2]          # 从下标0到下标4 (下标5不包括在内)，每隔2取一个元素 （下标为0，2，4的元素）
+
+&amp;gt;&amp;gt;&amp;gt;print s1[2:0:-1]         # 从下标2到下标1
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;从上面可以看到，在范围引用的时候，如果写明上限，那么这个&lt;font color=&quot;red&quot;&gt;上限本身不包括在内&lt;/font&gt;。&lt;/p&gt;
+&lt;p&gt;尾部元素引用&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt;print s1[-1]             # 序列最后一个元素
+
+&amp;gt;&amp;gt;&amp;gt;print s1[-3]             # 序列倒数第三个元素
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;同样，如果s1[0:-1], 那么最后一个元素不会被引用 （再一次，&lt;font color=&quot;red&quot;&gt;不包括上限元素本身&lt;/font&gt;）&lt;/p&gt;
+&lt;p&gt;###字符串是元组&lt;/p&gt;
+&lt;p&gt;字符串是一种特殊的元素，因此可以执行元组的相关操作。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt;str = &amp;apos;abcdef&amp;apos;
+
+&amp;gt;&amp;gt;&amp;gt;print str[2:4]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;###总结&lt;/p&gt;
+&lt;p&gt;tuple元素不可变，list元素可变&lt;/p&gt;
+&lt;p&gt;序列的引用 s[2], s[1:8:2]&lt;/p&gt;
+&lt;p&gt;字符串是一种tuple&lt;/p&gt;
+&lt;p&gt;作者：Vamei 出处：&lt;a href=&quot;http://www.cnblogs.com/vamei&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.cnblogs.com/vamei&lt;/a&gt; 欢迎转载，也请保留这段声明。谢谢！&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;###sequence 序列&lt;/p&gt;
+&lt;p&gt;sequence(序列)是一组&lt;font color=&quot;red&quot;&gt;有顺序&lt;/font&gt;的&lt;font color=&quot;red&quot;&gt;元素&lt;/font&gt;的&lt;/font&gt;的&lt;font color=&quot;red&quot;&gt;集合&lt;/font&gt;&lt;/p&gt;
+&lt;p&gt;(严格的说，是对象的集合，但鉴于我们还没有引入“对象”概念，暂时说元素)&lt;/p&gt;
+&lt;p&gt;序列可以包含一个或多个&lt;font color=&quot;red&quot;&gt;元素&lt;/font&gt;，也可以没有任何元素。&lt;/p&gt;
+&lt;p&gt;我们之前所说的基本数据类型，都可以作为序列的元素。元素还可以是另一个序列，以及我们以后要介绍的其他对象。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Python" scheme="http://xfwang.xyz/categories/Python/"/>
+    
+      <category term="programming" scheme="http://xfwang.xyz/categories/Python/programming/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Python基础02 基本数据类型</title>
+    <link href="http://xfwang.xyz/2014/08/17/2014-08-17-Python02-data-type/"/>
+    <id>http://xfwang.xyz/2014/08/17/2014-08-17-Python02-data-type/</id>
+    <published>2014-08-17T13:19:00.000Z</published>
+    <updated>2014-10-12T15:01:04.000Z</updated>
+    
+    <content type="html">&lt;p&gt;###简单的数据类型以及赋值&lt;/p&gt;
+&lt;p&gt;###变量不需要声明&lt;br&gt;Python的变量不需要声明，你可以直接输入：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt;a = 10
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;那么你的内存里就有了一个变量a， 它的值是10，它的类型是integer (整数)。 在此之前你不需要做什么特别的声明，而数据类型是Python自动决定的。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt;print a
+
+&amp;gt;&amp;gt;&amp;gt;print type(a)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;那么会有如下输出：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;10
+&amp;lt;type &amp;apos;int&amp;apos;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这里，我们学到一个内置函数type(), 用以查询变量的类型。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;###回收变量名&lt;/p&gt;
+&lt;p&gt;如果你想让a存储不同的数据，你不需要删除原有变量就可以直接赋值。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt;a = 1.3
+
+&amp;gt;&amp;gt;&amp;gt;print a,type(a)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;会有如下输出&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;1.3 &amp;lt;type &amp;apos;float&amp;apos;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;我们看到&lt;font color=&quot;red&quot;&gt;print的另一个用法&lt;/font&gt;，也就是print后跟多个输出，以逗号分隔。&lt;/p&gt;
+&lt;p&gt;###基本数据类型&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;a=10         # int 整数
+
+a=1.3        # float 浮点数
+
+a=True       # 真值 (True/False)
+
+a=&amp;apos;Hello!&amp;apos;   # 字符串
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;以上是最常用的数据类型，对于字符串来说，也可以用双引号。&lt;/p&gt;
+&lt;p&gt;（此外还有分数，字符，复数等其他数据类型，有兴趣的可以学习一下）&lt;/p&gt;
+&lt;p&gt;###总结&lt;/p&gt;
+&lt;p&gt;变量不需要声明，不需要删除，可以直接回收适用。&lt;/p&gt;
+&lt;p&gt;type(): 查询数据类型&lt;/p&gt;
+&lt;p&gt;整数，浮点数，真值，字符串&lt;/p&gt;
+&lt;p&gt;作者：Vamei 出处：&lt;a href=&quot;http://www.cnblogs.com/vamei&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.cnblogs.com/vamei&lt;/a&gt; 欢迎转载，也请保留这段声明。谢谢！&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;###简单的数据类型以及赋值&lt;/p&gt;
+&lt;p&gt;###变量不需要声明&lt;br&gt;Python的变量不需要声明，你可以直接输入：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt;a = 10
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;那么你的内存里就有了一个变量a， 它的值是10，它的类型是integer (整数)。 在此之前你不需要做什么特别的声明，而数据类型是Python自动决定的。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt;print a
+
+&amp;gt;&amp;gt;&amp;gt;print type(a)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;那么会有如下输出：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;10
+&amp;lt;type &amp;apos;int&amp;apos;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这里，我们学到一个内置函数type(), 用以查询变量的类型。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Python" scheme="http://xfwang.xyz/categories/Python/"/>
+    
+      <category term="programming" scheme="http://xfwang.xyz/categories/Python/programming/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Python基础01 Hello World!</title>
+    <link href="http://xfwang.xyz/2014/08/17/2014-08-17-Python01-Hello-World/"/>
+    <id>http://xfwang.xyz/2014/08/17/2014-08-17-Python01-Hello-World/</id>
+    <published>2014-08-17T06:19:00.000Z</published>
+    <updated>2014-10-12T15:01:04.000Z</updated>
+    
+    <content type="html">&lt;p&gt;####简单的‘Hello World!’&lt;/p&gt;
+&lt;p&gt;###Python命令行&lt;/p&gt;
+&lt;p&gt;假设你已经安装好了Python, 那么在Linux命令行输入:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$python
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;将直接进入python。然后在&lt;font color=&quot;red&quot;&gt;命令行提示符&amp;gt;&amp;gt;&amp;gt;&lt;/font&gt;后面输入:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt;print(&amp;apos;Hello World!&amp;apos;)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;可以看到，随后在屏幕上输出:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Hello World!
+&lt;/code&gt;&lt;/pre&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;font color=&quot;red&quot;&gt;print&lt;/font&gt;是一个常用函数，其功能就是输出括号中得字符串。&lt;br&gt;&lt;br&gt;（在Python 2.x中，print还可以是一个关键字，可写成print ‘Hello World!’，但这在3.x中行不通 ）&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;###写一段小程序&lt;br&gt;&lt;br&gt;另一个使用Python的方法，是写一个Python程序。用文本编辑器&lt;font color=&quot;red&quot;&gt;写一个.py结尾的文件&lt;/font&gt;，比如说hello.py&lt;br&gt;&lt;br&gt;在hello.py中写入如下，并保存:&lt;br&gt;&lt;br&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;print(&lt;span class=&quot;string&quot;&gt;&#39;Hello World!&#39;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br&gt;&lt;br&gt;退出文本编辑器，然后在命令行输入:&lt;br&gt;&lt;br&gt;    $python hello.py&lt;br&gt;&lt;br&gt;来运行hello.py。可以看到Python随后输出&lt;br&gt;&lt;br&gt;    Hello World!&lt;br&gt;&lt;br&gt;&lt;br&gt;###脚本&lt;br&gt;&lt;br&gt;我们还可以把Python程序hello.py改成一个可执行的脚本，直接执行：&lt;br&gt;&lt;br&gt;&lt;code&gt;python
+#!/usr/bin/env python
+print(&amp;#39;Hello World!&amp;#39;)&lt;/code&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;需要修改上面程序的权限为可执行：&lt;br&gt;&lt;br&gt;    chmod 755 hello.py&lt;br&gt;&lt;br&gt;&lt;br&gt;然后再命令行中，输入&lt;br&gt;&lt;br&gt;    ./hello.py&lt;br&gt;就可以直接运行了&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;###总结&lt;br&gt;&lt;br&gt;&lt;font color=&quot;red&quot;&gt;print&lt;/font&gt;
+
+&lt;p&gt;命令行模式: 运行Python，在命令行输入命令并执行。&lt;/p&gt;
+&lt;p&gt;程序模式: 写一段Python程序并运行。&lt;/p&gt;
+&lt;p&gt;作者：Vamei 出处：&lt;a href=&quot;http://www.cnblogs.com/vamei&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.cnblogs.com/vamei&lt;/a&gt; 欢迎转载，也请保留这段声明。谢谢！&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;####简单的‘Hello World!’&lt;/p&gt;
+&lt;p&gt;###Python命令行&lt;/p&gt;
+&lt;p&gt;假设你已经安装好了Python, 那么在Linux命令行输入:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$python
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;将直接进入python。然后在&lt;font color=&quot;red&quot;&gt;命令行提示符&amp;gt;&amp;gt;&amp;gt;&lt;/font&gt;后面输入:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt;print(&amp;apos;Hello World!&amp;apos;)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;可以看到，随后在屏幕上输出:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Hello World!
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+      <category term="Python" scheme="http://xfwang.xyz/categories/Python/"/>
+    
+      <category term="programming" scheme="http://xfwang.xyz/categories/Python/programming/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>14个在线编程挑战网站Coding Challenges to Help You Train Your Brain</title>
+    <link href="http://xfwang.xyz/2014/04/26/2014-04-26-online-programing-learning-website/"/>
+    <id>http://xfwang.xyz/2014/04/26/2014-04-26-online-programing-learning-website/</id>
+    <published>2014-04-26T08:22:00.000Z</published>
+    <updated>2014-10-26T07:06:30.000Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/Computer_programming&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Programming&lt;/a&gt; is becoming an essential part of nearly every industry known to man, the way it helps to organize and maintain large systems is not possible to compare to anything else, and so &lt;a href=&quot;http://codecondo.com/12-courses-learn-web-development-beginners/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;more and more people begin their journey&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;You can learn coding both from &lt;a href=&quot;http://codecondo.com/10-ways-to-learn-python/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;interactive platforms&lt;/a&gt;, and also &lt;a href=&quot;http://codecondo.com/free-books-theoretical-computer-science/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;from books&lt;/a&gt; – whichever you find most appropriate and easy to learn from. But, sometimes that’s not good enough, and we want to practice new things.&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Coding is a lot about creativity, your ability to come up with new and interesting ideas; but sometimes, due to the large amount of time spent tackling common problems, we forget about creativity. I’m not quite sure whether that is the reason coding challenges were made, but they certainly help with the part where you need to think of your own stuff to program.&lt;/p&gt;
+&lt;p&gt;We could say that coding challenges are great for:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;learning new ways of doing things&lt;/li&gt;
+&lt;li&gt;practicing a new programming language&lt;/li&gt;
+&lt;li&gt;encountering critical problem solving&lt;/li&gt;
+&lt;li&gt;keeping our brain sharp and focused&lt;/li&gt;
+&lt;li&gt;having fun!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;in my quest to find the &lt;strong&gt;best programming&lt;/strong&gt; challenges, I narrowed the list down to five great resources, which I believe will help you immensely alongside your journey, or serve a great purpose for learning and exploring more areas of computer science.&lt;/p&gt;
+&lt;p&gt;Initially, this was a list of five coding challenge websites, but due to huge amount of popularity it received on multiple media outlets, the community has since suggested plenty more programming challenge websites that you can view and explore. Thank you!&lt;/p&gt;
+&lt;p&gt;##&lt;a href=&quot;http://www.topcoder.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;topcoder&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://codecondo.com/wp-content/uploads/2014/04/800x399xtopcoder-.png.pagespeed.ic.xrHzf01nLb.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;You get to earn real money, and it’s supported by a community of nearly a million coders, so I’m pretty sure there is a lot of challenging stuff to encounter. I’m saying that because I believe that some beginner programming enthusiasts might find [topcoder] to be rather difficult.&lt;/p&gt;
+&lt;p&gt;It’s possible to participate in both daily, and weekly coding challenges; both are extremely difficult, and require great thinking skills to complete. It’s worth it though, as it all adds up to your resume at the end of the day.&lt;/p&gt;
+&lt;p&gt;##&lt;a href=&quot;http://www.hackerearth.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;HackerEarth&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://codecondo.com/wp-content/uploads/2014/04/800x399xHackerEarth-Coding-Challenges-for-Programmers.png.pagespeed.ic.bSziKqw9xF.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;HackerEarth provides a SaaS application to do automated assessment of technical and logical skills of candidates. It also helps companies to source smart talent by serving as a developer aggregation and selection platform.&lt;/p&gt;
+&lt;p&gt;They’ve got frequent challenges being added, and you can signup weeks before; both to prepare and know beforehand when you’ve got to participate. Like TopCoder, this is a high quality website, and offers thoughtful challenges that will prove to be of use later in your career.&lt;/p&gt;
+&lt;p&gt;##&lt;a href=&quot;http://coderbyte.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Coderbyte&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://codecondo.com/wp-content/uploads/2014/04/800x399xCoderbyte-Programming-Game-Challenges-Competitions.png.pagespeed.ic.1l6tC-XzUi.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Coderbyte is a Kickstarter funded project (although, it existed before the campaign itself), and is aimed at complete beginners and intermediate programmers alike.&lt;/p&gt;
+&lt;p&gt;It was launched in 2012, by Daniel Borowski, and has since grown into a self-maintained community of programmers who like to tackle programming problems in their spare time.&lt;/p&gt;
+&lt;p&gt;You can also ask questions if there is something you don’t understand, and the community is fairly active; so it is more than likely that you’ll get an answer. Plenty of people love Coderbyte, and I’ve seen only positive reviews for it.&lt;/p&gt;
+&lt;p&gt;##&lt;a href=&quot;https://projecteuler.net/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Project Euler&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://codecondo.com/wp-content/uploads/2014/04/800x399xAbout-Project-Euler.resized.png.pagespeed.ic.hzBn4aT9lD.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Project Euler is probably the most popular coding challenge website in the world, and has been the home of some several hundred thousand users, since the initial launch, over a decade ago. You get one extra challenge added per week, but I’m quite sure it’s going to take some time before you tack the 450+ problems that there are to solve already.&lt;/p&gt;
+&lt;p&gt;They’ve been built to not be very hard, rather; involve critical thinking and problem solving, in order to help you grow and learn more about the language you’re using. It’s all about working your way up, making sure you thoroughly understand what you’re doing.&lt;/p&gt;
+&lt;p&gt;You can learn more about Project Euler on: &lt;a href=&quot;http://en.wikipedia.org/wiki/Project_Euler&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Wikipedia&lt;/a&gt;, &lt;a href=&quot;http://www.reddit.com/r/projecteuler/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Reddit&lt;/a&gt;, &lt;a href=&quot;http://stackoverflow.com/questions/tagged/project-euler&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Stack Overflow&lt;/a&gt; and &lt;a href=&quot;https://code.google.com/p/projecteuler-solutions/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Google Code&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I think there’s even an Android application for it, &lt;a href=&quot;https://play.google.com/store/apps/details?id=in.nishitp.euler&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;see it for yourself&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;##&lt;a href=&quot;http://www.reddit.com/r/dailyprogrammer&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Daily Programmer&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://codecondo.com/wp-content/uploads/2014/04/800x399xFor-learning-refreshing-or-just-for-fun-.png.pagespeed.ic.r1opXbBaWk.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;We are going to wrap this up with one of my personal favorites: Reddit’s Daily Programmer. It’s a wonderful discussion board to be a part of, if you want to learn more about programming and problem solving. I think as it stands right now, you get three unique problems to solve per week.&lt;/p&gt;
+&lt;p&gt;Not to mention, several hundred to work with already. Every submission you create in the comments is reviewed by the community members, so you get a mix of opinions and answers to your approach.&lt;/p&gt;
+&lt;p&gt;Highly recommended.&lt;/p&gt;
+&lt;p&gt;##&lt;a href=&quot;https://codility.com/train/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Codility Train&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://codecondo.com/wp-content/uploads/2014/04/800x399xCodility-Train.png.pagespeed.ic.gu9pK6w0wy.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;You get several pre-customized and pre-thought challenges that you can submit in many programming languages. They’re all sorted by their appropriate difficulty, and there is like 40-50 challenges to go through.&lt;/p&gt;
+&lt;p&gt;Each has a detailed explanation on what the end program should do, and as far as I could tell – you’re also given a time limit on each, so there is no slacking!&lt;/p&gt;
+&lt;p&gt;##&lt;a href=&quot;http://www.spoj.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;SPOJ&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://codecondo.com/wp-content/uploads/2014/04/800x399xSphere-Online-Judge-SPOJ-.png.pagespeed.ic.RvuH-BU8V7.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/SPOJ&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Sphere Online Judge&lt;/a&gt; is a community that consists of many thousands of coding challenges that you can tackle all day long. It supports the input of almost every programming language you can imagine, and there is a great community behind it that is consistently available for help on the community forums.&lt;/p&gt;
+&lt;p&gt;##&lt;a href=&quot;http://www.codechef.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;CodeChef&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://codecondo.com/wp-content/uploads/2014/04/800x399xCodeChef.png.pagespeed.ic.yEvUx7RNEi.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;CodeChef was created by Directi as a way to challenge and engage the developer community and provide a platform for practice, competition and improvement. It’s powered by a large set of problems to work with, and you can also gain access to the source codes that others used to solve the given coding challenges.&lt;/p&gt;
+&lt;p&gt;It’s split in several difficulty categories, and the website itself has a reasonable size community. Looks like a really great challenge site.&lt;/p&gt;
+&lt;p&gt;##&lt;a href=&quot;https://www.codeeval.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;CodeEval&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://codecondo.com/wp-content/uploads/2014/04/800x399xCodeEval.png.pagespeed.ic.GA6DPkDK9I.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;You can join CodeEval as a developer who wants to show his programming skills to employers and other developers. You get to participate and join competitions for several different areas, but mostly for building a product / app – and in return get money prizes. Also, you get access to programming challenges, which can be solved and added to your resume to further make a good first impression to your potential employers.&lt;/p&gt;
+&lt;p&gt;It’s focused on helping developers to advertise themselves as experienced within their field of work, and seems to be doing that job great.&lt;/p&gt;
+&lt;p&gt;##&lt;a href=&quot;https://www.hackerrank.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;HackerRank&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://codecondo.com/wp-content/uploads/2014/04/800x399xHackerRank.png.pagespeed.ic.2qUz8zg5nx.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;The thing I instantly liked about HackerRank was their section for challenges that are related to artificial intelligence, which is kind of cool and gives advanced programmers something to play around with. It’s backed by companies like Y Combinator, SVAngel and many more. Definitely a nice bunch of hackers working on this.&lt;/p&gt;
+&lt;p&gt;##&lt;a href=&quot;http://www.talentbuddy.co/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Talentbuddy&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://codecondo.com/wp-content/uploads/2014/04/800x399xTalentbuddy.png.pagespeed.ic.oZQxmhU5H_.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Talentbuddy is a friendly place where you can exercise your problem solving skills in an enjoyable interview oriented way. I think you might find social aspect of the site a little bit annoying, but overall it has got some really great lessons to learn from, there is even some MongoDB stuff in there to practice – always nice to see advanced challenges!&lt;/p&gt;
+&lt;p&gt;##&lt;a href=&quot;http://www.codewars.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Codewars&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://codecondo.com/wp-content/uploads/2014/04/800x399xCodewars.png.pagespeed.ic.50L4YVqGyw.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Codewars has a pretty nice approach to coding challenges and take their craft quite seriously, I was trying to find the right words to describe it, but here is a ten minute introductory video of what Codewars has to offer.&lt;/p&gt;
+&lt;iframe width=&quot;450&quot; height=&quot;253&quot; src=&quot;//www.youtube.com/embed/mOMVV6zlNyE&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+
+&lt;p&gt;I think you’ll like it, as many developers in the community already do.&lt;/p&gt;
+&lt;p&gt;##&lt;a href=&quot;http://rosalind.info/problems/locations/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Rosalind&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://codecondo.com/wp-content/uploads/2014/04/800x399xRosalind.png.pagespeed.ic.xQa7wAqo3Y.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;It’s a little bit more specific approach, but nonetheless a great way to tackle and learn about programming problems. Rosalind offers some challenges towards bioinformatics, which you can solve at your own pace.&lt;/p&gt;
+&lt;p&gt;##&lt;a href=&quot;http://fightcodegame.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;FightCode&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://codecondo.com/wp-content/uploads/2014/04/800x399xFightCode.png.pagespeed.ic.vdAFvX0CsU.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;You get to program your own robots, and then use them to fight against other community members. It’s the code-and-play type of platform, but still useful for those who’re new to such approach, or perhaps just want to have some fun. &lt;a href=&quot;http://beta.fightcodegame.com/docs/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Try the docs&lt;/a&gt; to get a better sense of it.&lt;/p&gt;
+&lt;p&gt;##Coding Challenges to Help You Train Your Brain&lt;/p&gt;
+&lt;p&gt;I guess the title of this post is a little bit cheesy, but what else are we going to train; if not the brain? It all comes to us from there, so we might as well. I think it’s a pretty solid list, considering that…&lt;/p&gt;
+&lt;p&gt;by putting all of these together, you get several thousand of unique programming challenges to work with, I doubt you’ll ever complete even 1% of these, but it’s worth trying!&lt;/p&gt;
+&lt;p&gt;What has helped you to challenge yourself, and which one of these are among your own favorites? You probably use some others among the ones in this list, share them with the members of community in the comment section!&lt;/p&gt;
+&lt;p&gt;I’m humbled by all the community support and suggestions that this post was able to receive, and you should now, definitely be on your way to greatness.&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/Computer_programming&quot;&gt;Programming&lt;/a&gt; is becoming an essential part of nearly every industry known to man, the way it helps to organize and maintain large systems is not possible to compare to anything else, and so &lt;a href=&quot;http://codecondo.com/12-courses-learn-web-development-beginners/&quot;&gt;more and more people begin their journey&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;You can learn coding both from &lt;a href=&quot;http://codecondo.com/10-ways-to-learn-python/&quot;&gt;interactive platforms&lt;/a&gt;, and also &lt;a href=&quot;http://codecondo.com/free-books-theoretical-computer-science/&quot;&gt;from books&lt;/a&gt; – whichever you find most appropriate and easy to learn from. But, sometimes that’s not good enough, and we want to practice new things.&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Coding Challenges" scheme="http://xfwang.xyz/categories/Coding-Challenges/"/>
+    
+      <category term="Online learning" scheme="http://xfwang.xyz/categories/Coding-Challenges/Online-learning/"/>
+    
+      <category term="programming" scheme="http://xfwang.xyz/categories/Coding-Challenges/Online-learning/programming/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>What happens to software engineers who don&#39;t climb the corporate ladder and stay as engineers?</title>
+    <link href="http://xfwang.xyz/2014/04/22/2014-04-22-engineers-stay-as-engineers-careeres/"/>
+    <id>http://xfwang.xyz/2014/04/22/2014-04-22-engineers-stay-as-engineers-careeres/</id>
+    <published>2014-04-22T08:22:00.000Z</published>
+    <updated>2014-10-26T07:06:10.000Z</updated>
+    
+    <content type="html">&lt;p&gt;###They become … Unix Beards!&lt;/p&gt;
+&lt;img src=&quot;/images/2014/Unix_Beards.jpeg&quot;&gt;
+&lt;p&gt;(Just kidding.)&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;They become better, more experienced, more sought-after, better-rewarded engineers. Some of the best big tech companies recognize this explicitly in their career ladders. At Google, for example, there is a separate job ladder for “individual contributors”, which culminates (or once did) at “Google Fellow”. An engineer at this level is commensurate with a Vice President, and has similar high-level impact – even moreso on questions of technology, architecture and technical direction. I believe there are similar positions at Facebook, Apple, etc.&lt;/p&gt;
+&lt;p&gt;Likewise, at an early-stage startup, the company’s most formidable hacker may well be more valuable than the experienced manager she reports to, and the compensation structure will reflect that. These folks are very much in demand as founding engineers, CTOs, and technical cofounders. Now that I think about it, a very strong engineer with a high risk tolerance might be the single person with the most leverage in the entire startup game.&lt;/p&gt;
+&lt;p&gt;It’s true that at some companies, engineers are treated as “cogs”. But you don’t want to work at those places anyway, regardless of whether you want to be a manager.&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;###They become … Unix Beards!&lt;/p&gt;
+&lt;img src=&quot;/images/2014/Unix_Beards.jpeg&quot;&gt;
+&lt;p&gt;(Just kidding.)&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Careers" scheme="http://xfwang.xyz/categories/Careers/"/>
+    
+      <category term="programming" scheme="http://xfwang.xyz/categories/Careers/programming/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>How do you use Python to make websites?</title>
+    <link href="http://xfwang.xyz/2014/04/12/2014-04-12-python-web-development/"/>
+    <id>http://xfwang.xyz/2014/04/12/2014-04-12-python-web-development/</id>
+    <published>2014-04-12T15:22:00.000Z</published>
+    <updated>2014-10-12T15:01:04.000Z</updated>
+    
+    <content type="html">&lt;p&gt;If you decided to learn Python, please forget about web development for a while and concentrate in learning the language first.&lt;br&gt;Python is easy to pick up, but you must stand on your feet before you start to run.&lt;/p&gt;
+&lt;p&gt;Python is an easy, flexible and powerful programming language which can be used as a general purpose programming language (and it’s a very good language for web development as well), but you must understand that in order to become a web developer you must learn several different skills besides python.&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The first basic skill you must learn is HTML.&lt;br&gt;HTML is the markup language of the web. All web pages are created with HTML, which defines the different elements contained in a web page.&lt;br&gt;Then you should learn CSS, which is another little language that defines the way each HTML element looks within a page (its color, the font type, its position on the page, etc).&lt;br&gt;And the third skill you should master to become a complete web developer is javascript.&lt;br&gt;Javascript is a scripting language, just as python, but it runs within the browser.&lt;br&gt;It is a fundfamental part of HTML5 (the newest incarnation of the HTML markup language, which powers all the new applications being written for the web and mobile phones and tablets (iphone, ipad, blackberry, etc…).&lt;/p&gt;
+&lt;p&gt;HTML + CSS + JAVASCRIPT are different parts of the whole HTML5 platform, and they all work in tandem to create a full web application.&lt;/p&gt;
+&lt;p&gt;Where does Python fit in?&lt;br&gt;You must understand that, although you can create a full web application with just HTML, CSS and javascript, chances are that your application will need to access data stored in a server, most likely a database.&lt;br&gt;That means that you will have to write code that will be run in a remote server rather than in the browser.&lt;/p&gt;
+&lt;p&gt;The server side is different than the browser (or client side). In the client side you only have one option: javascript.&lt;br&gt;On the other hand, you can use any imaginable language on the server side.&lt;br&gt;People use php, java, ruby, python, c#, etc…&lt;/p&gt;
+&lt;p&gt;Python will let you talk to the database or datastore, perform queries, retrieve information and format the output to your web page.&lt;/p&gt;
+&lt;p&gt;Is it possible to forget about javascript and write your whole application in python?&lt;br&gt;Yes, and many web sites work this way. But you would be limiting yourself (and your website usability).&lt;/p&gt;
+&lt;p&gt;Think about it:&lt;br&gt;Code written in javascript runs in your browser (it doesn’t need to comunicate with a distant server and wait for the response) hence, its faster, and the user experience is better. That’s why the new HTML5 web applications feel more and more like desktop applications.&lt;br&gt;Applications written entirely in javascript with that talk directly to the database are known as Ajax applications.&lt;/p&gt;
+&lt;p&gt;But code written on the server side may give you more security and scalability, so both sides should be mastered to become a competent web developer.&lt;/p&gt;
+&lt;p&gt;As for web development frameworks:&lt;br&gt;Again, please first stand on your feet… When you reach the moment where you find yourself needing a framework, you will probably find out that you can get by with a simpler solution rather than Django.&lt;br&gt;Django lets you create the whole structure of your website on the server side.&lt;/p&gt;
+&lt;p&gt;My advice: Forget about all these things, get a good python tutorial and learn it (and enjoy it!) before looking at all the other technologies you will need.&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;If you decided to learn Python, please forget about web development for a while and concentrate in learning the language first.&lt;br&gt;Python is easy to pick up, but you must stand on your feet before you start to run.&lt;/p&gt;
+&lt;p&gt;Python is an easy, flexible and powerful programming language which can be used as a general purpose programming language (and it’s a very good language for web development as well), but you must understand that in order to become a web developer you must learn several different skills besides python.&lt;br&gt;
+    
+    </summary>
+    
+      <category term="python" scheme="http://xfwang.xyz/categories/python/"/>
+    
+      <category term="Web Applications" scheme="http://xfwang.xyz/categories/python/Web-Applications/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Mac下安装更新Adobe flash player出错的解决办法</title>
+    <link href="http://xfwang.xyz/2014/04/09/2014-04-09-Mac-adobe-flash/"/>
+    <id>http://xfwang.xyz/2014/04/09/2014-04-09-Mac-adobe-flash/</id>
+    <published>2014-04-09T15:22:00.000Z</published>
+    <updated>2014-10-12T15:01:04.000Z</updated>
+    
+    <content type="html">&lt;p&gt;买了Mac一年来几次打开Safari提示Adobe flash player更新都会遇到无法安装的问题。下载.dmg文件之后双击安装，到了&lt;strong&gt;正在恢复安装&lt;/strong&gt;这步就卡住了，过一会会出现&lt;strong&gt;找不到Actionlist&lt;/strong&gt;的错误提示，安装失败。&lt;/p&gt;
+&lt;img src=&quot;/images/2014/adobe_flash_install.png&quot;&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;我们要注意，我们下载的 .dmg安装文件只有900多KB，而实际网站上说的Adobe flash player有17MB，所以在我们安装的时候还是要下载一些东西的，之所以安装失败就是网络原因造成的，可以通过连接VPN解决。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;买了Mac一年来几次打开Safari提示Adobe flash player更新都会遇到无法安装的问题。下载.dmg文件之后双击安装，到了&lt;strong&gt;正在恢复安装&lt;/strong&gt;这步就卡住了，过一会会出现&lt;strong&gt;找不到Actionlist&lt;/strong&gt;的错误提示，安装失败。&lt;/p&gt;
+&lt;img src=&quot;/images/2014/adobe_flash_install.png&quot;&gt;
+    
+    </summary>
+    
+      <category term="Mac" scheme="http://xfwang.xyz/categories/Mac/"/>
+    
+      <category term="Adobe flash player" scheme="http://xfwang.xyz/categories/Mac/Adobe-flash-player/"/>
+    
+      <category term="VPN" scheme="http://xfwang.xyz/categories/Mac/Adobe-flash-player/VPN/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>使用Octopress和Github搭建自己的博客</title>
+    <link href="http://xfwang.xyz/2014/04/09/2014-04-09-github-octopress-blog/"/>
+    <id>http://xfwang.xyz/2014/04/09/2014-04-09-github-octopress-blog/</id>
+    <published>2014-04-09T10:19:00.000Z</published>
+    <updated>2014-10-26T07:05:19.000Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;a href=&quot;http://octopress.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Octopress&lt;/a&gt;是利用&lt;a href=&quot;http://github.com/mojombo/jekyll&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Jekyll&lt;/a&gt;博客引擎开发的一个博客系统，生成的静态页面能够很好的在github page上展现。号称是hacker专属的一个博客系统(A blogging framework for hackers.)&lt;/p&gt;
+&lt;p&gt;本文我就来介绍一下如何在苹果电脑(OS X 10.9.2)利用Octopress搭建一个Github博客。本文需要读者熟悉一些shell命令，并掌握基本的git操作。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;br&gt;Octopress博客是搭建在github上的静态网页，Octopress相当于一个自动化生成静态网页的工具，网页并没有使用数据库等，使用的是github提供的服务器和域名。github pages为每个用户提供一个名 &lt;a href=&quot;http://username.github.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://username.github.com&lt;/a&gt; 的域名。你首先需要在github上建立一个名为 username.github.com 的仓库，之后的博客将会部署到这个仓库中，部署成后你就可以从 &lt;a href=&quot;http://username.github.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://username.github.com&lt;/a&gt; 访问你的博客了，不过可能需要等待十分钟。&lt;/p&gt;
+&lt;p&gt;利用到了github，所以首先应该配置好你的git环境，包括安装git，创建ssh公私钥与github建立信任连接，设置github用户名和邮箱，如果你不熟悉可以参考&lt;a href=&quot;http://www.worldhello.net/gotgithub/index.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GotGitHub&lt;/a&gt;。当然你还有熟悉git的基本操作了，这里是一个&lt;a href=&quot;http://rogerdudler.github.io/git-guide/index.zh.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;简易教程&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;Octopress和Jekyll都是依赖于Ruby的，所以如果你没装，先要装一下它咯。Octopress 是依赖于Ruby，所以我们先安装Ruby（虽然很多博客指明要安装Ruby 1.9.3版本，但是因为博客的时效性，目前Ruby已经升级到2.1.1版本，我在2.1.1版本下也成功安装了我的博客，所以推荐安装最新版）：&lt;/p&gt;
+&lt;p&gt;##1、安装Ruby&lt;/p&gt;
+&lt;p&gt;安装Ruby需要先安装RVM：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ curl -L https://get.rvm.io | bash -s stable --ruby
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;接着是安装Ruby ：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ rvm install 2.1.1
+$ rvm use 2.1.1
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;完成上面的操作之后，运行ruby –version应该可以看到ruby 2.1.1环境已经安装好了。&lt;/p&gt;
+&lt;p&gt;参考：&lt;a href=&quot;http://octopress.org/docs/setup/rvm/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Installing Ruby With RVM&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;##2、安装Octopress&lt;/p&gt;
+&lt;p&gt;在安装Octopress之前，请确保你的电脑上已经安装有git了，在终端输入git –version，应该可以看到电脑中的git版本(我电脑上输出:git version 1.8.5.2 (Apple Git-48))，如果没有显示相关内容，请先安装&lt;a href=&quot;http://git-scm.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;git&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;接下来就可以安装Octopress了，首先将octopress库clone到本地:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ git clone git://github.com/imathis/octopress.git octopress
+$ cd octopress    # If you use RVM, You&amp;apos;ll be asked if you trust the .rvmrc file (say yes).
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;接着安装相关依赖项：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ gem install bundler #如果速度奇慢，请参考 http://ruby.taobao.org/
+$ bundle install #第一次速度可能会比较慢，我是在连接VPN的情况下安装的，速度稍快
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;最后安装默认的Octopress 主题，安装第三方主题请参考：&lt;a href=&quot;http://opthemes.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://opthemes.com/&lt;/a&gt;：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ rake install #此为默认主题
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;##3、配置Octopress&lt;/p&gt;
+&lt;p&gt;Octopress的作者已经尽量让配置简化了。大多数情况下只需要配置&lt;strong&gt;_config.yml&lt;/strong&gt;和&lt;strong&gt;Rakefile&lt;/strong&gt;文件即可。其中&lt;strong&gt;Rakefile&lt;/strong&gt;是跟博客部署相关，一般情况下并不需要修改这个文件，除非使用了rsync。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;_config.yml&lt;/strong&gt;是博客重要的一个配置文件，在&lt;strong&gt;_config.yml&lt;/strong&gt;文件中有三大配置项：Main Configs、Jekyll &amp;amp; Plugins和3rd Party Settings。&lt;/p&gt;
+&lt;p&gt;一般，该文件中其中url是必须要填写的，这里的url是在github上创建的一个仓库地址，具体请看第四步中创建的地址。另外再修改一下title、subtitle和author，根据需求，在开启一些第三方组件服务。&lt;br&gt;关于&lt;strong&gt;_config.yml&lt;/strong&gt;文件中的更多内容，请看这里的内容：&lt;a href=&quot;http://octopress.org/docs/configuring/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Configuring Octopress&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;##4、将博客部署到GitHub上&lt;/p&gt;
+&lt;p&gt;Github的&lt;a href=&quot;http://pages.github.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&lt;strong&gt;Page service&lt;/strong&gt;&lt;/a&gt;可以免费托管博客，并且还可以自定义域名。&lt;/p&gt;
+&lt;p&gt;首先需要在GitHub上&lt;a href=&quot;https://github.com/new&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&lt;strong&gt;创建一个仓库&lt;/strong&gt;&lt;/a&gt;，并将仓库名称按照这样的方式进行命名：username.github.com 或 organization.github.com。等后面配置完毕之后，我们就可以在浏览器中使用页面地址 &lt;a href=&quot;http://username.github.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://username.github.com&lt;/a&gt; 来访问我们的博客。一般来说，我们希望在将博客的源码放到source分支下，并把&lt;br&gt;生成的内容提交到master分支。&lt;/p&gt;
+&lt;p&gt;创建好仓库之后，我们需要利用octopress的一个配置rake任务来自动配置上面创建的仓库：可以让我们方便的部署GitHub page。在终端输入如下命令：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ rake setup_github_pages
+Enter the read/write url for your repository
+(For example, &amp;apos;git@github.com:your_username/your_username.github.com&amp;apos;)
+Repository url:
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;请输入：git@github.com:yourname/yourname.github.com.git (将yourname替换成你的github登录名)。&lt;/p&gt;
+&lt;p&gt;上面的命令会做一些事情(详细介绍看下面给出的参考链接)。其中最主要的就是创建一个_deploy目录，目录用来存放部署到master分支的内容。期间会要求你输入仓库的url，根据提示，进行输入即可。&lt;/p&gt;
+&lt;p&gt;接下来就可以生成静态网页，并将其部署到github上了，只需如下两句：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ rake generate    #生成静态网页
+$ rake deploy   #发布网页
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;等待几分钟后，网页就已经部署好了，你可以访问你的域名查看自己的博客了。然后可以将源码添加到github中进行管理，你仓库中有两个分支，master分支是静态网页，source分支则是你的生成网页的源码，这样在另一台电脑上你可以clone你的仓库，很容易的进行你的博客编写。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ git add --all
+$ git commit -m &amp;apos;init&amp;apos;
+$ git push origin source
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;现在就可以进行文章的编写了，编写文章使用markdown语法，十分便捷，语法简单，可参见&lt;a href=&quot;http://csking119.github.io/blog/2014/04/08/markdown-write/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&lt;strong&gt;markdown语法说明&lt;/strong&gt;&lt;/a&gt;。输入如下命令：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ rake new_post[&amp;apos;title&amp;apos;]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;在~/blog/source/_posts下回生成一个名为&lt;strong&gt;YYYY-MM-DD-title.markdown&lt;/strong&gt;的文件，在这个文件中编写你的文章即可。编写完成后依然按上边发布网页的方法发布即可：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ rake generate    #生成静态网页
+$ rake deploy   #发布网页
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;或者也可以生成静态网页后，在本机进行预览:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$ rake preview
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;然后可以通过 &lt;a href=&quot;http://localhost:4000&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://localhost:4000&lt;/a&gt; 访问，状态满意即可发布网页，以上几步同样适用于更改网页布局、样式等，重新发布网页。&lt;/p&gt;
+&lt;p&gt;###_config.yml文件介绍&lt;/p&gt;
+&lt;p&gt;这是你的博客根目录下下的一个文件，通过编写它，可以设置网站基本信息，设置边栏等：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;url: http://username.github.io         #网站地址
+title: hacker&amp;apos;s blog                #网站名
+subtitle: something happen here     #网站副标题
+author: master                        #作者名
+lunr_search: false                    #lunr站内搜索，需要安装，麻烦
+simple_search: http://google.com/search   #默认搜索引擎
+description:                      #网站描述
+...
+default_asides: [custom/asides/tag_cloud.html, asides/recent_posts.html,     custom/asides/popular_posts.html...]
+#边栏需要在这里添加路径
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这个文件是很重要的配置文件，配置博客需要经常修改此文件。&lt;/p&gt;
+&lt;p&gt;###目录结构&lt;/p&gt;
+&lt;p&gt;之所以要介绍目录结构，是为了更清晰的了解各个文件是做什么用的，修改网站样式添加侧栏等等需要修改那些文件。以免按着教程一个一个设置完成，在脑子中却一团糟不记得修改了什么，万一出现了错误就不好了。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;├─ config.rb  #指定额外的compass插件
+├─ config.ru  
+├─ Rakefile   #rake的配置文件,类似于makefile
+├─ Gemfile    #bundle要下载需要的gem依赖关系的指定文件
+├─ Gemfile.lock  #这些gem依赖的对应关系,比如A的x本依赖于B的y版本
+├─ _config.yml   #站点的配置文件
+├─ public/    #在静态编译完成后的目录,网站只需要这个目录下的文件树
+├─ _deploy/   #deploy时候生成的缓存文件夹,和public目录一样
+├─ sass/      #css文件的源文件,过程中会compass成css
+├─ plugins/   #放置自带以及第三方插件的目录,ruby程序
+│  └── xxx.rb
+└─ source/    #站点的源文件目录,public目录就是根据这个目录下数据生成的
+  └─ _includes/
+    └─ custom/      #自定义的模板目录,被相应上级html include
+      └─ asides/   #边栏模板自定义模板目录
+    └─ asides/      #边栏模板目录
+    └─ post/        #文章页面相应模板目录
+└─ _layouts/       #默认网站html相关文件,最底层
+└─ _posts/         #新增以及从其它程序迁移过来的数据都存在这里
+└─ stylesheets/    #css文件目录
+└─ javascripts/    #js文件目录
+└─ images/         #图片目录
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;其中需要添加第三方插件时，将插件xxx.rb放入plugins文件夹中。最主要的文件夹是source文件夹，因为修改网页都是在这个文件夹中进行。自己添加的边栏的HTML文件都放置于&lt;strong&gt;source/_includes/custom/asides&lt;/strong&gt;中，然后再&lt;strong&gt;_config.yml&lt;/strong&gt;中的&lt;strong&gt;default_asides:&lt;/strong&gt;中添加对应的路径，即可在网页上显示出边栏。修改&lt;strong&gt;source/_includes/&lt;/strong&gt;中的其他HTML文件，如&lt;strong&gt;header.html&lt;/strong&gt;等，则可以修改标题栏、导航栏、尾栏等等。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;source/_layouts&lt;/strong&gt;中则是网站的布局的一些HTML文件，可以修改文件布局等等。三个文件夹目录是非常重要并且常修改的。source中images中则放置网站相关的一些图片，javascripts文件家中放置一些模块需要调用的javascript脚本，&lt;strong&gt;_post&lt;/strong&gt;中则是你的每篇博客。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;http://octopress.org/&quot;&gt;Octopress&lt;/a&gt;是利用&lt;a href=&quot;http://github.com/mojombo/jekyll&quot;&gt;Jekyll&lt;/a&gt;博客引擎开发的一个博客系统，生成的静态页面能够很好的在github page上展现。号称是hacker专属的一个博客系统(A blogging framework for hackers.)&lt;/p&gt;
+&lt;p&gt;本文我就来介绍一下如何在苹果电脑(OS X 10.9.2)利用Octopress搭建一个Github博客。本文需要读者熟悉一些shell命令，并掌握基本的git操作。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="github" scheme="http://xfwang.xyz/categories/github/"/>
+    
+      <category term="blog" scheme="http://xfwang.xyz/categories/github/blog/"/>
+    
+      <category term="Octopress" scheme="http://xfwang.xyz/categories/github/blog/Octopress/"/>
+    
+    
+  </entry>
+  
+</feed>
