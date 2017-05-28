@@ -1,347 +1,8 @@
-<!doctype html>
-
-
-
-  
-
-
-<html class="theme-next mist use-motion">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
-
-
-
-
-
-
-<meta name="description" content="调用内置函数Python内置了很多有用的函数，我们可以直接调用。
-要调用一个函数，需要知道函数的名称和参数，比如求绝对值的函数abs，只有一个参数。可以直接从Python的官方网站查看文档：
-http://docs.python.org/2/library/functions.html#abs
-也可以在交互式命令行通过help(abs)查看abs函数的帮助信息。
-调用abs函数：
-&amp;gt;&amp;gt;">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Python基础06 函数">
-<meta property="og:url" content="http://yoursite.com/2014/09/13/2014-09-13-Python06-function/index.html">
-<meta property="og:site_name" content="静风港">
-<meta property="og:description" content="调用内置函数Python内置了很多有用的函数，我们可以直接调用。
-要调用一个函数，需要知道函数的名称和参数，比如求绝对值的函数abs，只有一个参数。可以直接从Python的官方网站查看文档：
-http://docs.python.org/2/library/functions.html#abs
-也可以在交互式命令行通过help(abs)查看abs函数的帮助信息。
-调用abs函数：
-&amp;gt;&amp;gt;">
-<meta property="og:updated_time" content="2016-05-05T15:09:40.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python基础06 函数">
-<meta name="twitter:description" content="调用内置函数Python内置了很多有用的函数，我们可以直接调用。
-要调用一个函数，需要知道函数的名称和参数，比如求绝对值的函数abs，只有一个参数。可以直接从Python的官方网站查看文档：
-http://docs.python.org/2/library/functions.html#abs
-也可以在交互式命令行通过help(abs)查看abs函数的帮助信息。
-调用abs函数：
-&amp;gt;&amp;gt;">
-
-
-
-<script type="text/javascript" id="hexo.configuration">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    scheme: 'Mist',
-    sidebar: {"position":"left","display":"post"},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: undefined,
-      author: 'Author'
-    }
-  };
-</script>
-
-  <title> Python基础06 函数 | 静风港 </title>
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="en">
-
-  
-
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-49738005-1', 'auto');
-  ga('send', 'pageview');
-</script>
-
-
-
-
-  <script type="text/javascript" src="http://tajs.qq.com/stats?sId=56034606" charset="UTF-8"></script>
-
-
-
-
-
-
-  
-  
-    
-  
-
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
-
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">静风港</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-  </div>
-  <p class="site-subtitle">见人思己</p>
-</div>
-
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
-            
-            Home
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
-            
-            About
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
-            
-            Archives
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
-            
-            Tags
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
-</nav>
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                Python基础06 函数
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2014-09-13T12:10:00+08:00" content="2014-09-13">
-              2014-09-13
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Python/programming/" itemprop="url" rel="index">
-                    <span itemprop="name">programming</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2014/09/13/2014-09-13-Python06-function/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/09/13/2014-09-13-Python06-function/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <h3 id="调用内置函数"><a href="#调用内置函数" class="headerlink" title="调用内置函数"></a>调用内置函数</h3><p>Python内置了很多有用的函数，我们可以直接调用。</p>
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>Python基础06 函数 | 静风港</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/6.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create','UA-49738005-1','auto');ga('send','pageview');</script></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Python基础06 函数</h1><a id="logo" href="/.">静风港</a><p class="description">见人思己</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> Home</i></a><a href="/archives/"><i class="fa fa-archive"> Archive</i></a><a href="/about/"><i class="fa fa-user"> About</i></a><a href="/atom.xml"><i class="fa fa-rss"> RSS</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">Python基础06 函数</h1><div class="post-meta">Sep 13, 2014<span> | </span><span class="category"><a href="/categories/Python/">Python</a><a href="/categories/Python/programming/">programming</a></span><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><a data-disqus-identifier="2014/09/13/2014-09-13-Python06-function/" href="/2014/09/13/2014-09-13-Python06-function/#disqus_thread" class="disqus-comment-count"></a><div class="post-content"><h3 id="调用内置函数"><a href="#调用内置函数" class="headerlink" title="调用内置函数"></a>调用内置函数</h3><p>Python内置了很多有用的函数，我们可以直接调用。</p>
 <p>要调用一个函数，需要知道函数的名称和参数，比如求绝对值的函数<strong>abs</strong>，只有一个参数。可以直接从Python的官方网站查看文档：</p>
 <p><a href="http://docs.python.org/2/library/functions.html#abs" target="_blank" rel="external">http://docs.python.org/2/library/functions.html#abs</a></p>
 <p>也可以在交互式命令行通过<strong>help(abs)</strong>查看<strong>abs</strong>函数的帮助信息。</p>
@@ -365,7 +26,7 @@ http://docs.python.org/2/library/functions.html#abs
 &gt;&gt;&gt; a(-1) # 所以也可以通过a调用abs函数
 1
 </code></pre><h3 id="函数的定义"><a href="#函数的定义" class="headerlink" title="函数的定义"></a>函数的定义</h3><p>在Python中，定义一个函数要使用<strong>def</strong>语句，依次写出函数名、括号、括号中的参数和冒号:，然后，在缩进块中编写函数体，函数的返回值用<strong>return</strong>语句返回。<br>例如，定义一个求两个数的平方和的函数：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">square_sum</span><span class="params">(a,b)</span>:</span></span><br><span class="line">    c = a**<span class="number">2</span> + b**<span class="number">2</span></span><br><span class="line">    <span class="keyword">return</span> c</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">square_sum</span><span class="params">(a,b)</span>:</span></div><div class="line">    c = a**<span class="number">2</span> + b**<span class="number">2</span></div><div class="line">    <span class="keyword">return</span> c</div></pre></td></tr></table></figure>
 <p>首先，<strong>def</strong>，这个关键字通知python：我在定义一个函数。<strong>square_sum</strong>是函数名。</p>
 <p>括号中的a, b是函数的<strong>参数</strong>，是对函数的<strong>输入</strong>。参数可以有多个，也可以完全没有（但括号要保留）。</p>
 <p>我们已经在循环和选择中见过<strong>冒号</strong>和<strong>缩进</strong>来表示的隶属关系。</p>
@@ -381,8 +42,8 @@ return c               # 返回c的值，也就是输出的功能。Python的函
 <p>（Python有丰富的参数传递方式，还有关键字传递、表传递、字典传递等，基础教程将只涉及位置传递）</p>
 <p>函数经过运算，返回值25, 这个25被print打印出来。</p>
 <p>我们再看下面两个例子</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">1</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">change_integer</span><span class="params">(a)</span>:</span></span><br><span class="line">    a = a + <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> a</span><br><span class="line"><span class="keyword">print</span> change_integer(a)</span><br><span class="line"><span class="keyword">print</span> a</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">b = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">change_list</span><span class="params">(b)</span>:</span></span><br><span class="line">    b[<span class="number">0</span>] = b[<span class="number">0</span>] + <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> b</span><br><span class="line"><span class="keyword">print</span> change_list(b)</span><br><span class="line"><span class="keyword">print</span> b</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">a = <span class="number">1</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">change_integer</span><span class="params">(a)</span>:</span></div><div class="line">    a = a + <span class="number">1</span></div><div class="line">    <span class="keyword">return</span> a</div><div class="line"><span class="keyword">print</span> change_integer(a)</div><div class="line"><span class="keyword">print</span> a</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">b = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">change_list</span><span class="params">(b)</span>:</span></div><div class="line">    b[<span class="number">0</span>] = b[<span class="number">0</span>] + <span class="number">1</span></div><div class="line">    <span class="keyword">return</span> b</div><div class="line"><span class="keyword">print</span> change_list(b)</div><div class="line"><span class="keyword">print</span> b</div></pre></td></tr></table></figure>
 <p>第一个例子，我们将一个整数变量传递给函数，函数对它进行操作，但原整数变量a不发生变化。</p>
 <p>第二个例子，我们将一个表传递给函数，函数进行操作，原来的表b发生变化。</p>
 <p>对于基本数据类型的变量，变量传递给函数后，函数会在内存中复制一个新的变量，从而不影响原来的变量。（我们称此为值传递）</p>
@@ -391,7 +52,7 @@ return c               # 返回c的值，也就是输出的功能。Python的函
 <p>举个例子，我们来计算阶乘<strong>n! = 1 x 2 x 3 x … x n</strong>，用函数<strong>fact(n)</strong>表示，可以看出：</p>
 <p>fact(n) = n! = 1 x 2 x 3 x … x (n-1) x n = (n-1)! x n = fact(n-1) x n</p>
 <p>所以，<strong>fact(n)</strong>可以表示为n x <strong>fact(n-1)</strong>，只有n=1时需要特殊处理。</p>
-<p>于是，<strong>fact(n)</strong>用递归的方式写出来就是：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fact</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> n==<span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> n * fact(n - <span class="number">1</span>)</span><br></pre></td></tr></table></figure></p>
+<p>于是，<strong>fact(n)</strong>用递归的方式写出来就是：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">fact</span><span class="params">(n)</span>:</span></div><div class="line">    <span class="keyword">if</span> n==<span class="number">1</span>:</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span></div><div class="line">    <span class="keyword">return</span> n * fact(n - <span class="number">1</span>)</div></pre></td></tr></table></figure></p>
 <p>上面就是一个递归函数。可以试试：</p>
 <pre><code>&gt;&gt;&gt; fact(1)
 1
@@ -422,7 +83,7 @@ RuntimeError: maximum recursion depth exceeded
 </code></pre><p>解决递归调用栈溢出的方法是通过尾递归优化，事实上尾递归和循环的效果是一样的，所以，把循环看成是一种特殊的尾递归函数也是可以的。</p>
 <p>尾递归是指，在函数返回的时候，调用自身本身，并且，return语句不能包含表达式。这样，编译器或者解释器就可以把尾递归做优化，使递归本身无论调用多少次，都只占用一个栈帧，不会出现栈溢出的情况。</p>
 <p>上面的<strong>fact(n)</strong>函数由于<strong>return n * fact(n - 1)</strong>引入了乘法表达式，所以就不是尾递归了。要改成尾递归方式，需要多一点代码，主要是要把每一步的乘积传入到递归函数中：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fact</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> fact_iter(<span class="number">1</span>, <span class="number">1</span>, n)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fact_iter</span><span class="params">(product, count, max)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> count &gt; max:</span><br><span class="line">        <span class="keyword">return</span> product</span><br><span class="line">    <span class="keyword">return</span> fact_iter(product * count, count + <span class="number">1</span>, max)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">fact</span><span class="params">(n)</span>:</span></div><div class="line">    <span class="keyword">return</span> fact_iter(<span class="number">1</span>, <span class="number">1</span>, n)</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">fact_iter</span><span class="params">(product, count, max)</span>:</span></div><div class="line">    <span class="keyword">if</span> count &gt; max:</div><div class="line">        <span class="keyword">return</span> product</div><div class="line">    <span class="keyword">return</span> fact_iter(product * count, count + <span class="number">1</span>, max)</div></pre></td></tr></table></figure>
 <p>可以看到，<strong>return fact_iter(product * count, count + 1, max)</strong>仅返回递归函数本身，<strong>product * count</strong>和<strong>count + 1</strong>在函数调用前就会被计算，不影响函数调用。</p>
 <p>fact(5)对应的fact_iter(1, 1, 5)的调用如下：</p>
 <pre><code>===&gt; fact_iter(1, 1, 5)
@@ -439,7 +100,7 @@ RuntimeError: maximum recursion depth exceeded
 <p>我们后面会讲到如何编写decorator。现在，只需要使用这个<strong>@tail_call_optimized</strong>，就可以顺利计算出fact(1000)：</p>
 <pre><code>&gt;&gt;&gt; fact(1000)
 402387260077093773543702433923003985719374864210714632543799910429938512398629020592044208486969404800479988610197196058631666872994808558901323829669944590997424504087073759918823627727188732519779505950995276120874975462497043601418278094646496291056393887437886487337119181045825783647849977012476632889835955735432513185323958463075557409114262417474349347553428646576611667797396668820291207379143853719588249808126867838374559731746136085379534524221586593201928090878297308431392844403281231558611036976801357304216168747609675871348312025478589320767169132448426236131412508780208000261683151027341827977704784635868170164365024153691398281264810213092761244896359928705114964975419909342221566832572080821333186116811553615836546984046708975602900950537616475847728421889679646244945160765353408198901385442487984959953319101723355556602139450399736280750137837615307127761926849034352625200015888535147331611702103968175921510907788019393178114194545257223865541461062892187960223838971476088506276862967146674697562911234082439208160153780889893964518263243671616762179168909779911903754031274622289988005195444414282012187361745992642956581746628302955570299024324153181617210465832036786906117260158783520751516284225540265170483304226143974286933061690897968482590125458327168226458066526769958652682272807075781391858178889652208164348344825993266043367660176999612831860788386150279465955131156552036093988180612138558600301435694527224206344631797460594682573103790084024432438465657245014402821885252470935190620929023136493273497565513958720559654228749774011413346962715422845862377387538230483865688976461927383814900140767310446640259899490222221765904339901886018566526485061799702356193897017860040811889729918311021171229845901641921068884387121855646124960798722908519296819372388642614839657382291123125024186649353143970137428531926649875337218940694281434118520158014123344828015051399694290153483077644569099073152433278288269864602789864321139083506217095002597389863554277196742822248757586765752344220207573630569498825087968928162753848863396909959826280956121450994871701244516461260379029309120889086942028510640182154399457156805941872748998094254742173582401063677404595741785160829230135358081840096996372524230560855903700624271243416909004153690105933983835777939410970027753472000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-</code></pre><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">function_name</span><span class="params">(a,b,c)</span>:</span></span><br><span class="line">    statement</span><br><span class="line">    <span class="keyword">return</span> something  <span class="comment"># return不是必须的</span></span><br></pre></td></tr></table></figure>
+</code></pre><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">function_name</span><span class="params">(a,b,c)</span>:</span></div><div class="line">    statement</div><div class="line">    <span class="keyword">return</span> something  <span class="comment"># return不是必须的</span></div></pre></td></tr></table></figure>
 <p>函数的目的： 提高程序的重复可用性。</p>
 <p>return     None</p>
 <p>通过位置，传递参数。</p>
@@ -451,364 +112,29 @@ RuntimeError: maximum recursion depth exceeded
 <p>练习:</p>
 <p>写一个判断闰年的函数，参数为年。若是是闰年，返回True</p>
 <p>参考代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a=int(raw_input(<span class="string">'Please input a year:'</span>))</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">leap</span><span class="params">(year)</span>:</span></span><br><span class="line">  <span class="keyword">if</span> year%<span class="number">400</span>==<span class="number">0</span> <span class="keyword">or</span> (year%<span class="number">4</span>==<span class="number">0</span> <span class="keyword">and</span> year%<span class="number">100</span>!= <span class="number">0</span>):</span><br><span class="line">    result=<span class="keyword">True</span></span><br><span class="line">  <span class="keyword">else</span>:</span><br><span class="line">    result=<span class="keyword">False</span></span><br><span class="line">  <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    <div>
-      
-        
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2014/08/23/2014-08-23-Python05-judge-loop/" rel="next" title="Python基础05 条件判断和循环">
-                <i class="fa fa-chevron-left"></i> Python基础05 条件判断和循环
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2014/09/13/2014-09-13-http-protocol/" rel="prev" title="HTTP 协议简介">
-                HTTP 协议简介 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <script type="text/javascript">
-    var disqus_shortname = '<%= config.disqus_shortname %>';
-
-    (function(){
-      var dsq = document.createElement('script');
-      dsq.type = 'text/javascript';
-      dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/<% if (page.comments){ %>embed.js<% } else { %>count.js<% } %>';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-    </script>
-      </div>
-    
-  </div>
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.jpg"
-               alt="xfwang" />
-          <p class="site-author-name" itemprop="name">xfwang</p>
-          <p class="site-description motion-element" itemprop="description"></p>
-        </div>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">24</span>
-              <span class="site-state-item-name">posts</span>
-            </a>
-          </div>
-
-          
-            
-          
-
-          
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">3</span>
-                <span class="site-state-item-name">tags</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/csking119" target="_blank" title="Github">
-                  
-                    <i class="fa fa-github"></i>
-                  
-                  Github
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://twitter.com/csking119" target="_blank" title="Twitter">
-                  
-                    <i class="fa fa-twitter"></i>
-                  
-                  Twitter
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://weibo.com/329666363" target="_blank" title="Weibo">
-                  
-                    <i class="fa fa-weibo"></i>
-                  
-                  Weibo
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://www.zhihu.com/people/xfwang" target="_blank" title="知乎">
-                  
-                    <i class="fa fa-globe"></i>
-                  
-                  知乎
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-
-      </section>
-
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#调用内置函数"><span class="nav-number">1.</span> <span class="nav-text">调用内置函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数的定义"><span class="nav-number">2.</span> <span class="nav-text">函数的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数调用和参数传递"><span class="nav-number">3.</span> <span class="nav-text">函数调用和参数传递</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#递归函数"><span class="nav-number">4.</span> <span class="nav-text">递归函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
-            
-          </div>
-        </section>
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2017</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">xfwang</span>
-</div>
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-
-<div>本站总访问量 <span id="busuanzi_value_site_pv"></span> &nbsp&nbsp&nbsp
-您是第<span id="busuanzi_value_site_uv"></span>个来到的小伙伴
-</div>
-
-        
-
-        
-      </div>
-    </footer>
-
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">a=int(raw_input(<span class="string">'Please input a year:'</span>))</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">leap</span><span class="params">(year)</span>:</span></div><div class="line">  <span class="keyword">if</span> year%<span class="number">400</span>==<span class="number">0</span> <span class="keyword">or</span> (year%<span class="number">4</span>==<span class="number">0</span> <span class="keyword">and</span> year%<span class="number">100</span>!= <span class="number">0</span>):</div><div class="line">    result=<span class="keyword">True</span></div><div class="line">  <span class="keyword">else</span>:</div><div class="line">    result=<span class="keyword">False</span></div><div class="line">  <span class="keyword">return</span> result</div></pre></td></tr></table></figure></div><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a data-url="http://yoursite.com/2014/09/13/2014-09-13-Python06-function/" data-id="cj38ru3gi000p475hiezj14gr" class="article-share-link">Share</a><div class="tags"></div><div class="post-nav"><a href="/2014/09/13/2014-09-13-http-protocol/" class="pre">HTTP 协议简介</a><a href="/2014/08/23/2014-08-23-Python05-judge-loop/" class="next">Python基础05 条件判断和循环</a></div><div id="disqus_thread"><div class="btn_click_load"><button class="disqus_click_btn">阅读评论 「请确保 disqus.com 可以正常加载」</button></div><script>var disqus_shortname = 'xfwang';
+var disqus_identifier = '2014/09/13/2014-09-13-Python06-function/';
+var disqus_title = 'Python基础06 函数';
+var disqus_url = 'http://yoursite.com/2014/09/13/2014-09-13-Python06-function/';
+$('.btn_click_load').click(function() {
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+  $('.btn_click_load').css('display','none');
+});
+$.ajax({
+  url: 'https://disqus.com/favicon.ico',
+  timeout: 3000,
+  type: 'GET',
+  success: (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    $('.btn_click_load').css('display','none');
+  })(),
+  error: function() {
+    $('.btn_click_load').css('display','block');
   }
-</script>
-
-
-
-
-
-
-
-
-
-  
-
-
-
-  
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
-
-
-
-  
-
-
-
-  
-
-    <script type="text/javascript">
-      var disqus_shortname = 'xfwang';
-      var disqus_identifier = '2014/09/13/2014-09-13-Python06-function/';
-      var disqus_title = 'Python基础06 函数';
-      var disqus_url = 'http://yoursite.com/2014/09/13/2014-09-13-Python06-function/';
-
-      function run_disqus_script(disqus_script){
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      }
-
-      run_disqus_script('count.js');
-      
-        run_disqus_script('embed.js');
-      
-    </script>
-  
-
-
-
-  
-  
-  
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-    });
-  </script>
-
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-      var all = MathJax.Hub.getAllJax(), i;
-      for (i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-      }
-    });
-  </script>
-  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-
-  
-
-  
-
-</body>
-</html>
+});</script><script id="dsq-count-scr" src="//xfwang.disqus.com/count.js" async></script></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://yoursite.com"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> Categories</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Careers/">Careers</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Careers/programming/">programming</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding-Challenges/">Coding Challenges</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Coding-Challenges/Online-learning/">Online learning</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Coding-Challenges/Online-learning/programming/">programming</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTTP/">HTTP</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/HTTP/Computer-Network/">Computer Network</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/algorithms/">algorithms</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/">Mac</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/Adobe-flash-player/">Adobe flash player</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Mac/Adobe-flash-player/VPN/">VPN</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Objective-C/">Objective-C</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Objective-C/iOS/">iOS</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Objective-C/iOS/Xcode/">Xcode</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Octopress/">Octopress</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python/programming/">programming</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ruby/">Ruby</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shenzhen/">Shenzhen</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Shenzhen/Job/">Job</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Xcode/">Xcode</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Xcode/Alcatraz/">Alcatraz</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/github/">github</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/github/blog/">blog</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/github/blog/Octopress/">Octopress</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/markdown/">markdown</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/markdown/blog/">blog</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/python/Web-Applications/">Web Applications</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/ruby/">ruby</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/ruby/tools/">tools</a></li></ul></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> Tags</i></div><div class="tagcloud"><a href="/tags/Octopress/" style="font-size: 15px;">Octopress</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/Ruby/" style="font-size: 15px;">Ruby</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> Recent</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/05/15/2016-5-13-Java_next/">Java中nextLine()和next()</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/13/2016-5-13-Ruby_answer/">Ruby基础教程（第4版）练习题参考答案</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/01/2015-07-01-fix-Alcatraz-in-xcode64/">Fix Alcatraz in Xcode 6.4</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/13/2015-06-13-invertBinaryTree/">火爆的反转二叉树invert Binary Tree</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/06/2015-06-06-Java_homework_Marathon/">MIT Java练习-Marathon</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/31/2015-05-31-Objective-C01_Hello_World/">Objective-C基础01_Hello World!</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/02/05/2015-02-01-life_in_shenzhen/">出差深圳小记</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/10/05/2014-10-05-Python07-Slice/">Python基础07 切片</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/09/13/2014-09-13-http-protocol/">HTTP 协议简介</a></li><li class="post-list-item"><a class="post-list-link" href="/2014/09/13/2014-09-13-Python06-function/">Python基础06 函数</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> Recent Comments</i></div><script type="text/javascript" src="//xfwang.disqus.com/recent_comments_widget.js?num_items=5&amp;hide_avatars=1&amp;avatar_size=32&amp;excerpt_length=20&amp;hide_mods=1"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> Links</i></div><ul></ul><a href="http://coolshell.cn/" title="酷壳-coolshell" target="_blank">酷壳-coolshell</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2017 <a href="/." rel="nofollow">静风港.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.0.47/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.0.47/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
