@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-05-15T10:53:59.000Z</updated>
+  <updated>2017-05-30T10:16:18.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2016/05/15/2016-5-13-Java_next/"/>
     <id>http://yoursite.com/2016/05/15/2016-5-13-Java_next/</id>
     <published>2016-05-15T10:10:00.000Z</published>
-    <updated>2016-05-15T10:53:59.000Z</updated>
+    <updated>2017-05-30T10:16:18.000Z</updated>
     
     <content type="html"><![CDATA[<p>Java实现字符窗口的输入时，可以选择使用扫描器Scanner，它操作起来比较简单。用Scanner实现字符串的输入有两种方法，一种是next（），一种nextLine(),但是这两种方法究竟有什么区别呢？<br><a id="more"></a><br>先看个例子：<br>今天在做清华大学的学堂在线的练习题，输入的字符串排序输出的时候，遇到的情况。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.Scanner;</div><div class="line"><span class="keyword">import</span> java.util.Arrays;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringSort</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		Scanner scan = <span class="keyword">new</span> Scanner(System.in);</div><div class="line">		<span class="comment">// a 是输入字符串个数</span></div><div class="line">		<span class="keyword">int</span> a = scan.nextInt();</div><div class="line">		String[] stringArray = <span class="keyword">new</span> String[a];</div><div class="line">		<span class="comment">// 输入字符串赋值给数组</span></div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;a; i++)&#123;</div><div class="line">			stringArray[i] = scan.nextLine();</div><div class="line">		&#125;</div><div class="line">		scan.close();</div><div class="line">		Arrays.sort(stringArray);</div><div class="line">		<span class="comment">// 输出排序后的数组</span></div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;a; i++)&#123;</div><div class="line">			System.out.println(stringArray[i]);</div><div class="line">		&#125;</div><div class="line">		</div><div class="line"> 	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>运行输入输出结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">3      // 输入字符串数</div><div class="line">acv    // 输入第一个字符串</div><div class="line">abc    // 输入第二个字符串</div><div class="line"></div><div class="line">abc    // 输出</div><div class="line">acv</div></pre></td></tr></table></figure></p>
@@ -51,7 +51,7 @@
     <link href="http://yoursite.com/2015/07/01/2015-07-01-fix-Alcatraz-in-xcode64/"/>
     <id>http://yoursite.com/2015/07/01/2015-07-01-fix-Alcatraz-in-xcode64/</id>
     <published>2015-07-01T11:10:00.000Z</published>
-    <updated>2015-10-08T14:49:36.000Z</updated>
+    <updated>2017-05-30T10:17:43.000Z</updated>
     
     <content type="html"><![CDATA[<p>Got Xcode 6.4 updated and found Alcatraz package manager disabled. It is missing from <strong>Window</strong> and I found the solution from Github：<br><a id="more"></a></p>
 <p>fixed for me with a long command:</p>
@@ -67,10 +67,8 @@
     
     </summary>
     
-      <category term="Xcode" scheme="http://yoursite.com/categories/Xcode/"/>
     
-      <category term="Alcatraz" scheme="http://yoursite.com/categories/Xcode/Alcatraz/"/>
-    
+      <category term="Xcode" scheme="http://yoursite.com/tags/Xcode/"/>
     
   </entry>
   
@@ -79,7 +77,7 @@
     <link href="http://yoursite.com/2015/06/13/2015-06-13-invertBinaryTree/"/>
     <id>http://yoursite.com/2015/06/13/2015-06-13-invertBinaryTree/</id>
     <published>2015-06-13T11:10:00.000Z</published>
-    <updated>2015-10-28T12:19:04.000Z</updated>
+    <updated>2017-05-30T10:18:00.000Z</updated>
     
     <content type="html"><![CDATA[<p>最近，关于Homebrew 的作者Max Howell面试被 Google 拒了的消息风靡一时，据传是因为没有写出反转二叉树的算法。<br>这里写一下Java实现反转二叉树的简单方法：<br><a id="more"></a></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode left;</div><div class="line"> *     TreeNode right;</div><div class="line"> *     TreeNode(int x) &#123; val = x; &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">invertTree</span><span class="params">(TreeNode root)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>)&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">        &#125;</div><div class="line">        TreeNode tem = root.left;</div><div class="line">        root.left = root.right;</div><div class="line">        root.right = tem;</div><div class="line">        invertTree(root.left);</div><div class="line">        invertTree(root.right);</div><div class="line">        <span class="keyword">return</span> root;</div><div class="line">    </div><div class="line">        </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -93,8 +91,6 @@
     
       <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
     
-      <category term="algorithms" scheme="http://yoursite.com/categories/Java/algorithms/"/>
-    
     
   </entry>
   
@@ -103,7 +99,7 @@
     <link href="http://yoursite.com/2015/06/06/2015-06-06-Java_homework_Marathon/"/>
     <id>http://yoursite.com/2015/06/06/2015-06-06-Java_homework_Marathon/</id>
     <published>2015-06-06T02:10:00.000Z</published>
-    <updated>2017-05-28T14:45:17.000Z</updated>
+    <updated>2017-05-30T10:18:27.000Z</updated>
     
     <content type="html"><![CDATA[<p>A group of MIT friends decide to run the Boston Marathon. Their names and times (in minutes) are below:<br><a id="more"></a></p>
 <table>
@@ -203,13 +199,12 @@
     <link href="http://yoursite.com/2015/05/31/2015-05-31-Objective-C01_Hello_World/"/>
     <id>http://yoursite.com/2015/05/31/2015-05-31-Objective-C01_Hello_World/</id>
     <published>2015-05-31T02:10:00.000Z</published>
-    <updated>2016-10-15T03:15:44.000Z</updated>
+    <updated>2017-05-30T10:26:58.000Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="开始记录一些iOS学习的点滴"><a href="#开始记录一些iOS学习的点滴" class="headerlink" title="开始记录一些iOS学习的点滴"></a>开始记录一些iOS学习的点滴</h3><hr>
-<p>OS X和iOS程序绝大部分都是用Objective-C语言编写的，它所使用的技术科技追溯到上世纪80年代，如今这些技术已经演化成一个功能强大的工具集。</p>
+    <content type="html"><![CDATA[<p>OS X和iOS程序绝大部分都是用Objective-C语言编写的，它所使用的技术科技追溯到上世纪80年代，如今这些技术已经演化成一个功能强大的工具集。</p>
 <p>Objective-C是以C语言为基础的一个扩展集，它添加了一些微妙但意义重大的新特性。So，可以说学习OC最好能有C语言的基础，市面的书很少会以OC为编程入门教材，当然，很多书也会在开篇快速介绍一些C的一些语法，然后开始OC的教学。</p>
 <p>开发Mac或者iOS都在Mac OS X下进行，所以大家先要准备一台Mac，当然，单纯学习Objective-C语言的话，可以在windows下进行编译，但是还是比较耗时间去搭建一套环境，建议还是按照标准的Mac下Xcode环境来学习。<br><a id="more"></a></p>
-<h2 id="Hello-World！"><a href="#Hello-World！" class="headerlink" title="Hello World！"></a>Hello World！</h2><p>学习编程语言的第一个程序我们都很熟悉，Hello World！</p>
+<h3 id="Hello-World！"><a href="#Hello-World！" class="headerlink" title="Hello World！"></a>Hello World！</h3><p>学习编程语言的第一个程序我们都很熟悉，Hello World！</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line"></div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    @autoreleasepool &#123;</div><div class="line">        // insert code here...</div><div class="line">        NSLog(@&quot;Hello, World!&quot;);</div><div class="line">    &#125;</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="import语句"><a href="#import语句" class="headerlink" title="import语句"></a>import语句</h3><p>与C语言一样，Objective-C使用<strong>头文件</strong>来包含结构体、符号常量和函数原型等元素的声明。在C语言里我们用#include语句来通知编译器查询头文件中相应的定义代码。在Objective-C中我们也可以使用#include来达到同样的目的（因为OC是C语言的超集），不过你可能永远也不会这么做，而是向下面这样使用#import语句：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#import &lt;Foundation/Foundation.h&gt;</div></pre></td></tr></table></figure>
@@ -226,18 +221,13 @@
     
     <summary type="html">
     
-      &lt;h3 id=&quot;开始记录一些iOS学习的点滴&quot;&gt;&lt;a href=&quot;#开始记录一些iOS学习的点滴&quot; class=&quot;headerlink&quot; title=&quot;开始记录一些iOS学习的点滴&quot;&gt;&lt;/a&gt;开始记录一些iOS学习的点滴&lt;/h3&gt;&lt;hr&gt;
-&lt;p&gt;OS X和iOS程序绝大部分都是用Objective-C语言编写的，它所使用的技术科技追溯到上世纪80年代，如今这些技术已经演化成一个功能强大的工具集。&lt;/p&gt;
+      &lt;p&gt;OS X和iOS程序绝大部分都是用Objective-C语言编写的，它所使用的技术科技追溯到上世纪80年代，如今这些技术已经演化成一个功能强大的工具集。&lt;/p&gt;
 &lt;p&gt;Objective-C是以C语言为基础的一个扩展集，它添加了一些微妙但意义重大的新特性。So，可以说学习OC最好能有C语言的基础，市面的书很少会以OC为编程入门教材，当然，很多书也会在开篇快速介绍一些C的一些语法，然后开始OC的教学。&lt;/p&gt;
 &lt;p&gt;开发Mac或者iOS都在Mac OS X下进行，所以大家先要准备一台Mac，当然，单纯学习Objective-C语言的话，可以在windows下进行编译，但是还是比较耗时间去搭建一套环境，建议还是按照标准的Mac下Xcode环境来学习。&lt;br&gt;
     
     </summary>
     
       <category term="Objective-C" scheme="http://yoursite.com/categories/Objective-C/"/>
-    
-      <category term="iOS" scheme="http://yoursite.com/categories/Objective-C/iOS/"/>
-    
-      <category term="Xcode" scheme="http://yoursite.com/categories/Objective-C/iOS/Xcode/"/>
     
     
   </entry>
@@ -247,10 +237,10 @@
     <link href="http://yoursite.com/2015/02/05/2015-02-01-life_in_shenzhen/"/>
     <id>http://yoursite.com/2015/02/05/2015-02-01-life_in_shenzhen/</id>
     <published>2015-02-05T02:10:00.000Z</published>
-    <updated>2016-10-15T03:16:22.000Z</updated>
+    <updated>2017-05-30T10:32:09.000Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="工作后第一次出差，有小小感慨，有时间慢慢写下来吧…"><a href="#工作后第一次出差，有小小感慨，有时间慢慢写下来吧…" class="headerlink" title="工作后第一次出差，有小小感慨，有时间慢慢写下来吧…"></a>工作后第一次出差，有小小感慨，有时间慢慢写下来吧…</h3><hr>
-<h5 id="4月25日晚-更新"><a href="#4月25日晚-更新" class="headerlink" title="4月25日晚 更新"></a>4月25日晚 更新</h5><p>说了等有时间，一拖就是两个多月，今天拖着感冒的身体，说什么也要码几行字，再不写，那几条简单的Git命令都快忘了。</p>
+    <content type="html"><![CDATA[<h2 id="工作后第一次出差，有小小感慨，有时间慢慢写下来吧…"><a href="#工作后第一次出差，有小小感慨，有时间慢慢写下来吧…" class="headerlink" title="工作后第一次出差，有小小感慨，有时间慢慢写下来吧…"></a>工作后第一次出差，有小小感慨，有时间慢慢写下来吧…</h2><hr>
+<p>说了等有时间，一拖就是两个多月，今天拖着感冒的身体，说什么也要码几行字，再不写，那几条简单的Git命令都快忘了。</p>
 <p>14年11月，带着担心和大飞去了深圳，这次出差，见识了一下公司的EMC实验室的高端设备，现在印象最深的就算是RE（radiated emission）测试的暗室，样子如下：</p>
 <p><img src="http://www.emctest.org/uploads/allimg/100625/1_100625101344_1_lit.jpg" alt=""></p>
 <p>当然，我们测试的设备不是坦克。</p>
@@ -260,13 +250,9 @@
     
     <summary type="html">
     
-      &lt;h3 id=&quot;工作后第一次出差，有小小感慨，有时间慢慢写下来吧…&quot;&gt;&lt;a href=&quot;#工作后第一次出差，有小小感慨，有时间慢慢写下来吧…&quot; class=&quot;headerlink&quot; title=&quot;工作后第一次出差，有小小感慨，有时间慢慢写下来吧…&quot;&gt;&lt;/a&gt;工作后第一次出差，有小
+      &lt;h2 id=&quot;工作后第一次出差，有小小感慨，有时间慢慢写下来吧…&quot;&gt;&lt;a href=&quot;#工作后第一次出差，有小小感慨，有时间慢慢写下来吧…&quot; class=&quot;headerlink&quot; title=&quot;工作后第一次出差，有小小感慨，有时间慢慢写下来吧…&quot;&gt;&lt;/a&gt;工作后第一次出差，有小
     
     </summary>
-    
-      <category term="Shenzhen" scheme="http://yoursite.com/categories/Shenzhen/"/>
-    
-      <category term="Job" scheme="http://yoursite.com/categories/Shenzhen/Job/"/>
     
     
   </entry>
@@ -276,7 +262,7 @@
     <link href="http://yoursite.com/2014/10/05/2014-10-05-Python07-Slice/"/>
     <id>http://yoursite.com/2014/10/05/2014-10-05-Python07-Slice/</id>
     <published>2014-10-05T02:10:00.000Z</published>
-    <updated>2014-10-12T15:01:04.000Z</updated>
+    <updated>2017-05-30T10:19:03.000Z</updated>
     
     <content type="html"><![CDATA[<p>取一个list或tuple的部分元素是非常常见的操作。比如，一个list如下：</p>
 <pre><code>&gt;&gt;&gt; L = [&apos;Michael&apos;, &apos;Sarah&apos;, &apos;Tracy&apos;, &apos;Bob&apos;, &apos;Jack&apos;]
@@ -354,8 +340,6 @@
     
       <category term="Python" scheme="http://yoursite.com/categories/Python/"/>
     
-      <category term="programming" scheme="http://yoursite.com/categories/Python/programming/"/>
-    
     
   </entry>
   
@@ -364,15 +348,19 @@
     <link href="http://yoursite.com/2014/09/13/2014-09-13-http-protocol/"/>
     <id>http://yoursite.com/2014/09/13/2014-09-13-http-protocol/</id>
     <published>2014-09-13T13:50:00.000Z</published>
-    <updated>2016-10-15T03:17:20.000Z</updated>
+    <updated>2017-05-30T10:30:01.000Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="一、TCP-IP-协议介绍"><a href="#一、TCP-IP-协议介绍" class="headerlink" title="一、TCP/IP 协议介绍"></a>一、TCP/IP 协议介绍</h3><p>　　在介绍 HTTP 协议之前，先简单说一下TCP/IP协议的相关内容。TCP/IP协议是分层的，从底层至应用层分别为：物理层、链路层、网络层、传输层和应用层，如下图所示：<br><a id="more"></a><br>　　<img src="http://hi.csdn.net/attachment/201103/28/0_13013247647Zjo.gif" alt=""></p>
+    <content type="html"><![CDATA[<h2 id="TCP-IP-协议介绍"><a href="#TCP-IP-协议介绍" class="headerlink" title="TCP/IP 协议介绍"></a>TCP/IP 协议介绍</h2><p>　　在介绍 HTTP 协议之前，先简单说一下TCP/IP协议的相关内容。TCP/IP协议是分层的，从底层至应用层分别为：物理层、链路层、网络层、传输层和应用层，如下图所示：<br><a id="more"></a><br>　　<img src="http://hi.csdn.net/attachment/201103/28/0_13013247647Zjo.gif" alt=""></p>
 <p>   从应用层至物理层，数据是一层层封装，封装的方式一般都是在原有数据的前面加一个数据控制头，数据封装格式如下：<br>   <img src="http://hi.csdn.net/attachment/201103/28/0_1301324938r95q.gif" alt=""><br>   其中，对于TCP传输协议，客户端在于服务器建立连接前需要经过TCP三层握手，过程如下：<br>   <img src="http://hi.csdn.net/attachment/201103/28/0_13013250142DZ2.gif" alt=""></p>
-<h3 id="二、HTTP协议"><a href="#二、HTTP协议" class="headerlink" title="二、HTTP协议"></a>二、HTTP协议</h3><h4 id="2-1-简介"><a href="#2-1-简介" class="headerlink" title="2.1　简介"></a>2.1　简介</h4><p>　　超文本传输协议（Hypertext Transfer Protocol，简称HTTP）是应用层协议，自 1990 年起，HTTP 就已经被应用于 WWW 全球信息服务系统。<br>　　HTTP 是一种请求/响应式的协议。一个客户机与服务器建立连接后，发送一个请求给服务器；服务器接到请求后，给予相应的响应信息。<br>　　HTTP 的第一版本 HTTP/0.9是一种简单的用于网络间原始数据传输的协议；<br>　　HTTP/1.0由 RFC 1945 定义 ，在原 HTTP/0.9 的基础上，有了进一步的改进，允许消息以类 MIME 信息格式存　在，包括请求/响应范式中的已传输数据和修饰符等方面的信息；<br>　　HTTP/1.1(RFC2616) 的要求更加严格以确保服务的可靠性，增强了在HTTP/1.0 没有充分考虑到分层代理服务器、高速缓冲存储器、持久连接需求或虚拟主机等方面的效能；<br>　　安全增强版的 HTTP （即S-HTTP或HTTPS），则是HTTP协议与安全套接口层(SSL)的结合，使HTTP的协议数据在传输过程中更加安全。</p>
-<h4 id="2-2-协议结构"><a href="#2-2-协议结构" class="headerlink" title="2.2　协议结构"></a>2.2　协议结构</h4><p>　　HTTP协议格式也比较简单，格式如下：<br>　　<img src="http://hi.csdn.net/attachment/201103/28/0_1301325076B6iY.gif" alt="">
+<h2 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a>HTTP协议</h2><p>###　简介</p>
+<p>　　超文本传输协议（Hypertext Transfer Protocol，简称HTTP）是应用层协议，自 1990 年起，HTTP 就已经被应用于 WWW 全球信息服务系统。<br>　　HTTP 是一种请求/响应式的协议。一个客户机与服务器建立连接后，发送一个请求给服务器；服务器接到请求后，给予相应的响应信息。<br>　　HTTP 的第一版本 HTTP/0.9是一种简单的用于网络间原始数据传输的协议；<br>　　HTTP/1.0由 RFC 1945 定义 ，在原 HTTP/0.9 的基础上，有了进一步的改进，允许消息以类 MIME 信息格式存　在，包括请求/响应范式中的已传输数据和修饰符等方面的信息；<br>　　HTTP/1.1(RFC2616) 的要求更加严格以确保服务的可靠性，增强了在HTTP/1.0 没有充分考虑到分层代理服务器、高速缓冲存储器、持久连接需求或虚拟主机等方面的效能；<br>　　安全增强版的 HTTP （即S-HTTP或HTTPS），则是HTTP协议与安全套接口层(SSL)的结合，使HTTP的协议数据在传输过程中更加安全。</p>
+<p>###　协议结构</p>
+<p>　　HTTP协议格式也比较简单，格式如下：<br>　　<img src="http://hi.csdn.net/attachment/201103/28/0_1301325076B6iY.gif" alt="">
 　　</p>
-<h4 id="2-3-HTTP-协议举例"><a href="#2-3-HTTP-协议举例" class="headerlink" title="2.3　HTTP 协议举例"></a>2.3　HTTP 协议举例</h4><p>　　下面是一个HTTP请求及响应的例子：<br>　　<img src="http://hi.csdn.net/attachment/201103/28/0_1301325142Ln5d.gif" alt=""></p>
-<h4 id="2-4-请求头格式"><a href="#2-4-请求头格式" class="headerlink" title="2.4　请求头格式"></a>2.4　请求头格式</h4><p>a) 通用头(general-header)：</p>
+<p>###　HTTP 协议举例</p>
+<p>　　下面是一个HTTP请求及响应的例子：<br>　　<img src="http://hi.csdn.net/attachment/201103/28/0_1301325142Ln5d.gif" alt=""></p>
+<p>###　请求头格式</p>
+<p>a) 通用头(general-header)：</p>
 <p>Cache-Control：客户端希望服务端如何缓存自己的请求数据，如”Cache-Control: no-cache”，”Cache-Control: max-age=0”；</p>
 <p>Connection：客户端是否希望与服务端之间保持长连接，如”Connection: close”, “Connection: keep-alive”；</p>
 <p>Date：只有当请求方法为POST或PUT方法时客户端才可能会有些字段；</p>
@@ -392,7 +380,7 @@
 <p>Content-Encoding：客户端所能识别的编码压缩格式，如：“Content-Encoding: gzip, deflate”；</p>
 <p>Content-Length：客户端以POST方法上传数据时数据体部分的内容长度，如：“ Content-Length: 24”；</p>
 <p>Content- Type：客户端发送的数据体的内容类型，如：“Content-Type: application/x-www-form-urlencoded”为以普通的POST方法发送的数据；“Content-Type: multipart/form-data; boundary=—————————5169208281820”，则表明数据体由多部分组成，分隔符为 “—————————–5169208281820”；</p>
-<h4 id="2-5-响应格式"><a href="#2-5-响应格式" class="headerlink" title="2.5 响应格式"></a>2.5 响应格式</h4><p>a) 通用头(general-header)：</p>
+<h3 id="响应格式"><a href="#响应格式" class="headerlink" title="响应格式"></a>响应格式</h3><p>a) 通用头(general-header)：</p>
 <p>Cache- Control：服务端要求中间代理及客户端如何缓存自己响应的数据，如“Cache-Control: no-cache”，如：“Cache-Control: private” 不希望被缓存，“Cache-Control: public” 可以被缓存；</p>
 <p>Connection：服务端是否希望与客户端之间保持长连接，如“Connection: close”, “Connection: keep-alive”；</p>
 <p>Date：只有当请求方法为POST或PUT方法时客户端才可能会有些字段；</p>
@@ -404,13 +392,13 @@
 <p>Server：服务端返回的用于标识自己的一些信息，如：“ Server: Microsoft-IIS/6.0”；</p>
 <p>ETag：服务端返回的响应数据的标识字段，客户端可根据此字段的值向服务器发送某URL是否更新的信息；</p>
 <p>c）实体头(entity-header): (此类头存在时要求有数据体)<br>Content-Encoding：服务端所响应数据的编码格式，如：“Content-Encoding: gzip”；<br>Content-Length：服务端所返回数据的数据体部分的内容长度，如：“ Content-Length: 24”；<br>Content-Type：服务端所返回的数据体的内容类型，如：“Content-Type: text/html; charset=gb2312” ；<br>Set-Cookie：服务端返回给客户端的cookie数据，如：“ Set-Cookie: ASP.NET_SessionId=icnh2ku2dqlmkciyobgvzl55; path=/”</p>
-<h4 id="2-6-服务器返回状态码"><a href="#2-6-服务器返回状态码" class="headerlink" title="2.6 服务器返回状态码"></a>2.6 服务器返回状态码</h4><p>1xx：表明服务端接收了客户端请求，客户端继续发送请求；<br>2xx：客户端发送的请求被服务端成功接收并成功进行了处理；<br>3xx：服务端给客户端返回用于重定向的信息；<br>4xx：客户端的请求有非法内容；<br>5xx：服务端未能正常处理客户端的请求而出现意外错误。</p>
+<h3 id="服务器返回状态码"><a href="#服务器返回状态码" class="headerlink" title="服务器返回状态码"></a>服务器返回状态码</h3><p>1xx：表明服务端接收了客户端请求，客户端继续发送请求；<br>2xx：客户端发送的请求被服务端成功接收并成功进行了处理；<br>3xx：服务端给客户端返回用于重定向的信息；<br>4xx：客户端的请求有非法内容；<br>5xx：服务端未能正常处理客户端的请求而出现意外错误。</p>
 <p>举例：</p>
 <p>“100”  ; 服务端希望客户端继续；<br>“200”  ; 服务端成功接收并处理了客户端的请求；<br>“301”  ; 客户端所请求的URL已经移走，需要客户端重定向到其它的URL；<br>“304”  ; 客户端所请求的URL未发生变化；<br>“400”  ; 客户端请求错误；<br>“403”  ; 客户端请求被服务端所禁止；<br>“404”  ; 客户端所请求的URL在服务端不存在；<br>“500”  ; 服务端在处理客户端请求时出现异常；<br>“501”  ; 服务端未实现客户端请求的方法或内容；<br>“502”  ; 此为中间代理返回给客户端的出错信息，表明服务端返回给代理时出错；<br>“503”  ; 服务端由于负载过高或其它错误而无法正常响应客户端请求；<br>“504”  ; 此为中间代理返回给客户端的出错信息，表明代理连接服务端出现超时。</p>
-<h4 id="2-7-chunked-传输"><a href="#2-7-chunked-传输" class="headerlink" title="2.7 chunked 传输"></a>2.7 chunked 传输</h4><p>　 　编码使用若干个Chunk组成，由一个标明长度为0的chunk结束，每个Chunk有两部分组成，第一部分是该Chunk的长度(以十六进制表示)和 长度单位（一般不写），第二部分就是指定长度的内容，每个部分用CRLF隔开。在最后一个长度为0的Chunk中的内容是称为footer的内容，是一些 没有写的头部内容。另外，在HTTP头里必须含有：” Transfer-Encoding: chunked” 通用头字段。格式如下：<br>　 　<img src="http://hi.csdn.net/attachment/201103/28/0_1301325202T3Uf.gif" alt="">
+<h3 id="chunked-传输"><a href="#chunked-传输" class="headerlink" title="chunked 传输"></a>chunked 传输</h3><p>　 　编码使用若干个Chunk组成，由一个标明长度为0的chunk结束，每个Chunk有两部分组成，第一部分是该Chunk的长度(以十六进制表示)和 长度单位（一般不写），第二部分就是指定长度的内容，每个部分用CRLF隔开。在最后一个长度为0的Chunk中的内容是称为footer的内容，是一些 没有写的头部内容。另外，在HTTP头里必须含有：” Transfer-Encoding: chunked” 通用头字段。格式如下：<br>　 　<img src="http://hi.csdn.net/attachment/201103/28/0_1301325202T3Uf.gif" alt="">
 　</p>
-<h4 id="2-8-HTTP-请求方法"><a href="#2-8-HTTP-请求方法" class="headerlink" title="2.8 HTTP 请求方法"></a>2.8 HTTP 请求方法</h4><p>GET、POST、HEAD、CONNECT、PUT、DELETE、TRACE</p>
-<h4 id="2-9-举例"><a href="#2-9-举例" class="headerlink" title="2.9 举例"></a>2.9 举例</h4><p>a）GET请求</p>
+<h3 id="HTTP-请求方法"><a href="#HTTP-请求方法" class="headerlink" title="HTTP 请求方法"></a>HTTP 请求方法</h3><p>GET、POST、HEAD、CONNECT、PUT、DELETE、TRACE</p>
+<h3 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h3><p>a）GET请求</p>
 <p>GET <a href="http://photo.test.com/inc/global.js" target="_blank" rel="external">http://photo.test.com/inc/global.js</a> HTTP/1.1<br>Host: photo.test.com<br>User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.0; zh-CN; rv:1.8.1) Gecko/20061010 Firefox/2.0<br>Accept: text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5<br>Accept-Language: en-us,zh-cn;q=0.7,zh;q=0.3<br>Accept-Encoding: gzip,deflate<br>Accept-Charset: gb2312,utf-8;q=0.7,*;q=0.7<br>Keep-Alive: 300<br>Proxy-Connection: keep-alive<br>Cookie: ASP.NET_SessionId=ey5drq45lsomio55hoydzc45<br>Cache-Control: max-age=0</p>
 <p>b）POST请求</p>
 <p>POST / HTTP/1.1<br>Accept: image/gif, image/x-xbitmap, image/jpeg, application/vnd.ms-powerpoint, application/msword, */*<br>Accept-Language: zh-cn<br>Content-Type: application/x-www-form-urlencoded<br>Accept-Encoding: gzip, deflate<br>User-Agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)<br>Host: www.test.com<br>Content-Length: 24<br>Connection: Keep-Alive<br>Cache-Control: no-cache</p>
@@ -426,18 +414,16 @@
 <p>upload<br>—————————–5169208281820–</p>
 <p>e）CONNECT举例</p>
 <p>CONNECT mail.test.com:80 HTTP/1.1<br>User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.0; zh-CN; rv:1.8.1) Gecko/20061010 Firefox/2.0<br>Proxy-Connection: keep-alive<br>Host: mail.test.com:80</p>
-<h4 id="3-0-在终端以-telnet-方式测试"><a href="#3-0-在终端以-telnet-方式测试" class="headerlink" title="3.0 在终端以 telnet 方式测试"></a>3.0 在终端以 telnet 方式测试</h4><p>a）打开回显功能（针对windows)<br>　 Windows 2000：进入DOS模式-&gt;输入 telnet-&gt;set LOCAL_ECHO-&gt;退出：quit-&gt;telnet ip 80<br>　 Windows xp：进入DOS模式-&gt;输入telnet-&gt;set local echo-&gt;open ip 80<br>b) 按HTTP协议格式输入GET请求、HEAD请求、POST请求。</p>
+<h3 id="在终端以-telnet-方式测试"><a href="#在终端以-telnet-方式测试" class="headerlink" title="在终端以 telnet 方式测试"></a>在终端以 telnet 方式测试</h3><p>a）打开回显功能（针对windows)<br>　 Windows 2000：进入DOS模式-&gt;输入 telnet-&gt;set LOCAL_ECHO-&gt;退出：quit-&gt;telnet ip 80<br>　 Windows xp：进入DOS模式-&gt;输入telnet-&gt;set local echo-&gt;open ip 80<br>b) 按HTTP协议格式输入GET请求、HEAD请求、POST请求。</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;h3 id=&quot;一、TCP-IP-协议介绍&quot;&gt;&lt;a href=&quot;#一、TCP-IP-协议介绍&quot; class=&quot;headerlink&quot; title=&quot;一、TCP/IP 协议介绍&quot;&gt;&lt;/a&gt;一、TCP/IP 协议介绍&lt;/h3&gt;&lt;p&gt;　　在介绍 HTTP 协议之前，先简单说一下TCP/IP协议的相关内容。TCP/IP协议是分层的，从底层至应用层分别为：物理层、链路层、网络层、传输层和应用层，如下图所示：&lt;br&gt;
+      &lt;h2 id=&quot;TCP-IP-协议介绍&quot;&gt;&lt;a href=&quot;#TCP-IP-协议介绍&quot; class=&quot;headerlink&quot; title=&quot;TCP/IP 协议介绍&quot;&gt;&lt;/a&gt;TCP/IP 协议介绍&lt;/h2&gt;&lt;p&gt;　　在介绍 HTTP 协议之前，先简单说一下TCP/IP协议的相关内容。TCP/IP协议是分层的，从底层至应用层分别为：物理层、链路层、网络层、传输层和应用层，如下图所示：&lt;br&gt;
     
     </summary>
     
       <category term="HTTP" scheme="http://yoursite.com/categories/HTTP/"/>
-    
-      <category term="Computer Network" scheme="http://yoursite.com/categories/HTTP/Computer-Network/"/>
     
     
   </entry>
@@ -447,7 +433,7 @@
     <link href="http://yoursite.com/2014/09/13/2014-09-13-Python06-function/"/>
     <id>http://yoursite.com/2014/09/13/2014-09-13-Python06-function/</id>
     <published>2014-09-13T04:10:00.000Z</published>
-    <updated>2016-05-05T15:09:40.000Z</updated>
+    <updated>2017-05-30T10:16:49.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="调用内置函数"><a href="#调用内置函数" class="headerlink" title="调用内置函数"></a>调用内置函数</h3><p>Python内置了很多有用的函数，我们可以直接调用。</p>
 <p>要调用一个函数，需要知道函数的名称和参数，比如求绝对值的函数<strong>abs</strong>，只有一个参数。可以直接从Python的官方网站查看文档：</p>
@@ -580,8 +566,6 @@ RuntimeError: maximum recursion depth exceeded
     
       <category term="Python" scheme="http://yoursite.com/categories/Python/"/>
     
-      <category term="programming" scheme="http://yoursite.com/categories/Python/programming/"/>
-    
     
   </entry>
   
@@ -590,7 +574,7 @@ RuntimeError: maximum recursion depth exceeded
     <link href="http://yoursite.com/2014/08/23/2014-08-23-Python05-judge-loop/"/>
     <id>http://yoursite.com/2014/08/23/2014-08-23-Python05-judge-loop/</id>
     <published>2014-08-23T13:10:00.000Z</published>
-    <updated>2014-10-12T15:01:04.000Z</updated>
+    <updated>2017-05-30T10:19:25.000Z</updated>
     
     <content type="html"><![CDATA[<p>###if语句</p>
 <p>到目前为止的程序都是一条一条语句顺序执行的。在这部分中会介绍让程序选择是否执行语句块的方法。</p>
@@ -640,8 +624,6 @@ RuntimeError: maximum recursion depth exceeded
     
       <category term="Python" scheme="http://yoursite.com/categories/Python/"/>
     
-      <category term="programming" scheme="http://yoursite.com/categories/Python/programming/"/>
-    
     
   </entry>
   
@@ -650,7 +632,7 @@ RuntimeError: maximum recursion depth exceeded
     <link href="http://yoursite.com/2014/08/23/2014-08-23-Python04-Operation/"/>
     <id>http://yoursite.com/2014/08/23/2014-08-23-Python04-Operation/</id>
     <published>2014-08-23T01:10:00.000Z</published>
-    <updated>2014-10-12T15:01:04.000Z</updated>
+    <updated>2017-05-30T10:19:36.000Z</updated>
     
     <content type="html"><![CDATA[<p>Python的运算符和其他语言类似</p>
 <p>（我们暂时只了解这些运算符的基本用法，方便我们展开后面的内容，高级应用暂时不介绍）<br><a id="more"></a></p>
@@ -702,8 +684,6 @@ RuntimeError: maximum recursion depth exceeded
     
       <category term="Python" scheme="http://yoursite.com/categories/Python/"/>
     
-      <category term="programming" scheme="http://yoursite.com/categories/Python/programming/"/>
-    
     
   </entry>
   
@@ -712,7 +692,7 @@ RuntimeError: maximum recursion depth exceeded
     <link href="http://yoursite.com/2014/08/18/2014-08-18-Python03-sequence/"/>
     <id>http://yoursite.com/2014/08/18/2014-08-18-Python03-sequence/</id>
     <published>2014-08-18T12:10:00.000Z</published>
-    <updated>2014-10-12T15:01:04.000Z</updated>
+    <updated>2017-05-30T10:19:46.000Z</updated>
     
     <content type="html"><![CDATA[<p>###sequence 序列</p>
 <p>sequence(序列)是一组<font color="red">有顺序</font>的<font color="red">元素</font>的的<font color="red">集合</font></p>
@@ -784,8 +764,6 @@ RuntimeError: maximum recursion depth exceeded
     
       <category term="Python" scheme="http://yoursite.com/categories/Python/"/>
     
-      <category term="programming" scheme="http://yoursite.com/categories/Python/programming/"/>
-    
     
   </entry>
   
@@ -794,7 +772,7 @@ RuntimeError: maximum recursion depth exceeded
     <link href="http://yoursite.com/2014/08/17/2014-08-17-Python02-data-type/"/>
     <id>http://yoursite.com/2014/08/17/2014-08-17-Python02-data-type/</id>
     <published>2014-08-17T13:19:00.000Z</published>
-    <updated>2014-10-12T15:01:04.000Z</updated>
+    <updated>2017-05-30T10:19:56.000Z</updated>
     
     <content type="html"><![CDATA[<p>###简单的数据类型以及赋值</p>
 <p>###变量不需要声明<br>Python的变量不需要声明，你可以直接输入：</p>
@@ -850,8 +828,6 @@ a=&apos;Hello!&apos;   # 字符串
     
       <category term="Python" scheme="http://yoursite.com/categories/Python/"/>
     
-      <category term="programming" scheme="http://yoursite.com/categories/Python/programming/"/>
-    
     
   </entry>
   
@@ -860,7 +836,7 @@ a=&apos;Hello!&apos;   # 字符串
     <link href="http://yoursite.com/2014/08/17/2014-08-17-Python01-Hello-World/"/>
     <id>http://yoursite.com/2014/08/17/2014-08-17-Python01-Hello-World/</id>
     <published>2014-08-17T06:19:00.000Z</published>
-    <updated>2014-10-12T15:01:04.000Z</updated>
+    <updated>2017-05-30T10:20:05.000Z</updated>
     
     <content type="html"><![CDATA[<p>####简单的‘Hello World!’</p>
 <p>###Python命令行</p>
@@ -895,173 +871,6 @@ print(&#39;Hello World!&#39;)</code><br><br><br><br>需要修改上面程序的�
     </summary>
     
       <category term="Python" scheme="http://yoursite.com/categories/Python/"/>
-    
-      <category term="programming" scheme="http://yoursite.com/categories/Python/programming/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>14个在线编程挑战网站Coding Challenges to Help You Train Your Brain</title>
-    <link href="http://yoursite.com/2014/04/26/2014-04-26-online-programing-learning-website/"/>
-    <id>http://yoursite.com/2014/04/26/2014-04-26-online-programing-learning-website/</id>
-    <published>2014-04-26T08:22:00.000Z</published>
-    <updated>2014-10-26T07:06:30.000Z</updated>
-    
-    <content type="html"><![CDATA[<p><a href="http://en.wikipedia.org/wiki/Computer_programming" target="_blank" rel="external">Programming</a> is becoming an essential part of nearly every industry known to man, the way it helps to organize and maintain large systems is not possible to compare to anything else, and so <a href="http://codecondo.com/12-courses-learn-web-development-beginners/" target="_blank" rel="external">more and more people begin their journey</a>.</p>
-<p>You can learn coding both from <a href="http://codecondo.com/10-ways-to-learn-python/" target="_blank" rel="external">interactive platforms</a>, and also <a href="http://codecondo.com/free-books-theoretical-computer-science/" target="_blank" rel="external">from books</a> – whichever you find most appropriate and easy to learn from. But, sometimes that’s not good enough, and we want to practice new things.<br><a id="more"></a></p>
-<p>Coding is a lot about creativity, your ability to come up with new and interesting ideas; but sometimes, due to the large amount of time spent tackling common problems, we forget about creativity. I’m not quite sure whether that is the reason coding challenges were made, but they certainly help with the part where you need to think of your own stuff to program.</p>
-<p>We could say that coding challenges are great for:</p>
-<ul>
-<li>learning new ways of doing things</li>
-<li>practicing a new programming language</li>
-<li>encountering critical problem solving</li>
-<li>keeping our brain sharp and focused</li>
-<li>having fun!</li>
-</ul>
-<p>in my quest to find the <strong>best programming</strong> challenges, I narrowed the list down to five great resources, which I believe will help you immensely alongside your journey, or serve a great purpose for learning and exploring more areas of computer science.</p>
-<p>Initially, this was a list of five coding challenge websites, but due to huge amount of popularity it received on multiple media outlets, the community has since suggested plenty more programming challenge websites that you can view and explore. Thank you!</p>
-<p>##<a href="http://www.topcoder.com/" target="_blank" rel="external">topcoder</a></p>
-<p><img src="http://codecondo.com/wp-content/uploads/2014/04/800x399xtopcoder-.png.pagespeed.ic.xrHzf01nLb.jpg" alt=""></p>
-<p>You get to earn real money, and it’s supported by a community of nearly a million coders, so I’m pretty sure there is a lot of challenging stuff to encounter. I’m saying that because I believe that some beginner programming enthusiasts might find [topcoder] to be rather difficult.</p>
-<p>It’s possible to participate in both daily, and weekly coding challenges; both are extremely difficult, and require great thinking skills to complete. It’s worth it though, as it all adds up to your resume at the end of the day.</p>
-<p>##<a href="http://www.hackerearth.com/" target="_blank" rel="external">HackerEarth</a></p>
-<p><img src="http://codecondo.com/wp-content/uploads/2014/04/800x399xHackerEarth-Coding-Challenges-for-Programmers.png.pagespeed.ic.bSziKqw9xF.jpg" alt=""></p>
-<p>HackerEarth provides a SaaS application to do automated assessment of technical and logical skills of candidates. It also helps companies to source smart talent by serving as a developer aggregation and selection platform.</p>
-<p>They’ve got frequent challenges being added, and you can signup weeks before; both to prepare and know beforehand when you’ve got to participate. Like TopCoder, this is a high quality website, and offers thoughtful challenges that will prove to be of use later in your career.</p>
-<p>##<a href="http://coderbyte.com/" target="_blank" rel="external">Coderbyte</a></p>
-<p><img src="http://codecondo.com/wp-content/uploads/2014/04/800x399xCoderbyte-Programming-Game-Challenges-Competitions.png.pagespeed.ic.1l6tC-XzUi.jpg" alt=""></p>
-<p>Coderbyte is a Kickstarter funded project (although, it existed before the campaign itself), and is aimed at complete beginners and intermediate programmers alike.</p>
-<p>It was launched in 2012, by Daniel Borowski, and has since grown into a self-maintained community of programmers who like to tackle programming problems in their spare time.</p>
-<p>You can also ask questions if there is something you don’t understand, and the community is fairly active; so it is more than likely that you’ll get an answer. Plenty of people love Coderbyte, and I’ve seen only positive reviews for it.</p>
-<p>##<a href="https://projecteuler.net/" target="_blank" rel="external">Project Euler</a></p>
-<p><img src="http://codecondo.com/wp-content/uploads/2014/04/800x399xAbout-Project-Euler.resized.png.pagespeed.ic.hzBn4aT9lD.jpg" alt=""></p>
-<p>Project Euler is probably the most popular coding challenge website in the world, and has been the home of some several hundred thousand users, since the initial launch, over a decade ago. You get one extra challenge added per week, but I’m quite sure it’s going to take some time before you tack the 450+ problems that there are to solve already.</p>
-<p>They’ve been built to not be very hard, rather; involve critical thinking and problem solving, in order to help you grow and learn more about the language you’re using. It’s all about working your way up, making sure you thoroughly understand what you’re doing.</p>
-<p>You can learn more about Project Euler on: <a href="http://en.wikipedia.org/wiki/Project_Euler" target="_blank" rel="external">Wikipedia</a>, <a href="http://www.reddit.com/r/projecteuler/" target="_blank" rel="external">Reddit</a>, <a href="http://stackoverflow.com/questions/tagged/project-euler" target="_blank" rel="external">Stack Overflow</a> and <a href="https://code.google.com/p/projecteuler-solutions/" target="_blank" rel="external">Google Code</a>.</p>
-<p>I think there’s even an Android application for it, <a href="https://play.google.com/store/apps/details?id=in.nishitp.euler" target="_blank" rel="external">see it for yourself</a>.</p>
-<p>##<a href="http://www.reddit.com/r/dailyprogrammer" target="_blank" rel="external">Daily Programmer</a></p>
-<p><img src="http://codecondo.com/wp-content/uploads/2014/04/800x399xFor-learning-refreshing-or-just-for-fun-.png.pagespeed.ic.r1opXbBaWk.jpg" alt=""></p>
-<p>We are going to wrap this up with one of my personal favorites: Reddit’s Daily Programmer. It’s a wonderful discussion board to be a part of, if you want to learn more about programming and problem solving. I think as it stands right now, you get three unique problems to solve per week.</p>
-<p>Not to mention, several hundred to work with already. Every submission you create in the comments is reviewed by the community members, so you get a mix of opinions and answers to your approach.</p>
-<p>Highly recommended.</p>
-<p>##<a href="https://codility.com/train/" target="_blank" rel="external">Codility Train</a></p>
-<p><img src="http://codecondo.com/wp-content/uploads/2014/04/800x399xCodility-Train.png.pagespeed.ic.gu9pK6w0wy.jpg" alt=""></p>
-<p>You get several pre-customized and pre-thought challenges that you can submit in many programming languages. They’re all sorted by their appropriate difficulty, and there is like 40-50 challenges to go through.</p>
-<p>Each has a detailed explanation on what the end program should do, and as far as I could tell – you’re also given a time limit on each, so there is no slacking!</p>
-<p>##<a href="http://www.spoj.com/" target="_blank" rel="external">SPOJ</a></p>
-<p><img src="http://codecondo.com/wp-content/uploads/2014/04/800x399xSphere-Online-Judge-SPOJ-.png.pagespeed.ic.RvuH-BU8V7.jpg" alt=""></p>
-<p><a href="http://en.wikipedia.org/wiki/SPOJ" target="_blank" rel="external">Sphere Online Judge</a> is a community that consists of many thousands of coding challenges that you can tackle all day long. It supports the input of almost every programming language you can imagine, and there is a great community behind it that is consistently available for help on the community forums.</p>
-<p>##<a href="http://www.codechef.com/" target="_blank" rel="external">CodeChef</a></p>
-<p><img src="http://codecondo.com/wp-content/uploads/2014/04/800x399xCodeChef.png.pagespeed.ic.yEvUx7RNEi.jpg" alt=""></p>
-<p>CodeChef was created by Directi as a way to challenge and engage the developer community and provide a platform for practice, competition and improvement. It’s powered by a large set of problems to work with, and you can also gain access to the source codes that others used to solve the given coding challenges.</p>
-<p>It’s split in several difficulty categories, and the website itself has a reasonable size community. Looks like a really great challenge site.</p>
-<p>##<a href="https://www.codeeval.com/" target="_blank" rel="external">CodeEval</a></p>
-<p><img src="http://codecondo.com/wp-content/uploads/2014/04/800x399xCodeEval.png.pagespeed.ic.GA6DPkDK9I.jpg" alt=""></p>
-<p>You can join CodeEval as a developer who wants to show his programming skills to employers and other developers. You get to participate and join competitions for several different areas, but mostly for building a product / app – and in return get money prizes. Also, you get access to programming challenges, which can be solved and added to your resume to further make a good first impression to your potential employers.</p>
-<p>It’s focused on helping developers to advertise themselves as experienced within their field of work, and seems to be doing that job great.</p>
-<p>##<a href="https://www.hackerrank.com/" target="_blank" rel="external">HackerRank</a></p>
-<p><img src="http://codecondo.com/wp-content/uploads/2014/04/800x399xHackerRank.png.pagespeed.ic.2qUz8zg5nx.jpg" alt=""></p>
-<p>The thing I instantly liked about HackerRank was their section for challenges that are related to artificial intelligence, which is kind of cool and gives advanced programmers something to play around with. It’s backed by companies like Y Combinator, SVAngel and many more. Definitely a nice bunch of hackers working on this.</p>
-<p>##<a href="http://www.talentbuddy.co/" target="_blank" rel="external">Talentbuddy</a></p>
-<p><img src="http://codecondo.com/wp-content/uploads/2014/04/800x399xTalentbuddy.png.pagespeed.ic.oZQxmhU5H_.jpg" alt=""></p>
-<p>Talentbuddy is a friendly place where you can exercise your problem solving skills in an enjoyable interview oriented way. I think you might find social aspect of the site a little bit annoying, but overall it has got some really great lessons to learn from, there is even some MongoDB stuff in there to practice – always nice to see advanced challenges!</p>
-<p>##<a href="http://www.codewars.com/" target="_blank" rel="external">Codewars</a></p>
-<p><img src="http://codecondo.com/wp-content/uploads/2014/04/800x399xCodewars.png.pagespeed.ic.50L4YVqGyw.jpg" alt=""></p>
-<p>Codewars has a pretty nice approach to coding challenges and take their craft quite seriously, I was trying to find the right words to describe it, but here is a ten minute introductory video of what Codewars has to offer.</p>
-<iframe width="450" height="253" src="//www.youtube.com/embed/mOMVV6zlNyE" frameborder="0" allowfullscreen></iframe>
-
-<p>I think you’ll like it, as many developers in the community already do.</p>
-<p>##<a href="http://rosalind.info/problems/locations/" target="_blank" rel="external">Rosalind</a></p>
-<p><img src="http://codecondo.com/wp-content/uploads/2014/04/800x399xRosalind.png.pagespeed.ic.xQa7wAqo3Y.jpg" alt=""></p>
-<p>It’s a little bit more specific approach, but nonetheless a great way to tackle and learn about programming problems. Rosalind offers some challenges towards bioinformatics, which you can solve at your own pace.</p>
-<p>##<a href="http://fightcodegame.com/" target="_blank" rel="external">FightCode</a></p>
-<p><img src="http://codecondo.com/wp-content/uploads/2014/04/800x399xFightCode.png.pagespeed.ic.vdAFvX0CsU.jpg" alt=""></p>
-<p>You get to program your own robots, and then use them to fight against other community members. It’s the code-and-play type of platform, but still useful for those who’re new to such approach, or perhaps just want to have some fun. <a href="http://beta.fightcodegame.com/docs/" target="_blank" rel="external">Try the docs</a> to get a better sense of it.</p>
-<p>##Coding Challenges to Help You Train Your Brain</p>
-<p>I guess the title of this post is a little bit cheesy, but what else are we going to train; if not the brain? It all comes to us from there, so we might as well. I think it’s a pretty solid list, considering that…</p>
-<p>by putting all of these together, you get several thousand of unique programming challenges to work with, I doubt you’ll ever complete even 1% of these, but it’s worth trying!</p>
-<p>What has helped you to challenge yourself, and which one of these are among your own favorites? You probably use some others among the ones in this list, share them with the members of community in the comment section!</p>
-<p>I’m humbled by all the community support and suggestions that this post was able to receive, and you should now, definitely be on your way to greatness.</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/Computer_programming&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Programming&lt;/a&gt; is becoming an essential part of nearly every industry known to man, the way it helps to organize and maintain large systems is not possible to compare to anything else, and so &lt;a href=&quot;http://codecondo.com/12-courses-learn-web-development-beginners/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;more and more people begin their journey&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;You can learn coding both from &lt;a href=&quot;http://codecondo.com/10-ways-to-learn-python/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;interactive platforms&lt;/a&gt;, and also &lt;a href=&quot;http://codecondo.com/free-books-theoretical-computer-science/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;from books&lt;/a&gt; – whichever you find most appropriate and easy to learn from. But, sometimes that’s not good enough, and we want to practice new things.&lt;br&gt;
-    
-    </summary>
-    
-      <category term="Coding Challenges" scheme="http://yoursite.com/categories/Coding-Challenges/"/>
-    
-      <category term="Online learning" scheme="http://yoursite.com/categories/Coding-Challenges/Online-learning/"/>
-    
-      <category term="programming" scheme="http://yoursite.com/categories/Coding-Challenges/Online-learning/programming/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>What happens to software engineers who don&#39;t climb the corporate ladder and stay as engineers?</title>
-    <link href="http://yoursite.com/2014/04/22/2014-04-22-engineers-stay-as-engineers-careeres/"/>
-    <id>http://yoursite.com/2014/04/22/2014-04-22-engineers-stay-as-engineers-careeres/</id>
-    <published>2014-04-22T08:22:00.000Z</published>
-    <updated>2014-10-26T07:06:10.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>###They become … Unix Beards!</p>
-<img src="/images/2014/Unix_Beards.jpeg">
-<p>(Just kidding.)<br><a id="more"></a></p>
-<p>They become better, more experienced, more sought-after, better-rewarded engineers. Some of the best big tech companies recognize this explicitly in their career ladders. At Google, for example, there is a separate job ladder for “individual contributors”, which culminates (or once did) at “Google Fellow”. An engineer at this level is commensurate with a Vice President, and has similar high-level impact – even moreso on questions of technology, architecture and technical direction. I believe there are similar positions at Facebook, Apple, etc.</p>
-<p>Likewise, at an early-stage startup, the company’s most formidable hacker may well be more valuable than the experienced manager she reports to, and the compensation structure will reflect that. These folks are very much in demand as founding engineers, CTOs, and technical cofounders. Now that I think about it, a very strong engineer with a high risk tolerance might be the single person with the most leverage in the entire startup game.</p>
-<p>It’s true that at some companies, engineers are treated as “cogs”. But you don’t want to work at those places anyway, regardless of whether you want to be a manager.</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;###They become … Unix Beards!&lt;/p&gt;
-&lt;img src=&quot;/images/2014/Unix_Beards.jpeg&quot;&gt;
-&lt;p&gt;(Just kidding.)&lt;br&gt;
-    
-    </summary>
-    
-      <category term="Careers" scheme="http://yoursite.com/categories/Careers/"/>
-    
-      <category term="programming" scheme="http://yoursite.com/categories/Careers/programming/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>How do you use Python to make websites?</title>
-    <link href="http://yoursite.com/2014/04/12/2014-04-12-python-web-development/"/>
-    <id>http://yoursite.com/2014/04/12/2014-04-12-python-web-development/</id>
-    <published>2014-04-12T15:22:00.000Z</published>
-    <updated>2014-10-12T15:01:04.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>If you decided to learn Python, please forget about web development for a while and concentrate in learning the language first.<br>Python is easy to pick up, but you must stand on your feet before you start to run.</p>
-<p>Python is an easy, flexible and powerful programming language which can be used as a general purpose programming language (and it’s a very good language for web development as well), but you must understand that in order to become a web developer you must learn several different skills besides python.<br><a id="more"></a></p>
-<p>The first basic skill you must learn is HTML.<br>HTML is the markup language of the web. All web pages are created with HTML, which defines the different elements contained in a web page.<br>Then you should learn CSS, which is another little language that defines the way each HTML element looks within a page (its color, the font type, its position on the page, etc).<br>And the third skill you should master to become a complete web developer is javascript.<br>Javascript is a scripting language, just as python, but it runs within the browser.<br>It is a fundfamental part of HTML5 (the newest incarnation of the HTML markup language, which powers all the new applications being written for the web and mobile phones and tablets (iphone, ipad, blackberry, etc…).</p>
-<p>HTML + CSS + JAVASCRIPT are different parts of the whole HTML5 platform, and they all work in tandem to create a full web application.</p>
-<p>Where does Python fit in?<br>You must understand that, although you can create a full web application with just HTML, CSS and javascript, chances are that your application will need to access data stored in a server, most likely a database.<br>That means that you will have to write code that will be run in a remote server rather than in the browser.</p>
-<p>The server side is different than the browser (or client side). In the client side you only have one option: javascript.<br>On the other hand, you can use any imaginable language on the server side.<br>People use php, java, ruby, python, c#, etc…</p>
-<p>Python will let you talk to the database or datastore, perform queries, retrieve information and format the output to your web page.</p>
-<p>Is it possible to forget about javascript and write your whole application in python?<br>Yes, and many web sites work this way. But you would be limiting yourself (and your website usability).</p>
-<p>Think about it:<br>Code written in javascript runs in your browser (it doesn’t need to comunicate with a distant server and wait for the response) hence, its faster, and the user experience is better. That’s why the new HTML5 web applications feel more and more like desktop applications.<br>Applications written entirely in javascript with that talk directly to the database are known as Ajax applications.</p>
-<p>But code written on the server side may give you more security and scalability, so both sides should be mastered to become a competent web developer.</p>
-<p>As for web development frameworks:<br>Again, please first stand on your feet… When you reach the moment where you find yourself needing a framework, you will probably find out that you can get by with a simpler solution rather than Django.<br>Django lets you create the whole structure of your website on the server side.</p>
-<p>My advice: Forget about all these things, get a good python tutorial and learn it (and enjoy it!) before looking at all the other technologies you will need.</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;If you decided to learn Python, please forget about web development for a while and concentrate in learning the language first.&lt;br&gt;Python is easy to pick up, but you must stand on your feet before you start to run.&lt;/p&gt;
-&lt;p&gt;Python is an easy, flexible and powerful programming language which can be used as a general purpose programming language (and it’s a very good language for web development as well), but you must understand that in order to become a web developer you must learn several different skills besides python.&lt;br&gt;
-    
-    </summary>
-    
-      <category term="python" scheme="http://yoursite.com/categories/python/"/>
-    
-      <category term="Web Applications" scheme="http://yoursite.com/categories/python/Web-Applications/"/>
     
     
   </entry>
@@ -1100,7 +909,7 @@ print(&#39;Hello World!&#39;)</code><br><br><br><br>需要修改上面程序的�
     <link href="http://yoursite.com/2014/04/09/2014-04-09-github-octopress-blog/"/>
     <id>http://yoursite.com/2014/04/09/2014-04-09-github-octopress-blog/</id>
     <published>2014-04-09T10:19:00.000Z</published>
-    <updated>2014-10-26T07:05:19.000Z</updated>
+    <updated>2017-05-30T10:21:32.000Z</updated>
     
     <content type="html"><![CDATA[<p><a href="http://octopress.org/" target="_blank" rel="external">Octopress</a>是利用<a href="http://github.com/mojombo/jekyll" target="_blank" rel="external">Jekyll</a>博客引擎开发的一个博客系统，生成的静态页面能够很好的在github page上展现。号称是hacker专属的一个博客系统(A blogging framework for hackers.)</p>
 <p>本文我就来介绍一下如何在苹果电脑(OS X 10.9.2)利用Octopress搭建一个Github博客。本文需要读者熟悉一些shell命令，并掌握基本的git操作。<br><a id="more"></a><br>Octopress博客是搭建在github上的静态网页，Octopress相当于一个自动化生成静态网页的工具，网页并没有使用数据库等，使用的是github提供的服务器和域名。github pages为每个用户提供一个名 <a href="http://username.github.com" target="_blank" rel="external">http://username.github.com</a> 的域名。你首先需要在github上建立一个名为 username.github.com 的仓库，之后的博客将会部署到这个仓库中，部署成后你就可以从 <a href="http://username.github.com" target="_blank" rel="external">http://username.github.com</a> 访问你的博客了，不过可能需要等待十分钟。</p>
@@ -1201,11 +1010,7 @@ default_asides: [custom/asides/tag_cloud.html, asides/recent_posts.html,     cus
     
     </summary>
     
-      <category term="github" scheme="http://yoursite.com/categories/github/"/>
-    
-      <category term="blog" scheme="http://yoursite.com/categories/github/blog/"/>
-    
-      <category term="Octopress" scheme="http://yoursite.com/categories/github/blog/Octopress/"/>
+      <category term="Octopress" scheme="http://yoursite.com/categories/Octopress/"/>
     
     
   </entry>
@@ -1215,7 +1020,7 @@ default_asides: [custom/asides/tag_cloud.html, asides/recent_posts.html,     cus
     <link href="http://yoursite.com/2014/04/08/2014-04-08-markdown-write/"/>
     <id>http://yoursite.com/2014/04/08/2014-04-08-markdown-write/</id>
     <published>2014-04-08T13:19:00.000Z</published>
-    <updated>2014-10-12T15:01:04.000Z</updated>
+    <updated>2017-05-30T10:21:23.000Z</updated>
     
     <content type="html"><![CDATA[<p>Markdown 是一种「电子邮件」风格的「标记语言」，强烈推荐所有写作者学习和掌握该语言。为什么？可以参考:</p>
 <ul>
@@ -1292,8 +1097,6 @@ default_asides: [custom/asides/tag_cloud.html, asides/recent_posts.html,     cus
     </summary>
     
       <category term="markdown" scheme="http://yoursite.com/categories/markdown/"/>
-    
-      <category term="blog" scheme="http://yoursite.com/categories/markdown/blog/"/>
     
     
   </entry>
